@@ -1,0 +1,24 @@
+local nvim_lsp = require("lspconfig")
+local util = require("lspconfig/util")
+local utils = require("modules.completion.utils")
+
+-- override language server settings
+nvim_lsp.gopls.setup({
+	on_attach = utils.custom_attach,
+	flags = { debounce_text_changes = 150 },
+	capabilities = utils.capabilities,
+	cmd = { "gopls", "-remote=auto" },
+	filetypes = { "go", "gomod" },
+	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+	settings = {
+		gopls = {
+			usePlaceholders = true,
+			analyses = {
+				nilness = true,
+				shadow = true,
+				unusedparams = true,
+				unusewrites = true,
+			},
+		},
+	},
+})
