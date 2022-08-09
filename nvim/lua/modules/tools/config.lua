@@ -32,6 +32,7 @@ function config.telescope()
 	require('telescope').setup({
 		defaults = {
 			initial_mode = "insert",
+			numbers = "both",
 			prompt_prefix = "  ",
 			selection_caret = " ",
 			entry_prefix = " ",

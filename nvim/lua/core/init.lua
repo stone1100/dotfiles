@@ -41,10 +41,10 @@ local load_core = function()
 	create_dir()
 	disable_distribution_plugins()
 
+	require("core.options")
 	leader_map()
 
 	pack.ensure_plugins()
-	require("core.options")
 	require("core.event")
 	require("keymap")
 	pack.load_compile()
@@ -54,7 +54,6 @@ local load_core = function()
 
 	-- load telescope
 	vim.cmd([[PackerLoad telescope.nvim]])
-
 end
 
 load_core()

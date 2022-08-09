@@ -18,8 +18,7 @@ function utils.custom_attach(client, bufnr)
 	require("lsp-format").on_attach(client)
 	-- neable navic for displaying current context
 	if client.server_capabilities.documentSymbolProvider then
-		local navic = require("nvim-navic")
-		navic.attach(client, bufnr)
+		require("nvim-navic").attach(client, bufnr)
 	end
 end
 

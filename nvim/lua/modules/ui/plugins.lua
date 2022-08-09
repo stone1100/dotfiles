@@ -27,11 +27,12 @@ ui["goolord/alpha-nvim"] = {
 	opt = true,
 	event = "BufWinEnter",
 	config = conf.alpha,
+	after = "bufferline.nvim",
 }
 ui["akinsho/bufferline.nvim"] = {
-	opt = true,
+	--	opt = true,
 	tag = "*",
-	event = "BufReadPost",
+	--	event = { "BufReadPost" },
 	config = conf.nvim_bufferline,
 }
 ui["yamatsum/nvim-cursorline"] = {

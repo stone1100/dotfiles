@@ -2,11 +2,35 @@ local config = {}
 
 function config.catppuccin()
 	require("catppuccin").setup({
+		transparent_background = false,
 		integrations = {
 			telescope = true,
 			dashboard = true,
 			treesitter = true,
 			bufferline = true,
+			cmp = true,
+			native_lsp = {
+				enabled = true,
+				virtual_text = {
+					errors = { "italic" },
+					hints = { "italic" },
+					warnings = { "italic" },
+					information = { "italic" },
+				},
+				underlines = {
+					errors = { "underline" },
+					hints = { "underline" },
+					warnings = { "underline" },
+					information = { "underline" },
+				},
+			},
+			gitgutter = true,
+			gitsigns = true,
+			nvimtree = {
+				enabled = true,
+				show_root = true,
+				transparent_panel = false,
+			},
 		},
 	})
 end
@@ -156,7 +180,7 @@ function config.lualine()
 				{
 					"diff",
 					-- Is it me or the symbol for modified us really weird
-					symbols = { added = " ", modified = "柳 ", removed = " " },
+					symbols = { added = " ", modified = "柳", removed = " " },
 					color_added = colors.green,
 					color_modified = colors.orange,
 					color_removed = colors.red,
@@ -407,14 +431,18 @@ function config.alpha()
 		dashboard.section.footer,
 	}
 
+	-- set autocmd can show bufferline
+	dashboard.opts.opts.noautocmd = true
 	alpha.setup(dashboard.opts)
 end
 
 function config.nvim_bufferline()
 	require("bufferline").setup({
 		options = {
-			number = "none",
+			mode = "buffers",
+			numbers = "both",
 			modified_icon = "✥",
+			indicator_icon = ' ',
 			buffer_close_icon = "",
 			left_trunc_marker = "",
 			right_trunc_marker = "",
@@ -424,17 +452,21 @@ function config.nvim_bufferline()
 			show_buffer_close_icons = true,
 			show_buffer_icons = true,
 			show_tab_indicators = true,
-			diagnostics = "nvim_lsp",
 			always_show_bufferline = true,
 			separator_style = "thin",
+			color_icons = true,
 			offsets = {
 				{
 					filetype = "NvimTree",
-					text = "File Explorer",
-					text_align = "center",
+					text = " File Explorer",
+					-- text = function()
+					-- 	return vim.fn.getcmd()
+					-- end,
+					text_align = "left",
 					padding = 1,
 				},
 			},
+			diagnostics = "nvim_lsp",
 			diagnostics_indicator = function(_, _, diagnostics_dict, _)
 				local s = " "
 				for e, n in pairs(diagnostics_dict) do
@@ -451,7 +483,7 @@ function config.cursorline()
 	require("nvim-cursorline").setup({
 		cursorline = {
 			enable = true,
-			timeout = 1000,
+			timeout = 100,
 			number = false,
 		},
 		cursorword = {
