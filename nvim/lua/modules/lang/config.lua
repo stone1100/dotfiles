@@ -19,7 +19,8 @@ function config.go()
 		--   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
 		lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
 		lsp_on_attach = function(client, bufnr)
-			require("modules.completion.utils").custom_attach(client, bufnr)
+			-- require("modules.completion.utils").custom_attach(client, bufnr)
+			-- require("keymap.keys").go()
 		end,
 		--      when lsp_cfg is true
 		-- if lsp_on_attach is a function: use this function as on_attach function for gopls
@@ -42,7 +43,7 @@ function config.go()
 		build_tags = "", -- set default build tags
 		textobjects = true, -- enable default text jobects through treesittter-text-objects
 		test_runner = "go", -- richgo, go test, richgo, dlv, ginkgo
-		run_in_floaterm = false, -- set to true to run in float window.
+		run_in_floaterm = true, -- set to true to run in float window.
 		-- float term recommended if you use richgo/ginkgo with terminal colo
 	})
 end

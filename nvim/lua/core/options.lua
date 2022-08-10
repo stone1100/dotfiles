@@ -16,6 +16,8 @@ local function load_options()
 
 		undofile = true,
 		undodir = global.cache_dir .. "undo/",
+
+		timeoutlen = 300,
 	}
 
 	for name, value in pairs(global_local) do

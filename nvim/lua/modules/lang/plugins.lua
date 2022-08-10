@@ -6,6 +6,7 @@ lang["ray-x/go.nvim"] = {
 	ft = "go",
 	run = ":GoInstallBinaries",
 	config = conf.go,
+	requires = { "ray-x/guihua.lua" },
 }
 
 return lang

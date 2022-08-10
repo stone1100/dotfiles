@@ -49,7 +49,6 @@ local load_core = function()
 	require("keymap")
 	pack.load_compile()
 
-
 	vim.cmd([[colorscheme catppuccin]])
 
 	-- load telescope

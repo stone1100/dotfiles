@@ -41,10 +41,5 @@ tools["folke/which-key.nvim"] = {
 	keys = ",",
 	config = conf.which_key,
 }
-tools["linty-org/key-menu.nvim"] = {
-	opt = true,
-	config = conf.key_menu,
-	event = "VimEnter",
-}
 
 return tools
