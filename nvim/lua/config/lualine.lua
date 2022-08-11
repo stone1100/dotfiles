@@ -7,8 +7,7 @@ local function navic_content()
 	end
 end
 
-local function escape_status()
-	local ok, m = pcall(require, "better_escape")
+local function escape_status() local ok, m = pcall(require, "better_escape")
 	return ok and m.waiting and "✺ " or ""
 end
 
@@ -126,10 +125,12 @@ require("lualine").setup({
 		lualine_a = {
 			{ "mode" },
 		},
+
 		lualine_b = {
 			{ "branch" },
 			{
 				"diff",
+				color = { bg = "#1f2335"},
 				-- Is it me or the symbol for modified us really weird
 				symbols = { added = " ", modified = "柳", removed = " " },
 				color_added = colors.green,

@@ -1,11 +1,11 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local lsp_conf = require("config.lsp")
-local cmp_conf = require("config.cmp")
-local ui_conf = require("config.ui")
+
+local packer_bootstrap
+
 -- check packer if installed if not, install it.
 if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({
+	packer_bootstrap = fn.system({
 		"git", "clone", "https://github.com/wbthomason/packer.nvim",
 		install_path,
 	})
@@ -18,8 +18,8 @@ local function get_config(name)
 end
 
 -- initialize and configure packer
-
 local packer = require("packer")
+
 -- init packer
 packer.init({
 	--	compile_path = compile_path,
@@ -39,18 +39,17 @@ packer.startup(function(use)
 	-- update packer self
 	use("wbthomason/packer.nvim")
 
-
 	-- code completion
 	use({ "rafamadriz/friendly-snippets" })
 	use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
 	use({
 		"L3MON4D3/LuaSnip",
-		config = cmp_conf.luasnip,
+		config = get_config("luasnip"),
 		after = "nvim-cmp",
 	})
 	use({
 		"hrsh7th/nvim-cmp",
-		config = cmp_conf.cmp,
+		config = get_config("cmp"),
 		event = "InsertEnter",
 		requires = {
 			{ "lukas-reineke/cmp-under-comparator" },
@@ -74,12 +73,12 @@ packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		opt = true,
 		event = "BufReadPre",
-		config = get_config("lspconfig"),
+		config = get_config("lsp"),
 		after = { "cmp-nvim-lsp", "lsp-format.nvim" },
 	})
 	use({ "tami5/lspsaga.nvim" })
 	-- lsp context
-	use({ "SmiteshP/nvim-navic", opt = true, after = "nvim-lspconfig", config = lsp_conf.navic })
+	use({ "SmiteshP/nvim-navic", opt = true, after = "nvim-lspconfig", config = get_config("navic") })
 	-- set golang
 	use({ "ray-x/go.nvim", config = get_config("go"), ft = { "go" } })
 	-- lsp install/config end
@@ -95,11 +94,13 @@ packer.startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 		config = get_config("gitsigns"),
 	})
+	use({ "tpope/vim-fugitive", opt = true, cmd = { "Git", "G" } })
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		config = get_config("todo"),
 	})
+	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_config("autopairs") })
 
 	use({ "nvim-telescope/telescope-symbols.nvim" })
 	use({ "nvim-telescope/telescope-project.nvim" })
@@ -113,19 +114,34 @@ packer.startup(function(use)
 		config = get_config("treesitter"),
 		run = ":TSUpdate",
 	})
+	use({ "terrortylor/nvim-comment", config = function()
+		require('nvim_comment').setup()
+	end })
 	-- tools end
 
 	-- ui related config start
-	use({ "folke/tokyonight.nvim", config = ui_conf.theme })
+	use({ "folke/tokyonight.nvim" })
 	use("kyazdani42/nvim-web-devicons")
 	use({
 		"kyazdani42/nvim-tree.lua",
 		cmd = { "NvimTreeToggle" },
-		config = ui_conf.nvim_tree,
+		config = get_config("nvim-tree"),
 	})
 	use({ "arkav/lualine-lsp-progress", after = "nvim-navic" })
-	use({ "hoob3rt/lualine.nvim", after = "lualine-lsp-progress", config = get_config("lualine")})
+	use({ "hoob3rt/lualine.nvim", after = "lualine-lsp-progress", config = get_config("lualine") })
 	use({ "akinsho/bufferline.nvim", config = get_config("bufferline") })
-	use({ "yamatsum/nvim-cursorline", config = ui_conf.cursorline })
+	use({ "yamatsum/nvim-cursorline", config = get_config("cursorline") })
+	use({ "rcarriga/nvim-notify", config = get_config("notify") })
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = get_config("dashboard"),
+	})
 	-- ui related config end
+
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if packer_bootstrap then
+		require('packer').sync()
+	end
 end)
