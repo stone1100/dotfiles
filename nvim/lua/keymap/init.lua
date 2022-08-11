@@ -4,7 +4,7 @@ local map_cu = bind.map_cu
 --local map_cmd = bind.map_cmd
 require("keymap.config")
 
-local plug_map = {
+local plug_map =   {
 	-- bufferline
 	["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
 	["n|<C-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
