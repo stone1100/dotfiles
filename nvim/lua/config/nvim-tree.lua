@@ -12,10 +12,10 @@ require("nvim-tree").setup({
 			".prettierrc.js",
 			".editorconfig",
 			"eslintignore",
-			"eslintrc.js"
+			"eslintrc.js",
 		},
 		custom = {
-			cover = "^\\.cover.cov"
+			"cover\\.cov",
 		},
 	},
 	git = {
