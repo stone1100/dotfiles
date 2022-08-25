@@ -11,7 +11,7 @@ local icons = require("icons")
 
 saga.init_lsp_saga({
 	error_sign = icons.error,
-	warn_sign =icons.warn,
+	warn_sign = icons.warn,
 	hint_sign = icons.hint,
 	infor_sign = icons.info,
 })
@@ -24,7 +24,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 	virtual_text = {
 		source = true,
-		prefix=" ",
+		prefix = " ",
 		spacing = 0,
 	},
 })
@@ -37,15 +37,16 @@ mason_lsp.setup({
 		"sumneko_lua",
 		"typescript-language-server",
 		"stylua",
+		-- "gopls",
 		"tailwindcss-language-server",
 	},
 })
 
 for _, name in ipairs(mason_lsp.get_installed_servers()) do
-	if name == "golsp" then
-		-- go via go.nvim
-		return
-	end
+	-- if name == "gopls" then
+	-- 	-- go via go.nvim
+	-- 	return
+	-- end
 	local ok, _ = pcall(require, string.format("server.%s", name))
 	if not ok then
 		nvim_lsp[name].setup({

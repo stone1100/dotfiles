@@ -7,7 +7,7 @@ local function set_options()
 		autoindent = true,
 		tabstop = 4,
 		shiftwidth = 4,
-		softtabstop = 4,
+		softtabstop = 0,
 		ruler = false,
 
 		cursorline = true,
@@ -16,7 +16,7 @@ local function set_options()
 		undofile = true,
 		--		undodir = global.cache_dir .. "undo/",
 
-		timeoutlen = 300,
+		timeoutlen = 1000,
 	}
 
 	for name, value in pairs(global_local) do

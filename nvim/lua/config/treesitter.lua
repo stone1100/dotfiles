@@ -11,6 +11,7 @@ require("nvim-treesitter.configs").setup({
     "json",
     "lua",
     "markdown",
+    "tsx",
     "toml",
     "yaml",
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages

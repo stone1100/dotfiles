@@ -75,7 +75,18 @@ wk.setup({
 })
 
 wk.register({
-	K = { "<cmd>Lspsaga hover_doc<cr>", "Show Doc" }
+	K = { "<cmd>Lspsaga hover_doc<cr>", "Show Doc" },
+	e = {
+		name = "Diagnostic",
+		h = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Jump Previous Diagnostic" },
+		l = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump Next Diagnostic" },
+	},
+	g = {
+		name = "Goto",
+		lf = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },
+		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Definition" },
+		i = { "<cmd>Telescope lsp_implementations<cr>", "Goto Definition" },
+	},
 }, { mode_n, silent_opt })
 
 -- mapping leader
@@ -83,7 +94,11 @@ wk.register({
 	c = {
 		name = "Coding",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		f = { "<cmd>lua vim.lsp.buf.format({timeout_ms=1000})<cr>", "Format" },
 		h = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "Show References" },
+		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+		d = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
+		i = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
 	},
 	f = {
 		name = "Files",
@@ -95,15 +110,26 @@ wk.register({
 	},
 	w = {
 		name = "Window",
-		h = { "<C-W>h", "Left Window" },
-		l = { "<C-W>l", "Right Window" },
-		k = { "<C-W>k", "Top Window" },
-		j = { "<C-W>j", "Bottom Window" },
+		n = { "<cmd>new<cr>", "New Window" },
+		c = { "<cmd>quit<cr>", "Close Window" },
+		o = { "<C-W>o", "Close Other Windows" },
+		s = { "<cmd>split<cr>", "Split Window" },
+		v = { "<cmd>vsplit<cr>", "Split Window(Vertically)" },
+		h = { "<C-W>h", "Goto Left Window" },
+		l = { "<C-W>l", "Goto Right Window" },
+		k = { "<C-W>k", "Goto Top Window" },
+		j = { "<C-W>j", "Goto Bottom Window" },
+		H = { "<C-W>H", "Move To Left Window" },
+		L = { "<C-W>L", "Move To Right Window" },
+		K = { "<C-W>K", "Move To Top Window" },
+		J = { "<C-W>J", "Move To Bottom Window" },
 	},
 	b = {
 		name = "Buffers",
 		l = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer(Cycle)" },
 		h = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer(Cycle)" },
 		p = { "<cmd>BufferLinePick<cr>", "Pick Buffer" },
+		f = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
+		c = { "<cmd>q<cr>", "Close Buffer" }
 	},
 }, { prefix = "<leader>", mode_n, silent_opt })

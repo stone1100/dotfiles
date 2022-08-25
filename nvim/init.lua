@@ -1,4 +1,4 @@
--- require("core")
+-- ref: https://github.com/Allaman/nvim
 
 -- key mappings, more => lua/config/which-key.lua
 require("mappings")

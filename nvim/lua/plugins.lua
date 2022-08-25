@@ -80,7 +80,18 @@ packer.startup(function(use)
 	-- lsp context
 	use({ "SmiteshP/nvim-navic", opt = true, after = "nvim-lspconfig", config = get_config("navic") })
 	-- set golang
-	use({ "ray-x/go.nvim", config = get_config("go"), ft = { "go" } })
+	use({
+		"ray-x/go.nvim",
+		config = get_config("go"), ft = { "go" },
+		requires = "ray-x/guihua.lua",
+	})
+	use("buoto/gotests-vim")
+	-- use({
+	-- 	"fatih/vim-go",
+	-- 	ft = { "go" },
+	-- 	cmd = ":GoInstallBinaries",
+	-- 	config = get_config("vim-go"),
+	-- })
 	-- lsp install/config end
 
 	-- tools start
@@ -101,6 +112,9 @@ packer.startup(function(use)
 		config = get_config("todo"),
 	})
 	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_config("autopairs") })
+	use({ "windwp/nvim-ts-autotag", config = function()
+		require("nvim-ts-autotag").setup()
+	end })
 
 	use({ "nvim-telescope/telescope-symbols.nvim" })
 	use({ "nvim-telescope/telescope-project.nvim" })
