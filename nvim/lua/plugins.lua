@@ -131,6 +131,8 @@ packer.startup(function(use)
 	use({ "terrortylor/nvim-comment", config = function()
 		require('nvim_comment').setup()
 	end })
+	use({"liuchengxu/vista.vim", config = get_config("vista")})
+
 	-- tools end
 
 	-- ui related config start

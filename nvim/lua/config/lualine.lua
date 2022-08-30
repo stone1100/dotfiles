@@ -114,7 +114,7 @@ require("lualine").setup({
 	options = {
 		icons_enabled = true,
 		theme = "tokyonight",
-		disabled_filetypes = {},
+		disabled_filetypes = {"NvimTree"},
 		component_separators = "|",
 		section_separators = { left = "", right = "" },
 		refresh = {

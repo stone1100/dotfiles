@@ -102,7 +102,8 @@ wk.register({
 	},
 	f = {
 		name = "Files",
-		b = { "<cmd>Telescope file_browser<cr>", "File browser" },
+		b = { "<cmd>Telescope file_browser<cr>", "File Browser" },
+		e = { "<cmd>Telescope diagnostics<cr>", "Diagnostics File Browser" },
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		t = { "<cmd>NvimTreeToggle<cr>", "Toggle Filetree" },
