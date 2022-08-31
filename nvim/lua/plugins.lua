@@ -58,7 +58,8 @@ packer.startup(function(use)
 			{ "hrsh7th/cmp-path", after = "cmp-nvim-lua" },
 			{ "f3fora/cmp-spell", after = "cmp-path" },
 			{ "hrsh7th/cmp-buffer", after = "cmp-spell" },
-			{ 'rcarriga/cmp-dap', after = "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-cmdline", after = "cmp-spell" },
+			{ 'rcarriga/cmp-dap', after = "cmp-cmdline" },
 		},
 	})
 
@@ -161,7 +162,14 @@ packer.startup(function(use)
 	-- tools end
 
 	-- ui related config start
-	use({ "folke/tokyonight.nvim" })
+	-- use({ "folke/tokyonight.nvim" })
+	-- use({ "ellisonleao/gruvbox.nvim" })
+	use({ "navarasu/onedark.nvim", config = function()
+		require('onedark').setup {
+			style = 'warm'
+		}
+	end })
+	-- use({"eddyekofo94/gruvbox-flat.nvim"})
 	use("kyazdani42/nvim-web-devicons")
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -181,8 +189,8 @@ packer.startup(function(use)
 	use({ 's1n7ax/nvim-window-picker', config = function()
 		require('window-picker').setup({
 			include_current_win = true,
-			other_win_hl_color = 'green',
-			current_win_hl_color = 'orange',
+			other_win_hl_color = '#98be65',
+			current_win_hl_color = '#FF8800',
 			filter_rules = {
 				bo = {
 					filetype = { "notify" },

@@ -2,10 +2,10 @@ local wk = require("which-key")
 local silent_opt = { silent = true }
 local mode_n = { mode = "n" }
 
-pick_window =  function ()
+pick_window = function()
 	local picker = require('window-picker')
-    local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
-    vim.api.nvim_set_current_win(picked_window_id)
+	local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
+	vim.api.nvim_set_current_win(picked_window_id)
 end
 
 wk.setup({
@@ -128,7 +128,7 @@ wk.register({
 		o = { "<C-W>o", "Close Other Windows" },
 		s = { "<cmd>split<cr>", "Split Window" },
 		v = { "<cmd>vsplit<cr>", "Split Window(Vertically)" },
-		p = {"<cmd>lua pick_window()<cr>","Pick a window"},
+		p = { "<cmd>lua pick_window()<cr>", "Pick a window" },
 		h = { "<C-W>h", "Goto Left Window" },
 		l = { "<C-W>l", "Goto Right Window" },
 		k = { "<C-W>k", "Goto Top Window" },
@@ -153,5 +153,9 @@ wk.register({
 		t = { "<cmd>lua require('dap').terminate()<cr>", "Terminate DAP" },
 		["bc"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint Condition" },
 		["h"] = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Widgets Hover" },
+	},
+	h = {
+		name = "Highlight",
+		c = { "<cmd>noh<cr>", "Clear search highlight" },
 	}
 }, { prefix = "<leader>", mode_n, silent_opt })

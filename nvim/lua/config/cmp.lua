@@ -35,9 +35,11 @@ cmp.setup({
 	window = {
 		completion = {
 			border = border("CmpBorder"),
+			winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
 		},
 		documentation = {
 			border = border("CmpBorder"),
+			winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
 		},
 	},
 	sorting = {
@@ -154,6 +156,7 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "spell" },
 		{ name = "orgmode" },
+		{ name = "cmdline" },
 		{ name = "buffer", keyword = 3 },
 	},
 
@@ -162,9 +165,9 @@ cmp.setup({
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "buffer" },
-	},
+	}),
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -176,3 +179,4 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
+

@@ -109,11 +109,13 @@ local conditions = {
 		return gitdir and #gitdir > 0 and #gitdir < #filepath
 	end,
 }
+
 local icons = require("icons")
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "tokyonight",
+		theme = "auto",
 		disabled_filetypes = {"NvimTree"},
 		component_separators = "|",
 		section_separators = { left = "", right = "" },
@@ -130,7 +132,7 @@ require("lualine").setup({
 			{ "branch" },
 			{
 				"diff",
-				color = { bg = "#1f2335"},
+				-- color = { bg = "#1f2335"},
 				-- Is it me or the symbol for modified us really weird
 				symbols = { added = " ", modified = "柳", removed = " " },
 				color_added = colors.green,

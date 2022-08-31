@@ -35,6 +35,14 @@ require("go").setup({
 				o = { "<cmd>Vista!!<cr>", "Go File Outline" },
 				g = { "<cmd>GoGenerate<cr>", "Go Generate" },
 				s = { "<cmd>GoAltV<cr>", "Goto Soruce For Test File" },
+			},
+			g = {
+				name = "Golang",
+				m = { "<cmd>GoCmt<cr>", "Add Go Comments" },
+				p = { "<cmd>GoFixPlurals<cr>", "Fix Plurals" },
+				i = { "<cmd>GoIfErr<cr>", "Add if err" },
+				f = { "<cmd>GoFillStruct<cr>", "Fill struct" },
+				s = { "<cmd>GoFillSwitch<cr>", "Fill switch" },
 			}
 		}, { prefix = "<leader>", { mode = "n" }, { silent = true } })
 
@@ -54,7 +62,7 @@ require("go").setup({
 	lsp_codelens = true, -- set to false to disable codelens, true by default
 	lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
 	lsp_diag_hdlr = true, -- hook lsp diag handler
-	lsp_diag_virtual_text = { space = 0, prefix = " " }, -- virtual text setup ""
+	lsp_diag_virtual_text = { space = 0, prefix = "💀 " }, -- virtual text setup ""
 	lsp_diag_signs = true,
 	lsp_diag_update_in_insert = true,
 	lsp_document_formatting = false,
