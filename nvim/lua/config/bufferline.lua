@@ -3,7 +3,11 @@ require("bufferline").setup({
 		mode = "buffers",
 		numbers = "none", -- both
 		modified_icon = "✥",
-		indicator_icon = '  ',
+		-- indicator_icon = '  ',
+		indicator = {
+			icon = '  ',
+			style = "icon",
+		},
 		buffer_close_icon = "",
 		left_trunc_marker = "",
 		right_trunc_marker = "",

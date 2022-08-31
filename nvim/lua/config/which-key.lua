@@ -2,6 +2,12 @@ local wk = require("which-key")
 local silent_opt = { silent = true }
 local mode_n = { mode = "n" }
 
+pick_window =  function ()
+	local picker = require('window-picker')
+    local picked_window_id = picker.pick_window() or vim.api.nvim_get_current_win()
+    vim.api.nvim_set_current_win(picked_window_id)
+end
+
 wk.setup({
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
@@ -74,7 +80,13 @@ wk.setup({
 	},
 })
 
+-- dap: https://pepa.holla.cz/2022/02/02/debugging-go-in-neovim/
 wk.register({
+	['<F8>'] = { "<cmd>lua require('dap').step_over()<cr>", "DAP Step Over" },
+	['<F7>'] = { "<cmd>lua require('dap').step_into()<cr>", "DAP Step Into" },
+	['<F9>'] = { "<cmd>lua require('dap').step_out()<cr>", "DAP Step Out" },
+	['<F6>'] = { "<cmd>lua require('dap').continue()<cr>", "DAP Step Out" },
+	['<F5>'] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "DAP Toggle Breakpoint" },
 	K = { "<cmd>Lspsaga hover_doc<cr>", "Show Doc" },
 	e = {
 		name = "Diagnostic",
@@ -116,6 +128,7 @@ wk.register({
 		o = { "<C-W>o", "Close Other Windows" },
 		s = { "<cmd>split<cr>", "Split Window" },
 		v = { "<cmd>vsplit<cr>", "Split Window(Vertically)" },
+		p = {"<cmd>lua pick_window()<cr>","Pick a window"},
 		h = { "<C-W>h", "Goto Left Window" },
 		l = { "<C-W>l", "Goto Right Window" },
 		k = { "<C-W>k", "Goto Top Window" },
@@ -133,4 +146,12 @@ wk.register({
 		f = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
 		c = { "<cmd>q<cr>", "Close Buffer" }
 	},
+	d = {
+		name = "Debug",
+		g = { "<cmd>GoDebug -n<cr>", "Go Debug" },
+		u = { "<cmd>lua require('dapui').toggle()<cr>", "DAP UI Toggle" },
+		t = { "<cmd>lua require('dap').terminate()<cr>", "Terminate DAP" },
+		["bc"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint Condition" },
+		["h"] = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Widgets Hover" },
+	}
 }, { prefix = "<leader>", mode_n, silent_opt })

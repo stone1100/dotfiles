@@ -58,6 +58,7 @@ packer.startup(function(use)
 			{ "hrsh7th/cmp-path", after = "cmp-nvim-lua" },
 			{ "f3fora/cmp-spell", after = "cmp-path" },
 			{ "hrsh7th/cmp-buffer", after = "cmp-spell" },
+			{ 'rcarriga/cmp-dap', after = "hrsh7th/cmp-buffer" },
 		},
 	})
 
@@ -82,10 +83,34 @@ packer.startup(function(use)
 	-- set golang
 	use({
 		"ray-x/go.nvim",
-		config = get_config("go"), ft = { "go" },
+		config = get_config("go"), ft = { "go", "gomod" },
 		requires = "ray-x/guihua.lua",
 	})
 	use("buoto/gotests-vim")
+	use({ "mfussenegger/nvim-dap", config = get_config("dap") })
+	use({ 'theHamsta/nvim-dap-virtual-text', config = function()
+		require("nvim-dap-virtual-text").setup()
+	end })
+	use({
+		"rcarriga/cmp-dap",
+		after = { "nvim-cmp", "nvim-dap", requires = 'mfussenegger/nvim-dap' },
+		config = function()
+			local cmp = require 'cmp'
+			cmp.setup.filetype({ "dap-repl" }, {
+				enabled = true,
+				sources = {
+					{ name = "dap" },
+				},
+			})
+		end
+	})
+	use({
+		"rcarriga/nvim-dap-ui",
+		-- cmd = "Luadev",
+		requires = { "mfussenegger/nvim-dap" },
+		config = get_config("dap-ui")
+	})
+	use({ "leoluz/nvim-dap-go" })
 	-- use({
 	-- 	"fatih/vim-go",
 	-- 	ft = { "go" },
@@ -131,7 +156,7 @@ packer.startup(function(use)
 	use({ "terrortylor/nvim-comment", config = function()
 		require('nvim_comment').setup()
 	end })
-	use({"liuchengxu/vista.vim", config = get_config("vista")})
+	use({ "liuchengxu/vista.vim", config = get_config("vista") })
 
 	-- tools end
 
@@ -153,6 +178,19 @@ packer.startup(function(use)
 		requires = { "kyazdani42/nvim-web-devicons" },
 		config = get_config("dashboard"),
 	})
+	use({ 's1n7ax/nvim-window-picker', config = function()
+		require('window-picker').setup({
+			include_current_win = true,
+			other_win_hl_color = 'green',
+			current_win_hl_color = 'orange',
+			filter_rules = {
+				bo = {
+					filetype = { "notify" },
+				}
+
+			}
+		})
+	end })
 	-- ui related config end
 
 	-- Automatically set up your configuration after cloning packer.nvim
