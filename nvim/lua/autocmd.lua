@@ -20,10 +20,13 @@ api.nvim_create_autocmd(
 	}
 )
 
+
 -- https://gist.github.com/albert-yu/18b0ad925df109b42bd3ee698f0aea6e
 -- api.nvim_exec([[autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab]], false)
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" },
-	{ pattern = { "*.ts", "*.tsx", "*.js", "*.html"},
+	{ pattern = { "*.ts", "*.tsx", "*.js", "*.html" },
 		command = "setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab" })
 
-api.nvim_create_autocmd({"BufEnter"},{command="hi BufferLineIndicatorSelected guifg=orange"})
+api.nvim_create_autocmd({ "VimEnter" }, { command = "source ~/.config/nvim/lua/highlight.lua" })
+-- api.nvim_create_autocmd({ "BufRead" }, { command = "lua require('lualine').setup()" })
+api.nvim_create_autocmd({ "VimEnter" }, { command = "source ~/.config/nvim/lua/config/bufferline.lua" })

@@ -108,9 +108,10 @@ wk.register({
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		f = { "<cmd>lua vim.lsp.buf.format({timeout_ms=1000})<cr>", "Format" },
 		h = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "Show References" },
+		i = { "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", "Show Implements" },
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		d = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
-		i = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
+		k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
 	},
 	f = {
 		name = "Files",
@@ -144,7 +145,9 @@ wk.register({
 		h = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer(Cycle)" },
 		p = { "<cmd>BufferLinePick<cr>", "Pick Buffer" },
 		f = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
-		c = { "<cmd>q<cr>", "Close Buffer" }
+		--https://stackoverflow.com/questions/4465095/how-to-delete-a-buffer-in-vim-without-losing-the-split-window
+		c = { "<cmd>:bp|bd #<cr>", "Delete Buffer" },
+		o = { "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>", "Delete Other Buffers" },
 	},
 	d = {
 		name = "Debug",

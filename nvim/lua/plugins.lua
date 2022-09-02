@@ -1,6 +1,6 @@
+-- https://github.com/par4m/nvim
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
 local packer_bootstrap
 
 -- check packer if installed if not, install it.
@@ -50,7 +50,8 @@ packer.startup(function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		config = get_config("cmp"),
-		event = "InsertEnter",
+		-- event = "InsertEnter",
+		event = "VimEnter",
 		requires = {
 			{ "lukas-reineke/cmp-under-comparator" },
 			{ "hrsh7th/cmp-nvim-lsp", after = "LuaSnip" },
@@ -80,7 +81,7 @@ packer.startup(function(use)
 	})
 	use({ "tami5/lspsaga.nvim" })
 	-- lsp context
-	use({ "SmiteshP/nvim-navic", opt = true, after = "nvim-lspconfig", config = get_config("navic") })
+	use({ "SmiteshP/nvim-navic", after = "nvim-lspconfig", config = get_config("navic") })
 	-- set golang
 	use({
 		"ray-x/go.nvim",

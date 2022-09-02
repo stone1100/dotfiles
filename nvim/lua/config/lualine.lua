@@ -1,4 +1,5 @@
 local navic = require("nvim-navic")
+
 local function navic_content()
 	if navic.is_available() then
 		return navic.get_location()
@@ -115,8 +116,8 @@ local icons = require("icons")
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "auto",
-		disabled_filetypes = {"NvimTree"},
+		theme = "onedark",
+		disabled_filetypes = { "NvimTree" },
 		component_separators = "|",
 		section_separators = { left = "", right = "" },
 		refresh = {

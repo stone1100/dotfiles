@@ -4,6 +4,7 @@
         "vim",
         "packer_plugins",
         "pick",
-        "pick_window"
+        "pick_window",
+        "load_lualine"
     ]
 }
