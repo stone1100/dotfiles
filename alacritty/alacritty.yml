@@ -56,7 +56,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: full
+  decorations: full 
 
   # Startup Mode (changes require restart)
   #
@@ -223,52 +223,44 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
+    # cursor: '0xff8800'
 
-# Base16 OneDark 256 - alacritty color config
-# Lalit Magant (http://github.com/tilal6991)
+# Colors (Hybrid)
 colors:
   # Default colors
   primary:
-    background: '0x282c34'
-    foreground: '0xabb2bf'
+    background: '#2c2d30'
+    foreground: '#d0d2d1'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x282c34'
-    cursor: '0xff8800'
-    # cursor: '0xebcb8b'
+    text: '#282c34'
+    cursor: '#ffa500'
 
   # Normal colors
   normal:
-    black:   '0x282c34'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xe5c07b'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xabb2bf'
+    black:   '#35383b'
+    red:     '#b05655'
+    green:   '#769972'
+    yellow:  '#e1a574'
+    blue:    '#7693ac'
+    magenta: '#977ba0'
+    cyan:    '#749e99'
+    white:   '#848b92'
 
   # Bright colors
   bright:
-    black:   '0x545862'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xe5c07b'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xc8ccd4'
-
-  indexed_colors:
-    - { index: 16, color: '0xd19a66' }
-    - { index: 17, color: '0xbe5046' }
-    - { index: 18, color: '0x353b45' }
-    - { index: 19, color: '0x3e4451' }
-    - { index: 20, color: '0x565c64' }
-    - { index: 21, color: '0xb6bdca' }
+    black:   '#484c52'
+    red:     '#d27c7b'
+    green:   '#dffebe'
+    yellow:  '#f0d189'
+    blue:    '#96b1c9'
+    magenta: '#bfa5c7'
+    cyan:    '#9fc9c3'
+    white:   '#fcf7e2'
 
 # Visual Bell
+#
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
 # rung, the terminal background will be set to white and transition back to the
@@ -310,7 +302,7 @@ cursor:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  style: Block
+  style: Beam 
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
@@ -334,12 +326,12 @@ cursor:
 #    - --login
   #
 # auto start tmux
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux attach || tmux new -s dev"
+# shell:
+#   program: /bin/zsh
+#   args:
+#     - -l
+#     - -c
+#     - "tmux attach || tmux new"
 
 
 # Startup directory

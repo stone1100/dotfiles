@@ -5,6 +5,7 @@
         "packer_plugins",
         "pick",
         "pick_window",
-        "load_lualine"
+        "load_lualine",
+        "reload_lualine"
     ]
 }

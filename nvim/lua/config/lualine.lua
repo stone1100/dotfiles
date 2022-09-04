@@ -116,7 +116,7 @@ local icons = require("icons")
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "onedark",
+		theme = "gruvbox_dark",
 		disabled_filetypes = { "NvimTree" },
 		component_separators = "|",
 		section_separators = { left = "", right = "" },

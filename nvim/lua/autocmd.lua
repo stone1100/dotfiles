@@ -10,6 +10,14 @@ local packer_compile = function()
 	vim.notify("Packer compile completed!!!!", vim.log.levels.INFO, { title = "Packer" })
 end
 
+-- fix lualine theme not working
+reload_lualine = function()
+	local ok, _ = pcall(require, "lualine")
+	if ok then
+		require("lualine").setup()
+	end
+end
+
 -- watch all packer config modify, if yes need to do packer compile.
 api.nvim_create_autocmd(
 	{ "BufWritePost" },
@@ -28,5 +36,5 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" },
 		command = "setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab" })
 
 api.nvim_create_autocmd({ "VimEnter" }, { command = "source ~/.config/nvim/lua/highlight.lua" })
--- api.nvim_create_autocmd({ "BufRead" }, { command = "lua require('lualine').setup()" })
+api.nvim_create_autocmd({ "VimEnter" }, { command = "lua reload_lualine()" })
 api.nvim_create_autocmd({ "VimEnter" }, { command = "source ~/.config/nvim/lua/config/bufferline.lua" })
