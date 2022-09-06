@@ -94,7 +94,7 @@ local colors = {
 	violet = "#a9a1e1",
 	magenta = "#c678dd",
 	blue = "#51afef",
-	red = "#ec5f67",
+	red = "#e16d77",
 }
 
 local conditions = {
@@ -112,6 +112,16 @@ local conditions = {
 }
 
 local icons = require("icons")
+-- cool function for progress
+-- local progress = function()
+-- 	local current_line = vim.fn.line "."
+-- 	local total_lines = vim.fn.line "$"
+-- 	local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+-- 	local line_ratio = current_line / total_lines
+-- 	local index = math.ceil(line_ratio * #chars)
+-- 	-- return chars[index]
+-- 	return "%#SLProgress#" .. chars[index] .. "%*"
+-- end
 
 require("lualine").setup({
 	options = {
@@ -147,7 +157,7 @@ require("lualine").setup({
 			{ escape_status },
 			{
 				lsp,
-				icon = " LSP:",
+				icon = ":",
 				color = { fg = colors.violet, gui = "bold" },
 			},
 			{
@@ -199,6 +209,9 @@ require("lualine").setup({
 		},
 		lualine_z = {
 			"progress",
+			-- { progress,
+			-- 	color = {guibg = "red", gui = "bold" },
+			-- },
 			"location",
 		},
 	},

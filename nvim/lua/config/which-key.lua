@@ -138,6 +138,11 @@ wk.register({
 		L = { "<C-W>L", "Move To Right Window" },
 		K = { "<C-W>K", "Move To Top Window" },
 		J = { "<C-W>J", "Move To Bottom Window" },
+		["="] = { "<cmd>resize+5<cr>", "Increase Height" },
+		["-"] = { "<cmd>resize-5<cr>", "Decrease Height" },
+		["_"] = { "<cmd>vertical resize+5<cr>", "Increase Width" },
+		["+"] = { "<cmd>vertical resize-5<cr>", "Decrease Widht" },
+		e = { "<C-W>=", "Equal Height/Width" },
 	},
 	b = {
 		name = "Buffers",
@@ -160,5 +165,10 @@ wk.register({
 	h = {
 		name = "Highlight",
 		c = { "<cmd>noh<cr>", "Clear search highlight" },
-	}
-}, { prefix = "<leader>", mode_n, silent_opt })
+	},
+	t = {
+		name = "TODO",
+		l = { "<cmd>TodoQuickFix<cr>", "List TODO" },
+		t = { "<cmd>TodoTelescope<cr>", "List TODO(Telescope)" },
+	},
+}, { prfix = "<leader>", mode_n, silent_opt })

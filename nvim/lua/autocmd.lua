@@ -10,11 +10,19 @@ local packer_compile = function()
 	vim.notify("Packer compile completed!!!!", vim.log.levels.INFO, { title = "Packer" })
 end
 
--- fix lualine theme not working
-reload_lualine = function()
-	local ok, _ = pcall(require, "lualine")
-	if ok then
-		require("lualine").setup()
+-- init when vim enter
+vim_init = function()
+	vim.cmd("set fillchars+=vert:\\|")
+	vim.cmd("source ~/.config/nvim/lua/highlight.lua")
+	vim.cmd("source ~/.config/nvim/lua/config/bufferline.lua")
+
+	-- fix some plugins theme not working
+	local plugins = { "lualine", "todo-comments" }
+	for _, value in ipairs(plugins) do
+		local ok, _ = pcall(require, value)
+		if ok then
+			require(value).setup()
+		end
 	end
 end
 
@@ -28,13 +36,10 @@ api.nvim_create_autocmd(
 	}
 )
 
-
 -- https://gist.github.com/albert-yu/18b0ad925df109b42bd3ee698f0aea6e
 -- api.nvim_exec([[autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab]], false)
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" },
 	{ pattern = { "*.ts", "*.tsx", "*.js", "*.html" },
 		command = "setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab" })
 
-api.nvim_create_autocmd({ "VimEnter" }, { command = "source ~/.config/nvim/lua/highlight.lua" })
-api.nvim_create_autocmd({ "VimEnter" }, { command = "lua reload_lualine()" })
-api.nvim_create_autocmd({ "VimEnter" }, { command = "source ~/.config/nvim/lua/config/bufferline.lua" })
+api.nvim_create_autocmd({ "VimEnter" }, { command = "lua vim_init()" })

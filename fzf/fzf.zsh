@@ -1,15 +1,20 @@
 # Solarized colors
-export FZF_DEFAULT_OPTS='
-  --color=bg+:#073642,bg:#002b36,spinner:#719e07,hl:#586e75
-  --color=fg:#839496,header:#586e75,info:#cb4b16,pointer:#719e07
-  --color=marker:#719e07,fg+:#839496,prompt:#719e07,hl+:#719e07
-'
+# export FZF_DEFAULT_OPTS='
+#   --color=bg+:#073642,bg:#002b36,spinner:#719e07,hl:#586e75
+#   --color=fg:#839496,header:#586e75,info:#cb4b16,pointer:#719e07
+#   --color=marker:#719e07,fg+:#839496,prompt:#719e07,hl+:#719e07
+# '
 # one dark
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
 --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+--height 60%
+--layout=reverse
+--border
+--preview "bat --style=numbers --color=always --line-range :500 {}"
 '
+
 [ -f ~/.local/forgit/forgit.plugin.zsh ] && source ~/.local/forgit/forgit.plugin.zsh
 # FORGIT_FZF_DEFAULT_OPTS="
 # --reverse

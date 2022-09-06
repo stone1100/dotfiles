@@ -1,7 +1,6 @@
 require("todo-comments").setup({
   signs = true, -- show icons in the signs column
   sign_priority = 8, -- sign priority
-  -- keywords recognized as todo comments
   keywords = {
     FIX = {
       icon = " ", -- icon used for the sign, and in search results
@@ -49,7 +48,7 @@ require("todo-comments").setup({
     },
     -- regex that will be used to match keywords.
     -- don't replace the (KEYWORDS) placeholder
-    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+    pattern = [[\b(KEYWORDS):]], --todo: ripgrep regex
     -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
   },
 })

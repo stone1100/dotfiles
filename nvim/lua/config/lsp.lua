@@ -24,7 +24,7 @@ vim.diagnostic.config({
 	severity_sort = true,
 	virtual_text = {
 		source = true,
-		prefix ="💀 ", -- " ",
+		prefix = "💀 ", -- " ",
 		spacing = 0,
 	},
 })
@@ -36,6 +36,7 @@ mason_lsp.setup({
 		"bash-language-server",
 		"sumneko_lua",
 		"typescript-language-server",
+		"jdtls",
 		"stylua",
 		-- "gopls",
 		"tailwindcss-language-server",
@@ -43,15 +44,15 @@ mason_lsp.setup({
 })
 
 for _, name in ipairs(mason_lsp.get_installed_servers()) do
-	-- if name == "gopls" then
-	-- 	-- go via go.nvim
-	-- 	return
-	-- end
+	if name == "gopls" then
+		-- go via go.nvim
+		return
+	end
 	local ok, _ = pcall(require, string.format("server.%s", name))
 	if not ok then
 		nvim_lsp[name].setup({
 			on_attach = utils.on_attach,
-			capabilities = utils.capabilities,
+			capabilities = utils.capabilip
 		})
 	end
 end

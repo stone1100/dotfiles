@@ -89,6 +89,9 @@ packer.startup(function(use)
 		requires = "ray-x/guihua.lua",
 	})
 	use("buoto/gotests-vim")
+	-- set java setting
+	-- use({ "mfussenegger/nvim-jdtls", opt = true, ft = { "java" }, config = get_config("java") })
+	-- end java setting
 	use({ "mfussenegger/nvim-dap", config = get_config("dap") })
 	use({ 'theHamsta/nvim-dap-virtual-text', config = function()
 		require("nvim-dap-virtual-text").setup()
@@ -159,6 +162,12 @@ packer.startup(function(use)
 		require('nvim_comment').setup()
 	end })
 	use({ "liuchengxu/vista.vim", config = get_config("vista") })
+	use({ "norcalli/nvim-colorizer.lua", config = function()
+		require 'colorizer'.setup()
+	end })
+	use({'kazhala/close-buffers.nvim',config=function ()
+		require('close_buffers').setup()
+	end})
 
 	-- tools end
 

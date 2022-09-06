@@ -235,7 +235,7 @@ colors:
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '#282c34'
-    cursor: '#ffa500'
+    cursor: '#c99a71'
 
   # Normal colors
   normal:
@@ -258,7 +258,9 @@ colors:
     magenta: '#bfa5c7'
     cyan:    '#9fc9c3'
     white:   '#fcf7e2'
-
+# Use custom cursor colors. If true, display the cursor in the cursor.foreground
+# and cursor.background colors, otherwise invert the colors of the cursor.
+custom_cursor_colors: true
 # Visual Bell
 #
 #
