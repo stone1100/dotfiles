@@ -15,6 +15,7 @@ vim_init = function()
 	vim.cmd("set fillchars+=vert:\\|")
 	vim.cmd("source ~/.config/nvim/lua/highlight.lua")
 	vim.cmd("source ~/.config/nvim/lua/config/bufferline.lua")
+	-- vim.cmd([[syntax on]])
 
 	-- fix some plugins theme not working
 	local plugins = { "lualine", "todo-comments" }

@@ -9,13 +9,10 @@ local function set_options()
 		shiftwidth = 4,
 		softtabstop = 0,
 		ruler = false,
-
 		cursorline = true,
 		cursorcolumn = true,
-
 		undofile = true,
 		--		undodir = global.cache_dir .. "undo/",
-
 		timeoutlen = 1000,
 	}
 

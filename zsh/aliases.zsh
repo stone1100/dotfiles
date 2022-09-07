@@ -9,3 +9,8 @@ alias vim='nvim'
 alias vi='nvim'
 # Re-run source command on .zshrc to reload current terminal session with new settings
 alias reload="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+
+# Set Git language to English
+#alias git='LANG=en_US git'
+#alias git='LANG=en_S git'
+alias git='LC_ALL=C git'

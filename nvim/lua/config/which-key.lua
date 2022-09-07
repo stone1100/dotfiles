@@ -99,6 +99,7 @@ wk.register({
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Definition" },
 		i = { "<cmd>Telescope lsp_implementations<cr>", "Goto Definition" },
 	},
+	['<C-k>'] = {"<cmd>WhichKey<cr>","Show All Mapping Keys"},
 }, { mode_n, silent_opt })
 
 -- mapping leader
@@ -171,4 +172,4 @@ wk.register({
 		l = { "<cmd>TodoQuickFix<cr>", "List TODO" },
 		t = { "<cmd>TodoTelescope<cr>", "List TODO(Telescope)" },
 	},
-}, { prfix = "<leader>", mode_n, silent_opt })
+}, { prefix = "<leader>", mode_n, silent_opt })
