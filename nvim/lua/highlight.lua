@@ -62,3 +62,5 @@ vim.cmd [[hi NotifyWARNTitle guifg=#F79000]]
 vim.cmd [[hi NotifyINFOTitle guifg=#A9FF68]]
 vim.cmd [[hi NotifyDEBUGTitle  guifg=#8B8B8B]]
 vim.cmd [[hi NotifyTRACETitle  guifg=#D484FF]]
+
+vim.cmd [[hi Visual term=reverse cterm=reverse guibg=#7c6f64]]

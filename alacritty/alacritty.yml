@@ -232,10 +232,13 @@ colors:
     background: '#2c2d30'
     foreground: '#d0d2d1'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
+  # colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '#282c34'
     cursor: '#c99a6e'
+  selection:
+    text: CellBackground
+    background: '#ffffff'
 
   # Normal colors
   normal:
@@ -326,14 +329,14 @@ cursor:
 #  program: /bin/bash
 #  args:
 #    - --login
-  #
-# auto start tmux
-# shell:
-#   program: /bin/zsh
-#   args:
-#     - -l
-#     - -c
-#     - "tmux attach || tmux new"
+
+#auto start tmux
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux new"
 
 
 # Startup directory
