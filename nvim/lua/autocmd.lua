@@ -15,6 +15,9 @@ vim_init = function()
 	vim.cmd("set fillchars+=vert:\\|")
 	vim.cmd("source ~/.config/nvim/lua/highlight.lua")
 	vim.cmd("source ~/.config/nvim/lua/config/bufferline.lua")
+	vim.cmd("FormatDisable typescriptreact")
+	vim.cmd("FormatDisable typescriptcommon")
+	vim.cmd("FormatDisable typescript")
 	-- vim.cmd([[syntax on]])
 
 	-- fix some plugins theme not working

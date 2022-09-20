@@ -1,6 +1,7 @@
 local wk = require("which-key")
 local silent_opt = { silent = true }
 local mode_n = { mode = "n" }
+-- local mode_v = { mode = "v" }
 
 pick_window = function()
 	local picker = require('window-picker')
@@ -99,7 +100,7 @@ wk.register({
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Definition" },
 		i = { "<cmd>Telescope lsp_implementations<cr>", "Goto Definition" },
 	},
-	['<C-k>'] = {"<cmd>WhichKey<cr>","Show All Mapping Keys"},
+	['<C-k>'] = { "<cmd>WhichKey<cr>", "Show All Mapping Keys" },
 }, { mode_n, silent_opt })
 
 -- mapping leader
@@ -141,8 +142,8 @@ wk.register({
 		J = { "<C-W>J", "Move To Bottom Window" },
 		["="] = { "<cmd>resize+5<cr>", "Increase Height" },
 		["-"] = { "<cmd>resize-5<cr>", "Decrease Height" },
-		["_"] = { "<cmd>vertical resize+5<cr>", "Increase Width" },
-		["+"] = { "<cmd>vertical resize-5<cr>", "Decrease Widht" },
+		["+"] = { "<cmd>vertical resize+5<cr>", "Increase Width" },
+		["_"] = { "<cmd>vertical resize-5<cr>", "Decrease Widht" },
 		e = { "<C-W>=", "Equal Height/Width" },
 	},
 	b = {
@@ -173,3 +174,13 @@ wk.register({
 		t = { "<cmd>TodoTelescope<cr>", "List TODO(Telescope)" },
 	},
 }, { prefix = "<leader>", mode_n, silent_opt })
+
+-- register key for v mode
+-- require("which-key").register({
+-- 	f = {
+-- 		name = "Refactoring",
+-- 		f = { "<esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function/Method" },
+-- 		v = { "<esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable" },
+-- 		r = { "<esc><cmd>lua require('refactoring').select_refactor()<CR>", "Prompt Refactor Select" },
+-- 	},
+-- }, { prefix = "<leader>", mode_v, silent_opt, { expr = false }, { noremap = true } })

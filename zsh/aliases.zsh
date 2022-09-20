@@ -1,6 +1,6 @@
 alias ls='logo-ls'
 alias la='logo-ls -A'
-alias ll='logo-ls -al'
+alias ll='logo-ls -alh'
 # equivalents with Git Status on by Default
 alias lsg='logo-ls -D'
 alias lag='logo-ls -AD'

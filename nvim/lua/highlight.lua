@@ -64,3 +64,5 @@ vim.cmd [[hi NotifyDEBUGTitle  guifg=#8B8B8B]]
 vim.cmd [[hi NotifyTRACETitle  guifg=#D484FF]]
 
 vim.cmd [[hi Visual term=reverse cterm=reverse guibg=#7c6f64]]
+vim.cmd [[hi DiagnosticWarn ctermfg=3 guifg=#debf81]]
+

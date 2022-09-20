@@ -71,7 +71,9 @@ packer.startup(function(use)
 			"williamboman/mason-lspconfig.nvim",
 		}
 	})
-	use({ "lukas-reineke/lsp-format.nvim" })
+	use({ "lukas-reineke/lsp-format.nvim", config = function()
+		require("lsp-format").setup({})
+	end })
 	use({
 		"neovim/nvim-lspconfig",
 		opt = true,
@@ -165,9 +167,12 @@ packer.startup(function(use)
 	use({ "norcalli/nvim-colorizer.lua", config = function()
 		require 'colorizer'.setup()
 	end })
-	use({'kazhala/close-buffers.nvim',config=function ()
+	use({ 'kazhala/close-buffers.nvim', config = function()
 		require('close_buffers').setup()
-	end})
+	end })
+	use({ "ThePrimeagen/refactoring.nvim", config = function()
+		require('refactoring').setup({})
+	end })
 
 	-- tools end
 

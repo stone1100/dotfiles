@@ -22,3 +22,5 @@ local function set_options()
 end
 
 set_options()
+
+vim.cmd[[set colorcolumn=140]]
