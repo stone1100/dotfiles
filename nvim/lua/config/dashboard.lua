@@ -22,7 +22,7 @@ local hi_top_section = {
 
 local hi_middle_section = {
 	type = "text",
-	val = "│                                                │",
+	val = "│                                                  │",
 	opts = {
 		position = "center",
 		hl = "EcovimHeaderInfo",
@@ -31,9 +31,9 @@ local hi_middle_section = {
 
 local hi_bottom_section = {
 	type = "text",
-	val = "└───══───══───══───  "
+	val = "└─────────────────────  "
 		.. datetime
-		.. "  ───══───══───══────┘",
+		.. "  ──────────────────┘",
 	opts = {
 		position = "center",
 		hl = "EcovimHeaderInfo",
