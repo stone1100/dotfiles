@@ -41,6 +41,7 @@ mason_lsp.setup({
 		"tailwindcss",
 		"cssls",
 		"eslint",
+		"stylelint_lsp",
 	},
 	automatic_installation = true,
 })
@@ -48,7 +49,7 @@ mason_lsp.setup({
 for _, name in ipairs(mason_lsp.get_installed_servers()) do
 	if name == "gopls" then
 		-- go via go.nvim
-		return
+		goto continue
 	end
 	local ok, _ = pcall(require, string.format("server.%s", name))
 	if not ok then
@@ -57,4 +58,5 @@ for _, name in ipairs(mason_lsp.get_installed_servers()) do
 			capabilities = utils.capabilities
 		})
 	end
+	::continue::
 end

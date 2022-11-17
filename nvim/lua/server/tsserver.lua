@@ -8,6 +8,7 @@ nvim_lsp.tsserver.setup({
 	on_attach = utils.on_attach,
 	flags = { debounce_text_changes = 150 },
 	capabilities = utils.capabilities,
+	filetypes = { "typescriptreact", "typescript" },
 	settings = {
 		tsserver = {
 			format = { enable = false },
