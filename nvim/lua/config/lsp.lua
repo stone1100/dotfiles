@@ -32,15 +32,17 @@ vim.diagnostic.config({
 -- need setup mason lsp config, here. because lsp config need use
 mason_lsp.setup({
 	ensure_installed = {
-		"nvim-lspconfig",
-		"bash-language-server",
+		"bashls",
 		"sumneko_lua",
-		"typescript-language-server",
+		"tsserver",
 		"jdtls",
-		"stylua",
-		-- "gopls",
-		"tailwindcss-language-server",
+		-- "stylua",
+		"gopls",
+		"tailwindcss",
+		"cssls",
+		"eslint",
 	},
+	automatic_installation = true,
 })
 
 for _, name in ipairs(mason_lsp.get_installed_servers()) do
@@ -52,7 +54,7 @@ for _, name in ipairs(mason_lsp.get_installed_servers()) do
 	if not ok then
 		nvim_lsp[name].setup({
 			on_attach = utils.on_attach,
-			capabilities = utils.capabilip
+			capabilities = utils.capabilities
 		})
 	end
 end

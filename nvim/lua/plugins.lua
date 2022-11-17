@@ -91,6 +91,7 @@ packer.startup(function(use)
 		requires = "ray-x/guihua.lua",
 	})
 	use("buoto/gotests-vim")
+	use({ "mfussenegger/nvim-jdtls" })
 	-- set java setting
 	-- use({ "mfussenegger/nvim-jdtls", opt = true, ft = { "java" }, config = get_config("java") })
 	-- end java setting

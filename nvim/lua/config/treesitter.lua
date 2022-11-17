@@ -1,3 +1,4 @@
+-- https://stackoverflow.com/questions/70373650/how-to-solve-treesitter-highlighter-error-executing-lua-problem-in-neovim-confi
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "bash",
@@ -16,6 +17,7 @@ require("nvim-treesitter.configs").setup({
     "yaml",
   }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
+  auto_install = true,
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = {}, -- list of language that will be disabled
