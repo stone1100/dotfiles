@@ -88,10 +88,10 @@ cmp.setup({
 			vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
 
 			vim_item.menu = ({
+				nvim_lsp = "[LSP]",
 				-- cmp_tabnine = "[TN]",
 				buffer = "[BUF]",
 				orgmode = "[ORG]",
-				nvim_lsp = "[LSP]",
 				nvim_lua = "[LUA]",
 				path = "[PATH]",
 				tmux = "[TMUX]",
@@ -148,16 +148,16 @@ cmp.setup({
 	},
 	-- You should specify your *installed* sources.
 	sources = {
-		-- { name = "dap" },
+		--{ name = "dap" },
 		{ name = "nvim_lsp" },
 		--{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "spell" },
-		{ name = "orgmode" },
-		{ name = "cmdline" },
-		{ name = "buffer", keyword = 3 },
+		--	{ name = "orgmode" },
+		--{ name = "cmdline" },
+		{ name = "buffer", keyword_length = 3 },
 	},
 
 })
@@ -179,4 +179,3 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
-

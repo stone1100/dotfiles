@@ -138,6 +138,13 @@ local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
 local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 local utils = require("utils")
+--https://github.com/abhigyanmadhukalya/dotfiles/blob/main/.config/nvim/ftplugin/java.lua
+local status, jdtls = pcall(require, "jdtls")
+if not status then
+	return
+end
+local extendedClientCapabilities = jdtls.extendedClientCapabilities
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 -- override language server settings
 nvim_lsp.jdtls.setup({
@@ -167,4 +174,7 @@ nvim_lsp.jdtls.setup({
 			-- vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar", true)
 		}
 	},
+	settings = {
+		extendedClientCapabilities = extendedClientCapabilities,
+	}
 })
