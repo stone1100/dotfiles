@@ -6,22 +6,31 @@ help:  ## Display this help
 		/^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 install: ## install requirement package
+	sh install.sh
 	## terminal 
 	brew install alacritty
 	brew install tmux
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
+	if [ ! -d ~/.tmux/plugins/tpm ]; then \
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
+	fi
 	brew install htop
+	brew install fzf
+	/usr/local/opt/fzf/install
 	## vim
 	brew install neovim
 	brew install wget
 	brew install ctags
-        ## language
+	brew install ripgrep
+	## language
 	brew install go
 	brew install maven
 	brew install openjdk@17
 	brew install node
 	brew install homebrew/cask-fonts/font-jetbrains-mono-nerd-font
+	pip3 install antlr4-tools
+
+install_plugins: ## install plugins
+	~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 CONFIG_PATH = ~/.config
 config: ## sync config file
@@ -31,3 +40,6 @@ config: ## sync config file
 	cp -rf ./alacritty $(CONFIG_PATH)
 	cp -rf ./nvim $(CONFIG_PATH)
 	cp -rf ./zsh $(CONFIG_PATH)
+	cp -rf ./tmux/.tmux.conf ~/
+	cp -rf ./zsh/.zshrc ~/
+	tmux source ~/.tmux.conf

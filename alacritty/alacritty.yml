@@ -117,7 +117,8 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     # family: Source Code Pro
-    family: Hack Nerd Font Mono
+    family: JetBrainsMono Nerd Font
+    # family: Hack Nerd Font Mono
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -137,7 +138,8 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: Source Code Pro
-    family: Hack Nerd Font Mono
+    # family: Hack Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -157,7 +159,8 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: Source Code Pro
-    family: Hack Nerd Font Mono
+    family: JetBrainsMono Nerd Font
+    # family: Hack Nerd Font Mono
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -182,7 +185,8 @@ font:
     # family: Hack
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
-    family: Hack Nerd Font Mono
+    family: JetBrainsMono Nerd Font
+    # family: Hack Nerd Font Mono
     # family: TerminessTTF Nerd Font
     # family: Mononoki Nerd Font
 
@@ -333,6 +337,10 @@ cursor:
 #auto start tmux
 shell:
   program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "source ~/.zshrc; tmux attach || tmux new"
 
 
 # Startup directory

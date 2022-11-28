@@ -108,6 +108,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# change git core editor
+export GIT_EDITOR=nvim
+
+# setting local set
+[[ ! -f ~/.zshrc_local ]] || source ~/.zshrc_local
 # setting aliases
 [[ ! -f ~/.config/zsh/aliases.zsh ]] || source ~/.config/zsh/aliases.zsh
 
