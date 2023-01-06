@@ -86,7 +86,7 @@ wk.register({
 	['<F8>'] = { "<cmd>lua require('dap').step_over()<cr>", "DAP Step Over" },
 	['<F7>'] = { "<cmd>lua require('dap').step_into()<cr>", "DAP Step Into" },
 	['<F9>'] = { "<cmd>lua require('dap').step_out()<cr>", "DAP Step Out" },
-	['<F6>'] = { "<cmd>lua require('dap').continue()<cr>", "DAP Step Out" },
+	['<F6>'] = { "<cmd>lua require('dap').continue()<cr>", "DAP Continue" },
 	['<F5>'] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "DAP Toggle Breakpoint" },
 	K = { "<cmd>Lspsaga hover_doc<cr>", "Show Doc" },
 	e = {
@@ -114,6 +114,7 @@ wk.register({
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		d = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
 		k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
+		l = { "<cmd>lua vim.lsp.codelens.refresh()<cr>", "Refresh Codelens" },
 	},
 	f = {
 		name = "Files",
@@ -157,10 +158,11 @@ wk.register({
 		o = { "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>", "Delete Other Buffers" },
 	},
 	d = {
-		name = "Debug",
+		name = "Debug(F5->TB F6->Continue F7->Into F8->Over F9->Out)",
 		g = { "<cmd>GoDebug -n<cr>", "Go Debug" },
 		u = { "<cmd>lua require('dapui').toggle()<cr>", "DAP UI Toggle" },
 		t = { "<cmd>lua require('dap').terminate()<cr>", "Terminate DAP" },
+		['bt'] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "toggle Breakpoint" },
 		["bc"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint Condition" },
 		["h"] = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Widgets Hover" },
 	},
@@ -172,6 +174,9 @@ wk.register({
 		name = "TODO",
 		l = { "<cmd>TodoQuickFix<cr>", "List TODO" },
 		t = { "<cmd>TodoTelescope<cr>", "List TODO(Telescope)" },
+		h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help" },
+		c = { "<cmd>lua require('telescope.builtin').commands()<cr>", "Commands" },
+		k = { "<cmd>lua require('telescope.builtin').keymaps()<cr>", "Keymaps" },
 	},
 }, { prefix = "<leader>", mode_n, silent_opt })
 

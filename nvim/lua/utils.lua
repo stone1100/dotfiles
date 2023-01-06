@@ -5,6 +5,7 @@ utils.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 function utils.on_attach(client, bufnr)
 	require("lsp-format").on_attach(client)
+	vim.lsp.codelens.refresh()
 
 	-- enable navic for displaying current context
 	if client.server_capabilities.documentSymbolProvider then

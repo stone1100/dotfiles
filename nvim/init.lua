@@ -1,4 +1,5 @@
 -- ref: https://github.com/Allaman/nvim
+-- lua print(vim.fn.stdpath('data'))
 
 -- change language
 -- https://vi.stackexchange.com/questions/36426/how-do-i-change-my-language-in-my-init-lua-neovim

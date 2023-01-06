@@ -17,8 +17,15 @@ require("go").setup({
 	-- false: do nothing
 	-- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
 	--   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
+	-- lsp_cfg = {
+	-- 	settings = {
+	-- 		gopls = {
+	-- 		},
+	-- 	},
+	-- },
 	lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
 	lsp_on_attach = function(client, bufnr)
+		vim.lsp.codelens.refresh()
 		require("utils").on_attach(client, bufnr)
 		-- add go keymapping
 		require("which-key").register({

@@ -12,6 +12,22 @@ require("dapui").setup({
 	-- Expand lines larger than the window
 	-- Requires >= 0.7
 	expand_lines = vim.fn.has("nvim-0.7"),
+	controls = {
+		-- Requires Neovim nightly (or 0.8 when released)
+		enabled = true,
+		-- Display controls in this element
+		element = "repl",
+		icons = {
+			pause = "",
+			play = "",
+			step_into = "",
+			step_over = "",
+			step_out = "",
+			step_back = "",
+			run_last = "↻",
+			terminate = "□",
+		},
+	},
 	-- Layouts define sections of the screen to place windows.
 	-- The position can be "left", "right", "top" or "bottom".
 	-- The size specifies the height/width depending on position. It can be an Int
@@ -33,8 +49,8 @@ require("dapui").setup({
 		},
 		{
 			elements = {
+				"console",
 				"repl",
-				-- "console",
 			},
 			size = 0.25, -- 25% of total lines
 			position = "bottom",
@@ -53,3 +69,14 @@ require("dapui").setup({
 		max_type_length = nil, -- Can be integer or nil.
 	}
 })
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+	dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+	dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+	dapui.close()
+end

@@ -58,6 +58,17 @@ dap.configurations.go = {
 		program = "./${relativeFileDirname}"
 	}
 }
+dap.configurations.java = {
+	{
+		type = 'java',
+		request = 'attach',
+		name = "Debug (Attach) local process",
+		-- pid = require('dap.utils').pick_process,
+		processId = "${command:pickProcess}",
+		hostName = "localhost",
+		port = 9598
+	},
+}
 
-vim.fn.sign_define('DapBreakpoint', {text='🧘', texthl='', linehl='', numhl=''})
-vim.fn.sign_define('DapBreakpointCondition', {text='🧘', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint', { text = '🧘', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '🧘', texthl = '', linehl = '', numhl = '' })

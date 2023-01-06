@@ -46,7 +46,7 @@ vim.cmd [[hi BufferLineIndicatorSelected guifg=orange]]
 vim.cmd [[hi TodoBgTODO guibg=#99bc80 guifg=#5c6370]]
 vim.cmd [[hi TodoFgTODO guifg=#99bc80]]
 vim.cmd [[hi TodoSignTODO guifg=#99bc80]]
--- notify 
+-- notify
 vim.cmd [[hi NotifyERRORBorder guifg=#8A1F1F]]
 vim.cmd [[hi NotifyWARNBorder guifg=#79491D]]
 vim.cmd [[hi NotifyINFOBorder guifg=#A9FF68]]
@@ -65,4 +65,3 @@ vim.cmd [[hi NotifyTRACETitle  guifg=#D484FF]]
 
 vim.cmd [[hi Visual term=reverse cterm=reverse guibg=#7c6f64]]
 vim.cmd [[hi DiagnosticWarn ctermfg=3 guifg=#debf81]]
-

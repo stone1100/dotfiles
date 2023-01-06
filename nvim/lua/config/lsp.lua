@@ -30,6 +30,8 @@ vim.diagnostic.config({
 })
 
 -- need setup mason lsp config, here. because lsp config need use
+--"java-test",
+--"java-debug-adapter",
 mason_lsp.setup({
 	ensure_installed = {
 		"bashls",
