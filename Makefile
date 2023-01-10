@@ -27,6 +27,7 @@ install: ## install requirement package
 	brew install openjdk@17
 	brew install node
 	brew install homebrew/cask-fonts/font-jetbrains-mono-nerd-font
+	brew install protobuf
 	pip3 install antlr4-tools
 
 install_plugins: ## install plugins
