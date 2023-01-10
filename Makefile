@@ -16,6 +16,7 @@ install: ## install requirement package
 	brew install htop
 	brew install fzf
 	/usr/local/opt/fzf/install
+	brew install fd 
 	## vim
 	brew install neovim
 	brew install wget
