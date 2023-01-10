@@ -27,8 +27,8 @@ packer.init({
 	threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
 	max_jobs = 20, -- Limit the number of simultaneous jobs. nil means no limit. Set to 20 in order to prevent PackerSync form being "stuck" -> https://github.com/wbthomason/packer.nvim/issues/746
 	git = {
-    default_url_format = 'git@github.com:%s.git' -- Lua format string used for "aaa/bbb" style plugins
-  }, 
+		default_url_format = 'git@github.com:%s.git' -- Lua format string used for "aaa/bbb" style plugins
+	},
 	-- Have packer use a popup window
 	display = {
 		open_fn = function()
@@ -167,7 +167,7 @@ packer.startup(function(use)
 	use({ "terrortylor/nvim-comment", config = function()
 		require('nvim_comment').setup()
 	end })
-	use({ "liuchengxu/vista.vim", config = get_config("vista") })
+	-- use({ "liuchengxu/vista.vim", config = get_config("vista") })
 	use({ "norcalli/nvim-colorizer.lua", config = function()
 		require 'colorizer'.setup()
 	end })
@@ -177,6 +177,10 @@ packer.startup(function(use)
 	use({ "ThePrimeagen/refactoring.nvim", config = function()
 		require('refactoring').setup({})
 	end })
+	use({ 'stevearc/aerial.nvim', config = function()
+		require('aerial').setup({});
+	end })
+	use({"ray-x/lsp_signature.nvim",config = get_config("lsp_signature")})
 
 	-- tools end
 

@@ -18,14 +18,22 @@ require("dapui").setup({
 		-- Display controls in this element
 		element = "repl",
 		icons = {
-			pause = "",
-			play = "",
-			step_into = "",
-			step_over = "",
-			step_out = "",
-			step_back = "",
-			run_last = "↻",
-			terminate = "□",
+			pause = "",
+			play = "",
+			step_into = "",
+			step_over = "",
+			step_out = "",
+			step_back = "",
+			run_last = "",
+			terminate = ""
+			-- pause = "",
+			-- play = "",
+			-- step_into = "",
+			-- step_over = "",
+			-- step_out = "",
+			-- step_back = "",
+			-- run_last = "↻",
+			-- terminate = "□",
 		},
 	},
 	-- Layouts define sections of the screen to place windows.
@@ -49,7 +57,7 @@ require("dapui").setup({
 		},
 		{
 			elements = {
-				"console",
+				-- "console",
 				"repl",
 			},
 			size = 0.25, -- 25% of total lines

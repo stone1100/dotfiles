@@ -108,13 +108,16 @@ wk.register({
 	c = {
 		name = "Coding",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
 		f = { "<cmd>lua vim.lsp.buf.format({timeout_ms=1000})<cr>", "Format" },
 		h = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "Show References" },
 		i = { "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", "Show Implements" },
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		d = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
 		k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
-		l = { "<cmd>lua vim.lsp.codelens.refresh()<cr>", "Refresh Codelens" },
+		o = { "<cmd>AerialToggle!<cr>", "File Outline" },
+		['lr'] = { "<cmd>lua vim.lsp.codelens.refresh()<cr>", "Refresh Codelens" },
+		['la'] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "Codelens Run Actions" },
 	},
 	f = {
 		name = "Files",
@@ -159,12 +162,12 @@ wk.register({
 	},
 	d = {
 		name = "Debug(F5->TB F6->Continue F7->Into F8->Over F9->Out)",
-		g = { "<cmd>GoDebug -n<cr>", "Go Debug" },
 		u = { "<cmd>lua require('dapui').toggle()<cr>", "DAP UI Toggle" },
 		t = { "<cmd>lua require('dap').terminate()<cr>", "Terminate DAP" },
 		['bt'] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "toggle Breakpoint" },
 		["bc"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint Condition" },
 		["h"] = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Widgets Hover" },
+		["l"] = { "<cmd>lua _dapui.run_last()<cr>", "Run Last" },
 	},
 	h = {
 		name = "Highlight",

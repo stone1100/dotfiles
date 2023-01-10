@@ -40,6 +40,7 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 nvim_lsp.jdtls.setup({
 	-- on_attach = utils.on_attach,
 	on_attach = function(client, bufnr)
+		vim.lsp.codelens.refresh()
 		require('jdtls.setup').add_commands()
 		--require("jdtls").setup_dap { hotcodereplace = "auto" }
 		require("jdtls").setup_dap {}
@@ -47,7 +48,7 @@ nvim_lsp.jdtls.setup({
 		require("which-key").register({
 			t = {
 				name = "Test",
-				u = { "<cmd>lua require('jdtls').test_class()<cr>", "Run Test Java" },
+				d = { "<cmd>lua require('jdtls').test_class()<cr>", "Debug Test Java" },
 				n = { "<cmd>lua require('jdtls').test_nearest_method()<cr>", "Run Test Nearest Method" },
 			},
 		}, { prefix = "<leader>", { mode = "n" }, { silent = true } })

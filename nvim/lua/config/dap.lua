@@ -66,9 +66,13 @@ dap.configurations.java = {
 		-- pid = require('dap.utils').pick_process,
 		processId = "${command:pickProcess}",
 		hostName = "localhost",
-		port = 9598
+		port = 9598,
+		console = 'internalConsole',
 	},
 }
 
 vim.fn.sign_define('DapBreakpoint', { text = '🧘', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '🧘', texthl = '', linehl = '', numhl = '' })
+--vim.fn.sign_define('DapStopped', {   text='▶', texthl='WarningMsg',linehl='DapUIBreakpointsCurrentLine', numhl='ModeMsg'})
+--vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='Search', numhl= 'DapStopped' })
+vim.fn.sign_define('DapStopped', { text = '🏃', texthl = '', linehl = 'debugPC', numhl = 'debugPC' })

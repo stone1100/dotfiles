@@ -10,7 +10,8 @@ require("go").setup({
 	test_template = "", -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
 	test_template_dir = "", -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
 	comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. ﳑ       
-	icons = { breakpoint = "🧘", currentpos = "🏃" },
+	--icons = { breakpoint = "🧘", currentpos = "🏃" },
+	icons = false,
 	verbose = true, -- output loginf in messages
 	lsp_inlay_hints = { enable = false },
 	lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
@@ -31,6 +32,7 @@ require("go").setup({
 		require("which-key").register({
 			t = {
 				name = "Test",
+				d = { "<cmd>GoDebug -n<cr>", "Debug Test" },
 				u = { "<cmd>GoTestFunc<cr>", "Run Test For Current Func" },
 				f = { "<cmd>GoTestFile<cr>", "Run Test For Current File" },
 				p = { "<cmd>GoTestPkg<cr>", "Run Test For Current Package" },
@@ -39,7 +41,7 @@ require("go").setup({
 			},
 			c = {
 				name = "Coding",
-				o = { "<cmd>Vista!!<cr>", "Go File Outline" },
+				-- o = { "<cmd>Vista!!<cr>", "Go File Outline" },
 				g = { "<cmd>GoGenerate<cr>", "Go Generate" },
 				s = { "<cmd>GoAltV<cr>", "Goto Soruce For Test File" },
 			},
@@ -82,8 +84,8 @@ require("go").setup({
 	dap_debug = true, -- set to false to disable dap
 	dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
 	-- false: do not use keymap in go/dap.lua.  you must define your own.
-	dap_debug_gui = false, -- set to true to enable dap gui, highly recommended
-	dap_debug_vt = false, -- set to true to enable dap virtual text
+	dap_debug_gui = true, -- set to true to enable dap gui, highly recommended
+	dap_debug_vt = true, -- set to true to enable dap virtual text
 	build_tags = "", -- set default build tags
 	textobjects = true, -- enable default text obects through treesittter-text-objects
 	test_runner = "go", -- richgo, go test, richgo, dlv, ginkgo
