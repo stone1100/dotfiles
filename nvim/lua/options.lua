@@ -14,6 +14,7 @@ local function set_options()
 		undofile = true,
 		--		undodir = global.cache_dir .. "undo/",
 		timeoutlen = 1000,
+		spelllang = "en",
 	}
 
 	for name, value in pairs(global_local) do
@@ -23,4 +24,4 @@ end
 
 set_options()
 
-vim.cmd[[set colorcolumn=140]]
+vim.cmd [[set colorcolumn=140]]

@@ -115,4 +115,6 @@ export GIT_EDITOR=nvim
 [[ ! -f ~/.zshrc_local ]] || source ~/.zshrc_local
 # setting aliases
 [[ ! -f ~/.config/zsh/aliases.zsh ]] || source ~/.config/zsh/aliases.zsh
+# setting env 
+[[ ! -f ~/.config/zsh/env.zsh ]] || source ~/.config/zsh/env.zsh
 

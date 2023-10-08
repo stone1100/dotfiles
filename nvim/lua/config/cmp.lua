@@ -1,6 +1,7 @@
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -19,18 +20,12 @@ local border = function(hl)
 	}
 end
 
-local cmp_window = require("cmp.utils.window")
-
-function cmp_window:has_scrollbar()
-	return false
-end
-
-local compare = require("cmp.config.compare")
-
 local cmp = require("cmp")
 cmp.setup({
 	view = {
-		entries = "custom" -- can be "custom", "wildmenu" or "native"
+		-- entries = "custom" -- can be "custom", "wildmenu" or "native"
+		-- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#custom-menu-direction
+		entries = { name = 'custom', selection_order = 'near_cursor' }
 	},
 	window = {
 		completion = {
@@ -45,14 +40,14 @@ cmp.setup({
 	sorting = {
 		comparators = {
 			-- require("cmp_tabnine.compare"),
-			compare.offset,
-			compare.exact,
-			compare.score,
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
 			require("cmp-under-comparator").under,
-			compare.kind,
-			compare.sort_text,
-			compare.length,
-			compare.order,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
 		},
 	},
 	formatting = {
@@ -88,19 +83,25 @@ cmp.setup({
 			vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
 
 			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
+				nvim_lsp = "[ LSP]",
 				-- cmp_tabnine = "[TN]",
-				buffer = "[BUF]",
+				buffer = "[﬘ BuF]",
 				orgmode = "[ORG]",
 				nvim_lua = "[LUA]",
 				path = "[PATH]",
 				tmux = "[TMUX]",
-				luasnip = "[SNIP]",
-				spell = "[SPELL]",
+				luasnip = "[ LSnip]",
+				--spell = "[SPELL]",
+				dictionary = "[韛Dict]",
 			})[entry.source.name]
 
 			return vim_item
 		end,
+	},
+	performance = {
+		debounce = 90,
+		throttle = 30,
+		fetching_timeout = 200,
 	},
 	-- You can set mappings if you want
 	mapping = cmp.mapping.preset.insert({
@@ -147,18 +148,30 @@ cmp.setup({
 		end,
 	},
 	-- You should specify your *installed* sources.
-	sources = {
+	sources = cmp.config.sources({
 		--{ name = "dap" },
 		{ name = "nvim_lsp" },
 		--{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "spell" },
-		--	{ name = "orgmode" },
+		-- {
+		-- 	name = "spell",
+		-- 	option = {
+		-- 		keep_all_entries = false,
+		-- 		enable_in_context = function()
+		-- 			return true
+		-- 		end,
+		-- 	},
+		-- },
+		--{ name = "orgmode" },
 		--{ name = "cmdline" },
 		{ name = "buffer", keyword_length = 3 },
-	},
+		{
+			name = "dictionary",
+			keyword_length = 2,
+		},
+	}),
 
 })
 
@@ -179,3 +192,26 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
+
+local cmp_window = require("cmp.utils.window")
+
+function cmp_window:has_scrollbar()
+	return false
+end
+
+-- local dict = require("cmp_dictionary")
+-- dict.setup({
+-- 	exact = 2,
+-- 	max_items = 5000,
+-- 	first_case_insensitive = true,
+-- 	document = false,
+-- 	document_command = "wn %s -over",
+-- 	capacity = 5,
+-- 	debug = false,
+-- })
+-- dict.switcher({
+-- 	spelllang = {
+-- 		en = vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt"), -- "/usr/share/dict/words"
+-- 	},
+-- })
+-- dict.update()

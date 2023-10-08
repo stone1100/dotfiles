@@ -7,3 +7,6 @@ iterm2
 jgit
 yarn
 nvim/plugin
+nvim/pack
+_asserts
+github-copilot

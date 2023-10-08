@@ -9,6 +9,7 @@ nvim_lsp.stylelint_lsp.setup({
 		stylelintplus = {
 			autoFixOnSave = true,
 			autoFixOnFormat = true,
+			enable = true,
 		}
 	},
 })

@@ -20,7 +20,7 @@ end
 -- initialize and configure packer
 local packer = require("packer")
 
--- init packer
+-- init packer eli
 packer.init({
 	--	compile_path = compile_path,
 	enable = true, -- enable profiling via :PackerCompile profile=true
@@ -51,19 +51,56 @@ packer.startup(function(use)
 		after = "nvim-cmp",
 	})
 	use({
+		"uga-rosa/cmp-dictionary",
+		opt = false,
+		config = function()
+			local dict = require("cmp_dictionary")
+			dict.setup({
+				exact = 2,
+				max_items = 5000,
+				first_case_insensitive = true,
+				document = false,
+				document_command = "wn %s -over",
+				capacity = 5,
+				debug = true,
+			})
+			dict.switcher({
+				spelllang = {
+					en = vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt"), -- "/usr/share/dict/words"
+				},
+			})
+			dict.update() -- THIS
+		end,
+		after = "nvim-cmp",
+	})
+	use({
 		"hrsh7th/nvim-cmp",
 		config = get_config("cmp"),
+		-- config = function()
+		-- 	require('cmp').setup({})
+		-- end,
 		-- event = "InsertEnter",
-		event = "VimEnter",
+		-- event = "VimEnter",
 		requires = {
 			{ "lukas-reineke/cmp-under-comparator" },
 			{ "hrsh7th/cmp-nvim-lsp", after = "LuaSnip" },
 			{ "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-path", after = "cmp-nvim-lua" },
-			{ "f3fora/cmp-spell", after = "cmp-path" },
-			{ "hrsh7th/cmp-buffer", after = "cmp-spell" },
-			{ "hrsh7th/cmp-cmdline", after = "cmp-spell" },
+			-- { "f3fora/cmp-spell", after = "cmp-path" },
+			{ "hrsh7th/cmp-buffer", after = "cmp-path" },
+			{ "hrsh7th/cmp-cmdline", after = "cmp-path" },
 			{ 'rcarriga/cmp-dap', after = "cmp-cmdline" },
+			-- { 'uga-rosa/cmp-dictionary', config = function()
+			-- 	require("cmp_dictionary").setup({
+			-- 		-- The following are default values, so you don't need to write them if you don't want to change them
+			-- 		exact = 2,
+			-- 		first_case_insensitive = false,
+			-- 		async = false,
+			-- 		capacity = 5,
+			-- 		debug = false,
+			-- 	})
+			-- end,
+			-- },
 		},
 	})
 
@@ -141,6 +178,7 @@ packer.startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 		config = get_config("gitsigns"),
 	})
+	use({ "sindrets/diffview.nvim" })
 	use({ "tpope/vim-fugitive", opt = true, cmd = { "Git", "G" } })
 	use({
 		"folke/todo-comments.nvim",
@@ -158,6 +196,10 @@ packer.startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "nvim-telescope/telescope-packer.nvim" })
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
+	use({
+		"nvim-telescope/telescope-frecency.nvim",
+		requires = { "kkharji/sqlite.lua" },
+	})
 	use({ "folke/which-key.nvim", config = get_config("which-key") })
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -180,7 +222,7 @@ packer.startup(function(use)
 	use({ 'stevearc/aerial.nvim', config = function()
 		require('aerial').setup({});
 	end })
-	use({"ray-x/lsp_signature.nvim",config = get_config("lsp_signature")})
+	use({ "ray-x/lsp_signature.nvim", config = get_config("lsp_signature") })
 
 	-- tools end
 

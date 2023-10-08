@@ -1,5 +1,4 @@
 local api = vim.api
-
 -- packer
 local packerGrp = api.nvim_create_augroup("PackerCfgCompile", { clear = false })
 
@@ -9,13 +8,13 @@ local packer_compile = function()
 	vim.cmd("PackerCompile")
 	vim.notify("Packer compile completed!!!!", vim.log.levels.INFO, { title = "Packer" })
 end
-
 -- init when vim enter
 vim_init = function()
 	vim.cmd("set fillchars+=vert:\\|")
 	vim.cmd("source ~/.config/nvim/lua/highlight.lua")
 	vim.cmd("source ~/.config/nvim/lua/config/bufferline.lua")
 	vim.cmd("lua require('dapui.config.highlights').setup()")
+	vim.cmd("PackerCompile")
 	vim.cmd("FormatDisable typescriptreact")
 	vim.cmd("FormatDisable typescriptcommon")
 	vim.cmd("FormatDisable typescript")

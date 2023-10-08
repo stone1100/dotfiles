@@ -17,6 +17,8 @@ install: ## install requirement package
 	brew install fzf
 	/usr/local/opt/fzf/install
 	brew install fd 
+	brew install tree
+	brew install kubectl
 	## vim
 	brew install neovim
 	brew install wget
@@ -45,3 +47,6 @@ config: ## sync config file
 	cp -rf ./tmux/.tmux.conf ~/
 	cp -rf ./zsh/.zshrc ~/
 	tmux source ~/.tmux.conf
+	## install kubectl cheatsheet
+	source <(kubectl completion zsh)  # set up autocomplete in zsh into the current shell
+	echo '[[ $commands[kubectl] ]] && source <(kubectl completion zsh)' >> ~/.zshrc # add autocomplete permanently to your zsh shell

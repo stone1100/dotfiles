@@ -243,6 +243,7 @@ colors:
   selection:
     text: CellBackground
     background: '#ffffff'
+    save_to_clipboard: true
 
   # Normal colors
   normal:

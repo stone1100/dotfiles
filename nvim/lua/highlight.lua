@@ -1,6 +1,6 @@
 vim.cmd([[colorscheme onedark]])
-
 vim.cmd [[hi NormalFloat guibg=none]]
+
 -- https://github.com/folke/tokyonight.nvim/pull/137#issuecomment-1016239546
 -- improved telescope background
 vim.cmd [[hi TelescopeNormal guibg=none]]
@@ -35,7 +35,7 @@ vim.cmd [[hi tsxTSComment guifg=green]]
 vim.cmd [[hi TSComment guifg=gray]]
 vim.cmd [[hi CursorLineNr guifg=orange]]
 vim.cmd [[hi CmpBorder guifg='#5c6370']]
-
+vim.cmd [[hi CmpItemKindText guibg=NONE guifg=#F79000 ]]
 -- nvim tree
 vim.cmd [[hi NvimTreeNormal guibg=#2c2d30]]
 vim.cmd [[hi NvimTreeEndOfBuffer guibg=#2c2d30]]
