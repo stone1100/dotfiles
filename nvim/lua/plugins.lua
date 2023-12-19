@@ -104,6 +104,12 @@ packer.startup(function(use)
 		},
 	})
 
+	-- install without yarn or npm
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function() vim.fn["mkdp#util#install"]() end,
+	})
+
 	-- lsp install/config start
 	use({ "williamboman/mason.nvim",
 		config = get_config("mason"),
@@ -235,10 +241,10 @@ packer.startup(function(use)
 		}
 	end })
 	-- use({"eddyekofo94/gruvbox-flat.nvim"})
-	use("kyazdani42/nvim-web-devicons")
+	use("nvim-tree/nvim-web-devicons")
 	use({
-		"kyazdani42/nvim-tree.lua",
-		cmd = { "NvimTreeToggle" },
+		"nvim-tree/nvim-tree.lua",
+		cmd = { "NvimTreeFindFileToggle" },
 		config = get_config("nvim-tree"),
 	})
 	use({ "arkav/lualine-lsp-progress", after = "nvim-navic" })

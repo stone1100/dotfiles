@@ -29,7 +29,7 @@ install: ## install requirement package
 	brew install maven
 	brew install openjdk@17
 	brew install node
-	brew install homebrew/cask-fonts/font-jetbrains-mono-nerd-font
+	brew install homebrew/cask-fonts/font-go-mono-nerd-font
 	brew install protobuf
 	pip3 install antlr4-tools
 

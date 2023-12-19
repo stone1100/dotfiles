@@ -28,6 +28,9 @@ telescope.setup({
 				},
 			},
 		},
+		frecency = {
+			auto_validate = false,
+		},
 	},
 	pickers = {
 		find_files = {

@@ -112,6 +112,8 @@ wk.register({
 		f = { "<cmd>lua vim.lsp.buf.format({timeout_ms=1000})<cr>", "Format" },
 		h = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "Show References" },
 		i = { "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", "Show Implements" },
+		['cc'] = { "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>", "Show Incoming Calls" },
+		['gc'] = { "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", "Show Outgoing Calls" },
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		d = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
 		k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
@@ -126,7 +128,7 @@ wk.register({
 		e = { "<cmd>Telescope diagnostics<cr>", "Diagnostics File Browser" },
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		t = { "<cmd>NvimTreeToggle<cr>", "Toggle Filetree" },
+		t = { "<cmd>NvimTreeFindFileToggle<cr>", "Toggle Filetree" },
 		s = { "<cmd>w<cr>", "Save Buffer" },
 		c = { "<cmd>NvimTreeFindFile<cr>", "Find file in tree" },
 	},
@@ -174,6 +176,11 @@ wk.register({
 	h = {
 		name = "Highlight",
 		c = { "<cmd>noh<cr>", "Clear search highlight" },
+	},
+	m = {
+		name = "Markdown",
+		p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
+		t = { "<cmd>MarkdownStop<cr>", "Markdown Stop Preview" },
 	},
 	t = {
 		name = "TODO",

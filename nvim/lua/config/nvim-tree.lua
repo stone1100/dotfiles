@@ -1,7 +1,7 @@
 require("nvim-tree").setup({
-	view = {
-		hide_root_folder = false,
-	},
+	-- view = {
+	-- 	hide_root_folder = false,
+	-- },
 	filters = {
 		dotfiles = true,
 		exclude = {
@@ -20,5 +20,8 @@ require("nvim-tree").setup({
 	},
 	git = {
 		ignore = false,
+	},
+	renderer = {
+		group_empty = true,
 	},
 })

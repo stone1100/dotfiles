@@ -14,3 +14,4 @@ alias reload="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 #alias git='LANG=en_US git'
 #alias git='LANG=en_S git'
 alias git='LC_ALL=C git'
+alias python='python3'

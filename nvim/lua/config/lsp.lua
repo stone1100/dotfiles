@@ -35,7 +35,7 @@ vim.diagnostic.config({
 mason_lsp.setup({
 	ensure_installed = {
 		"bashls",
---		"sumneko_lua",
+		--		"sumneko_lua",
 		"tsserver",
 		"jdtls",
 		-- "stylua",
