@@ -150,10 +150,10 @@ cmp.setup({
 	-- You should specify your *installed* sources.
 	sources = cmp.config.sources({
 		--{ name = "dap" },
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", priority = 1000 },
 		--{ name = "nvim_lsp_signature_help" },
-		{ name = "nvim_lua" },
-		{ name = "luasnip" },
+		{ name = "nvim_lua", priority = 900 },
+		{ name = "luasnip",  priority = 1000 },
 		{ name = "path" },
 		-- {
 		-- 	name = "spell",
@@ -166,13 +166,13 @@ cmp.setup({
 		-- },
 		--{ name = "orgmode" },
 		--{ name = "cmdline" },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "buffer",   keyword_length = 3, priority = 5 },
 		{
 			name = "dictionary",
 			keyword_length = 2,
+			priority = 1,
 		},
 	}),
-
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -198,20 +198,3 @@ local cmp_window = require("cmp.utils.window")
 function cmp_window:has_scrollbar()
 	return false
 end
-
--- local dict = require("cmp_dictionary")
--- dict.setup({
--- 	exact = 2,
--- 	max_items = 5000,
--- 	first_case_insensitive = true,
--- 	document = false,
--- 	document_command = "wn %s -over",
--- 	capacity = 5,
--- 	debug = false,
--- })
--- dict.switcher({
--- 	spelllang = {
--- 		en = vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt"), -- "/usr/share/dict/words"
--- 	},
--- })
--- dict.update()

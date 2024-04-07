@@ -1,13 +1,14 @@
 -- NOTE: all LSP and formatting related options are disabeld.
 -- NOTE: LSP is handled by lsp.lua and formatting is handled by null-ls.lua
+
 require("go").setup({
-	go = "go", -- go command, can be go[default] or go1.18beta1
-	goimport = "gopls", -- goimport command, can be gopls[default] or goimport
-	fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
-	gofmt = "gofmt", -- gofmt cmd,
-	max_line_len = 120, -- max line length in goline format
+	go = "go",             -- go command, can be go[default] or go1.18beta1
+	goimports = "gopls",   -- goimport command, can be gopls[default] or goimport
+	fillstruct = "gopls",  -- can be nil (use fillstruct, slower) and gopls
+	gofmt = "golines",     -- gofmt cmd,
+	max_line_len = 120,    -- max line length in golines format
 	tag_transform = false, -- tag_transfer  check gomodifytags for details
-	test_template = "", -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
+	test_template = "",    -- default to testify if not set; g:go_nvim_tests_template  check gotests for details
 	test_template_dir = "", -- default to nil if not set; g:go_nvim_tests_template_dir  check gotests for details
 	comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. ﳑ       
 	--icons = { breakpoint = "🧘", currentpos = "🏃" },
@@ -19,12 +20,9 @@ require("go").setup({
 	-- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
 	--   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
 	-- lsp_cfg = {
-	-- 	settings = {
-	-- 		gopls = {
-	-- 		},
-	-- 	},
+	--  	capabilities=capabilities,
 	-- },
-	lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
+	lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 	lsp_on_attach = function(client, bufnr)
 		vim.lsp.codelens.refresh()
 		require("utils").on_attach(client, bufnr)
@@ -71,8 +69,8 @@ require("go").setup({
 	lsp_codelens = true, -- set to false to disable codelens, true by default
 	lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
 	--lsp_diag_hdlr = true, -- hook lsp diag handler
-	diagnostic = { -- set diagnostic to false to disable diagnostic
-		hdlr = true, -- hook diagnostic handler
+	diagnostic = {    -- set diagnostic to false to disable diagnostic
+		hdlr = true,  -- hook diagnostic handler
 		underline = true,
 		-- virtual text setup
 		virtual_text = { space = 0, prefix = '💀 ' },
@@ -84,18 +82,18 @@ require("go").setup({
 	lsp_document_formatting = false,
 	-- set to true: use gopls to format
 	-- false if you want to use other formatter tool(e.g. efm, nulls)
-	gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
+	gopls_cmd = nil,       -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
 	gopls_remote_auto = true, -- add -remote=auto to gopls
 	gocoverage_sign = "█",
 	sign_priority = 7,
-	dap_debug = true, -- set to false to disable dap
+	dap_debug = true,      -- set to false to disable dap
 	dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
 	-- false: do not use keymap in go/dap.lua.  you must define your own.
-	dap_debug_gui = true, -- set to true to enable dap gui, highly recommended
-	dap_debug_vt = true, -- set to true to enable dap virtual text
-	build_tags = "", -- set default build tags
-	textobjects = true, -- enable default text obects through treesittter-text-objects
-	test_runner = "go", -- richgo, go test, richgo, dlv, ginkgo
+	dap_debug_gui = true,  -- set to true to enable dap gui, highly recommended
+	dap_debug_vt = true,   -- set to true to enable dap virtual text
+	build_tags = "",       -- set default build tags
+	textobjects = true,    -- enable default text obects through treesittter-text-objects
+	test_runner = "go",    -- richgo, go test, richgo, dlv, ginkgo
 	run_in_floaterm = true, -- set to true to run in float window.
 	-- float term recommended if you use richgo/ginkgo with terminal color
 })
