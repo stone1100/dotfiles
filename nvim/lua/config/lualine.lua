@@ -1,14 +1,15 @@
-local navic = require("nvim-navic")
+-- local navic = require("nvim-navic")
 
-local function navic_content()
-	if navic.is_available() then
-		return navic.get_location()
-	else
-		return ""
-	end
-end
+-- local function navic_content()
+-- 	if navic.is_available() then
+-- 		return navic.get_location()
+-- 	else
+-- 		return ""
+-- 	end
+-- end
 
-local function escape_status() local ok, m = pcall(require, "better_escape")
+local function escape_status()
+	local ok, m = pcall(require, "better_escape")
 	return ok and m.waiting and "✺ " or ""
 end
 
@@ -152,7 +153,10 @@ require("lualine").setup({
 				condition = conditions.hide_in_width,
 			},
 		},
-		lualine_c = { { navic_content, cond = navic.is_available, color = { fg = colors.violet } } },
+		-- lualine_c = {
+		-- 	{require("lspsaga.symbol.winbar").get_bar()},
+		-- 	-- { navic_content, cond = navic.is_available, color = { fg = colors.violet } }
+		-- },
 		lualine_x = {
 			{ escape_status },
 			{

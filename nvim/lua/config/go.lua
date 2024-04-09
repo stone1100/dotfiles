@@ -40,12 +40,12 @@ require("go").setup({
 			c = {
 				name = "Coding",
 				-- o = { "<cmd>Vista!!<cr>", "Go File Outline" },
-				g = { "<cmd>GoGenerate<cr>", "Go Generate" },
 				s = { "<cmd>GoAltV<cr>", "Goto Soruce For Test File" },
 			},
 			g = {
 				name = "Golang",
 				m = { "<cmd>GoCmt<cr>", "Add Go Comments" },
+				g = { "<cmd>GoGenerate<cr>", "Go Generate" },
 				p = { "<cmd>GoFixPlurals<cr>", "Fix Plurals" },
 				i = { "<cmd>GoIfErr<cr>", "Add if err" },
 				f = { "<cmd>GoFillStruct<cr>", "Fill struct" },

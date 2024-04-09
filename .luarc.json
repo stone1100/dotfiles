@@ -7,6 +7,8 @@
         "pick_window",
         "load_lualine",
         "reload_lualine",
-        "vim_init"
+        "vim_init",
+        "a",
+        "cfg"
     ]
 }

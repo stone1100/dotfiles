@@ -65,3 +65,8 @@ vim.cmd [[hi NotifyTRACETitle  guifg=#D484FF]]
 
 vim.cmd [[hi Visual term=reverse cterm=reverse guibg=#7c6f64]]
 vim.cmd [[hi DiagnosticWarn ctermfg=3 guifg=#debf81]]
+
+vim.cmd [[sign define DiagnosticSignError text=󰅚 texthl=DiagnosticSignError]]
+vim.cmd [[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn]]
+vim.cmd [[sign define DiagnosticSignInfo text=  texthl=DiagnosticSignInfo]]
+vim.cmd [[sign define DiagnosticSignHint text=⚡ texthl=DiagnosticSignHint]]

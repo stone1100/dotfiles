@@ -52,60 +52,13 @@ packer.startup(function(use)
 	})
 	use({
 		"uga-rosa/cmp-dictionary",
-		opt = false,
-		config = function()
-			local dict = {
-				["*"] = { "/usr/share/dict/words" },
-				ft = {
-					foo = { vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt") },
-				},
-			}
-			require("cmp_dictionary").setup({
-				exact_length = 2,
-				max_number_items = 5000,
-				first_case_insensitive = true,
-				--	document = false,
-				--	document_command = "wn %s -over",
-				-- capacity = 5,
-				debug = false,
-				-- paths = {
-				-- 	-- vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt"), -- "/usr/share/dict/words"
-				-- 	-- vim.fn.expand("~/.config/_asserts/dict"), -- "/usr/share/dict/words"
-				-- 	["*"] = vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt"), -- "/usr/share/dict/words"
-				-- },
-				paths = dict["*"],
-				document = {
-					enable = true,
-					-- https://github.com/uga-rosa/cmp-dictionary/issues/68
-					-- command = { "wn", "${label}", "-over" },
-					command = { "w3m", "https://dict.cn/search?q=${label}" }
-				},
-			})
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = "*",
-				callback = function(ev)
-					local paths = dict.ft[ev.match] or {}
-					vim.list_extend(paths, dict["*"])
-					require("cmp_dictionary").setup({
-						paths = paths,
-					})
-				end
-			})
-			-- dict.switcher({
-			-- 	spelllang = {
-			-- 		en = vim.fn.expand("~/.config/_asserts/dict/words_alpha.txt"), -- "/usr/share/dict/words"
-			-- 	},
-			-- })
-			--			dict.update() -- THIS
-		end,
+		config = get_config("cmp-dictionary"),
 		after = "nvim-cmp",
+		opt = false,
 	})
 	use({
 		"hrsh7th/nvim-cmp",
 		config = get_config("cmp"),
-		-- config = function()
-		-- 	require('cmp').setup({})
-		-- end,
 		-- event = "InsertEnter",
 		-- event = "VimEnter",
 		requires = {
@@ -147,9 +100,9 @@ packer.startup(function(use)
 		config = get_config("lsp"),
 		after = { "cmp-nvim-lsp", "lsp-format.nvim" },
 	})
-	use({ "tami5/lspsaga.nvim" })
+	use({ "nvimdev/lspsaga.nvim", after = 'nvim-lspconfig', config = get_config("lspsaga") })
 	-- lsp context
-	use({ "SmiteshP/nvim-navic", after = "nvim-lspconfig", config = get_config("navic") })
+	-- use({ "SmiteshP/nvim-navic", after = "nvim-lspconfig", config = get_config("navic") })
 	-- set golang
 	use({
 		"ray-x/go.nvim",
@@ -158,10 +111,10 @@ packer.startup(function(use)
 		requires = "ray-x/guihua.lua",
 	})
 	use("buoto/gotests-vim")
-	use({ "mfussenegger/nvim-jdtls" })
 	-- set java setting
-	-- use({ "mfussenegger/nvim-jdtls", opt = true, ft = { "java" }, config = get_config("java") })
+	use({ "mfussenegger/nvim-jdtls" })
 	-- end java setting
+	-- debug
 	use({ "mfussenegger/nvim-dap", config = get_config("dap") })
 	use({ "leoluz/nvim-dap-go", config = get_config("dap-go") })
 	use({
@@ -189,15 +142,20 @@ packer.startup(function(use)
 		requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = get_config("dap-ui")
 	})
-	-- use({
-	-- 	"fatih/vim-go",
-	-- 	ft = { "go" },
-	-- 	cmd = ":GoInstallBinaries",
-	-- 	config = get_config("vim-go"),
-	-- })
 	-- lsp install/config end
 
 	-- tools start
+	use { 'nvimdev/hlsearch.nvim', event = 'BufRead', config = function()
+		require('hlsearch').setup()
+	end }
+	use({
+		'glepnir/galaxyline.nvim',
+		branch = 'main',
+		-- your statusline
+		config = get_config("galaxy"),
+		-- some optional icons
+		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
@@ -245,7 +203,6 @@ packer.startup(function(use)
 			require('nvim_comment').setup()
 		end
 	})
-	-- use({ "liuchengxu/vista.vim", config = get_config("vista") })
 	use({
 		"norcalli/nvim-colorizer.lua",
 		config = function()
@@ -293,8 +250,11 @@ packer.startup(function(use)
 		cmd = { "NvimTreeFindFileToggle" },
 		config = get_config("nvim-tree"),
 	})
-	use({ "arkav/lualine-lsp-progress", after = "nvim-navic" })
-	use({ "hoob3rt/lualine.nvim", after = "lualine-lsp-progress", config = get_config("lualine") })
+	use({
+		"arkav/lualine-lsp-progress",
+		--after = "nvim-navic",
+	})
+	-- use({ "hoob3rt/lualine.nvim", after = "lualine-lsp-progress", config = get_config("lualine") })
 	use({ "akinsho/bufferline.nvim", config = get_config("bufferline") })
 	use({ "yamatsum/nvim-cursorline", config = get_config("cursorline") })
 	use({ "rcarriga/nvim-notify", config = get_config("notify") })

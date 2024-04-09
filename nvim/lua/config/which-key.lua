@@ -25,8 +25,8 @@ wk.setup({
 			text_objects = true, -- help for text objects triggered after entering an operator
 			windows = true, -- default bindings on <c-w>
 			nav = true, -- misc bindings to work with windows
-			z = true, -- bindings for folds, spelling and others prefixed with z
-			g = true, -- bindings for prefixed with g
+			z = true,   -- bindings for folds, spelling and others prefixed with z
+			g = true,   -- bindings for prefixed with g
 		},
 	},
 	-- add operators that will trigger motion and text object completion
@@ -45,7 +45,7 @@ wk.setup({
 		group = "+", -- symbol prepended to a group
 	},
 	window = {
-		border = "single", -- none, single, double, shadow
+		border = "single",  -- none, single, double, shadow
 		position = "bottom", -- bottom, top
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -53,10 +53,10 @@ wk.setup({
 	layout = {
 		height = { min = 4, max = 25 }, -- min and max height of the columns
 		width = { min = 20, max = 50 }, -- min and max width of the columns
-		spacing = 2, -- spacing between columns
-		align = "center", -- align columns left, center or right
+		spacing = 2,              -- spacing between columns
+		align = "center",         -- align columns left, center or right
 	},
-	ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+	ignore_missing = false,       -- enable this to hide mappings for which you didn't specify a label
 	hidden = {
 		"<silent>",
 		"<cmd>",
@@ -68,7 +68,7 @@ wk.setup({
 		"require",
 		"^:",
 		"^ ",
-	}, -- hide mapping boilerplate
+	},              -- hide mapping boilerplate
 	show_help = false, -- show help message on the command line when the popup is visible
 	triggers = "auto", -- automatically setup triggers
 	-- triggers = {"<leader>"} -- or specify a list manually
@@ -91,6 +91,7 @@ wk.register({
 	K = { "<cmd>Lspsaga hover_doc<cr>", "Show Doc" },
 	e = {
 		name = "Diagnostic",
+		a = { "<cmd>Lspsaga show_workspace_diagnostics ++normal<cr>", "Show All Diagnostics" },
 		h = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Jump Previous Diagnostic" },
 		l = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump Next Diagnostic" },
 	},
@@ -105,30 +106,49 @@ wk.register({
 
 -- mapping leader
 wk.register({
+	b = {
+		name = "Buffers",
+		l = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer(Cycle)" },
+		h = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer(Cycle)" },
+		p = { "<cmd>BufferLinePick<cr>", "Pick Buffer" },
+		f = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
+		--https://stackoverflow.com/questions/4465095/how-to-delete-a-buffer-in-vim-without-losing-the-split-window
+		c = { "<cmd>:bp|bd #<cr>", "Delete Buffer" },
+		o = { "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>", "Delete Other Buffers" },
+	},
 	c = {
 		name = "Coding",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
 		t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
 		f = { "<cmd>lua vim.lsp.buf.format({timeout_ms=1000})<cr>", "Format" },
-		h = { "<cmd>lua require('telescope.builtin').lsp_references()<cr>", "Show References" },
-		i = { "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", "Show Implements" },
-		['cc'] = { "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>", "Show Incoming Calls" },
-		['gc'] = { "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", "Show Outgoing Calls" },
+		h = { "<cmd>Lspsaga finder ref<cr>", "Show References" },
+		i = { "<cmd>Lspsaga finder imp<cr>", "Show Implements" },
+		c = { "<cmd>Lspsaga incoming_calls<cr>", "Show Incoming Calls" },
+		g = { "<cmd>Lspsaga outgoing_calls<cr>", "Show Outgoing Calls" },
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
-		d = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
+		d = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
 		k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
-		o = { "<cmd>AerialToggle!<cr>", "File Outline" },
+		o = { "<cmd>Lspsaga outline<cr>", "File Outline" },
 		['lr'] = { "<cmd>lua vim.lsp.codelens.refresh()<cr>", "Refresh Codelens" },
 		['la'] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "Codelens Run Actions" },
 	},
+	d = {
+		name = "Debug(F5->TB F6->Continue F7->Into F8->Over F9->Out)",
+		u = { "<cmd>lua require('dapui').toggle()<cr>", "DAP UI Toggle" },
+		t = { "<cmd>lua require('dap').terminate()<cr>", "Terminate DAP" },
+		['bt'] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "toggle Breakpoint" },
+		["bc"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint Condition" },
+		["h"] = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Widgets Hover" },
+		["l"] = { "<cmd>lua _dapui.run_last()<cr>", "Run Last" },
+	},
 	f = {
 		name = "Files",
-		a = { "<cmd>Telescope live_grep<cr>", "File in file" },
+		g = { "<cmd>Telescope live_grep<cr>", "File in file" },
 		b = { "<cmd>Telescope file_browser<cr>", "File Browser" },
 		e = { "<cmd>Telescope diagnostics<cr>", "Diagnostics File Browser" },
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		t = { "<cmd>NvimTreeFindFileToggle<cr>", "Toggle Filetree" },
+		t = { "<cmd>NvimTreeToggle<cr>", "Toggle Filetree" },
 		s = { "<cmd>w<cr>", "Save Buffer" },
 		c = { "<cmd>NvimTreeFindFile<cr>", "Find file in tree" },
 	},
@@ -154,25 +174,6 @@ wk.register({
 		["_"] = { "<cmd>vertical resize-5<cr>", "Decrease Widht" },
 		e = { "<C-W>=", "Equal Height/Width" },
 	},
-	b = {
-		name = "Buffers",
-		l = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer(Cycle)" },
-		h = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer(Cycle)" },
-		p = { "<cmd>BufferLinePick<cr>", "Pick Buffer" },
-		f = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
-		--https://stackoverflow.com/questions/4465095/how-to-delete-a-buffer-in-vim-without-losing-the-split-window
-		c = { "<cmd>:bp|bd #<cr>", "Delete Buffer" },
-		o = { "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>", "Delete Other Buffers" },
-	},
-	d = {
-		name = "Debug(F5->TB F6->Continue F7->Into F8->Over F9->Out)",
-		u = { "<cmd>lua require('dapui').toggle()<cr>", "DAP UI Toggle" },
-		t = { "<cmd>lua require('dap').terminate()<cr>", "Terminate DAP" },
-		['bt'] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "toggle Breakpoint" },
-		["bc"] = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Breakpoint Condition" },
-		["h"] = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Widgets Hover" },
-		["l"] = { "<cmd>lua _dapui.run_last()<cr>", "Run Last" },
-	},
 	h = {
 		name = "Highlight",
 		c = { "<cmd>noh<cr>", "Clear search highlight" },
@@ -182,8 +183,12 @@ wk.register({
 		p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
 		t = { "<cmd>MarkdownStop<cr>", "Markdown Stop Preview" },
 	},
+	o = {
+		name = "Open",
+		t = { "<cmd>Lspsaga term_toggle<cr>", "Terminal" },
+	},
 	t = {
-		name = "TODO",
+		name = "TODO/Telescope",
 		l = { "<cmd>TodoQuickFix<cr>", "List TODO" },
 		t = { "<cmd>TodoTelescope<cr>", "List TODO(Telescope)" },
 		h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help" },

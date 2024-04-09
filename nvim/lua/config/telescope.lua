@@ -6,7 +6,7 @@ local fb_actions = require("telescope").extensions.file_browser.actions
 telescope.setup({
 	extensions = {
 		fzf = {
-			fuzzy = true, -- false will only do exact matching
+			fuzzy = true,          -- false will only do exact matching
 			override_generic_sorter = true, -- override the generic sorter
 			override_file_sorter = true, -- override the file sorter
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case" or "smart_case"
@@ -78,7 +78,7 @@ telescope.setup({
 				["<C-d>"] = actions.preview_scrolling_down,
 				["<C-k>"] = actions.move_selection_previous,
 				["<C-q>"] = actions.send_selected_to_qflist,
-				["<C-l>"] = actions.send_to_qflist,
+				["<C-l>"] = actions.send_to_qflist + actions.open_qflist,
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				["<cr>"] = actions.select_default,

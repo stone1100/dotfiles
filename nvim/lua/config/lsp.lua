@@ -6,15 +6,6 @@ require("lsp-format").setup({})
 local nvim_lsp = require("lspconfig")
 local mason_lsp = require("mason-lspconfig")
 local utils = require("utils")
-local saga = require("lspsaga")
-local icons = require("icons")
-
-saga.init_lsp_saga({
-	error_sign = icons.error,
-	warn_sign = icons.warn,
-	hint_sign = icons.hint,
-	infor_sign = icons.info,
-})
 
 -- Override diagnostics symbol
 vim.diagnostic.config({
