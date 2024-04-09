@@ -148,7 +148,7 @@ wk.register({
 		e = { "<cmd>Telescope diagnostics<cr>", "Diagnostics File Browser" },
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
 		h = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		t = { "<cmd>NvimTreeToggle<cr>", "Toggle Filetree" },
+		t = { "<cmd>NvimTreeFindFileToggle<cr>", "Toggle File Tree" },
 		s = { "<cmd>w<cr>", "Save Buffer" },
 		c = { "<cmd>NvimTreeFindFile<cr>", "Find file in tree" },
 	},

@@ -1,6 +1,6 @@
 require("nvim-tree").setup({
 	-- view = {
-	-- 	hide_root_folder = false,
+	-- 	root_folder_label = true,
 	-- },
 	filters = {
 		dotfiles = true,

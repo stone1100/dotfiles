@@ -247,8 +247,11 @@ packer.startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 	use({
 		"nvim-tree/nvim-tree.lua",
-		cmd = { "NvimTreeFindFileToggle" },
-		config = get_config("nvim-tree"),
+		-- cmd = { "VimEnter" },
+		-- config = get_config("nvim-tree"),
+		requires = {
+			'nvim-tree/nvim-web-devicons', -- optional
+		},
 	})
 	use({
 		"arkav/lualine-lsp-progress",

@@ -46,7 +46,13 @@ gls.left[1] = {
 }
 gls.left[2] = {
 	FileSize = {
-		provider = 'FileSize',
+		-- provider = 'FileSize',
+		provider = function()
+			-- show current line percent of all lines
+			local current_line = vim.fn.line('.')
+			local total_line = vim.fn.line('$')
+			return string.format("%d/%d ", current_line, total_line)
+		end,
 		condition = condition.buffer_not_empty,
 		highlight = { colors.fg, colors.bg }
 	}
@@ -147,8 +153,19 @@ gls.right[2] = {
 
 gls.right[3] = {
 	FileFormat = {
-		provider = 'FileFormat',
-		condition = condition.hide_in_width,
+		provider = function()
+			local fformat = vim.bo.fileformat
+			local icon = '󰱭'
+			if fformat == "unix" then
+				icon = ''
+			elseif fformat == "dos" then
+				icon = ''
+			elseif fformat == "mac" then
+				icon = ''
+			end
+			return icon .. ' '
+		end,
+		-- condition = condition.hide_in_width,
 		separator = ' ',
 		separator_highlight = { 'NONE', colors.bg },
 		highlight = { colors.fg, colors.bg }

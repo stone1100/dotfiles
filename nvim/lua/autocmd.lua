@@ -21,7 +21,7 @@ vim_init = function()
 	-- vim.cmd([[syntax on]])
 
 	-- fix some plugins theme not working
-	local plugins = { "lualine", "todo-comments" }
+	local plugins = { "todo-comments", "nvim-tree" }
 	for _, value in ipairs(plugins) do
 		local ok, _ = pcall(require, value)
 		if ok then
@@ -43,7 +43,9 @@ api.nvim_create_autocmd(
 -- https://gist.github.com/albert-yu/18b0ad925df109b42bd3ee698f0aea6e
 -- api.nvim_exec([[autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab]], false)
 api.nvim_create_autocmd({ "BufRead", "BufNewFile" },
-	{ pattern = { "*.ts", "*.tsx", "*.js", "*.html" },
-		command = "setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab" })
+	{
+		pattern = { "*.ts", "*.tsx", "*.js", "*.html" },
+		command = "setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab"
+	})
 
 api.nvim_create_autocmd({ "VimEnter" }, { command = "lua vim_init()" })
