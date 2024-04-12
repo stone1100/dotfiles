@@ -1,9 +1,10 @@
+local icons = require("icons")
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
@@ -52,47 +53,19 @@ cmp.setup({
 	},
 	formatting = {
 		format = function(entry, vim_item)
-			local lspkind_icons = {
-				Text = "",
-				Method = "󰆧",
-				Function = "󰊕",
-				Constructor = "",
-				Field = "󰇽",
-				Variable = "󰂡",
-				Class = "󰠱",
-				Interface = "",
-				Module = "",
-				Property = "󰩵",
-				Unit = "",
-				Value = "󰎠",
-				Enum = "",
-				Keyword = "󱕵",
-				Snippet = "",
-				Color = "󰸌",
-				File = "󰈙",
-				Reference = "",
-				Folder = "󰉋",
-				EnumMember = "",
-				Constant = "󰏿",
-				Struct = "",
-				Event = "",
-				Operator = "󰆕",
-				TypeParameter = "󰅲",
-			}
 			-- load lspkind icons
-			vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
-
+			vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
 			vim_item.menu = ({
-				nvim_ls = "[ LSP]",
+				nvim_ls = "[" .. icons.Lsp .. " LSP]",
 				-- cmp_tabnine = "[TN]",
-				buffer = "[󰕸 BuF]",
+				buffer = "[" .. icons.Buffet .. " BuF]",
 				orgmode = "[ORG]",
-				nvim_lua = "[LUA]",
-				path = "[PATH]",
-				tmux = "[TMUX]",
-				luasnip = "[󰅩 LSnip]",
+				nvim_lua = "[" .. icons.Lua .. " LUA]",
+				path = "[" .. icons.Path .. "PATH]",
+				tmux = "[" .. icons.TMux .. " TMUX]",
+				luasnip = "[" .. icons.Snip .. " LSnip]",
 				--spell = "[SPELL]",
-				dictionary = "[󰗊 Dict]",
+				dictionary = "[" .. icons.Dictionary .. " Dict]",
 			})[entry.source.name]
 
 			return vim_item

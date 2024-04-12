@@ -13,7 +13,9 @@ vim.cmd [[hi LspSagaHoverBorder guifg='#5c6370']]
 vim.cmd [[hi LspSagaDocTruncateLine guifg='#5c6370']]
 vim.cmd [[hi LspSagaRenameBorder guifg='#5c6370']]
 vim.cmd [[hi TelescopePromptTitle guifg=orange]]
+vim.cmd [[hi TelescopePromptPrefix guifg=orange]]
 vim.cmd [[hi TelescopePreviewTitle guifg=orange]]
+vim.cmd [[hi TelescopeSelectionCaret guifg=orange]]
 
 -- cmp
 vim.cmd [[hi LspFloatWinNormal guibg=none]]
@@ -66,7 +68,25 @@ vim.cmd [[hi NotifyTRACETitle  guifg=#D484FF]]
 vim.cmd [[hi Visual term=reverse cterm=reverse guibg=#7c6f64]]
 vim.cmd [[hi DiagnosticWarn ctermfg=3 guifg=#debf81]]
 
-vim.cmd [[sign define DiagnosticSignError text=󰅚 texthl=DiagnosticSignError]]
-vim.cmd [[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn]]
-vim.cmd [[sign define DiagnosticSignInfo text=  texthl=DiagnosticSignInfo]]
-vim.cmd [[sign define DiagnosticSignHint text=⚡ texthl=DiagnosticSignHint]]
+-- lsp
+vim.cmd [[hi LspInfoBorder guifg='#5c6370']]
+
+-- quicklist
+vim.cmd [[hi qfFileName guifg=#b1b4b9]]
+vim.cmd [[hi QuickFixLine guifg=#F79000]]
+
+-- smoot cursor
+vim.cmd [[hi SmoothCursor guifg=#F79000]]
+
+-- coverage
+vim.cmd([[
+        hi CoverageCovered guifg=#87AF87
+        hi CoverageUncovered guifg=#f07178
+        hi CoveragePartial guifg=#aa71f0
+        hi CoverageSummaryHeader gui=bold,underline guisp=fg
+        hi! link CoverageSummaryBorder FloatBorder
+        hi! link CoverageSummaryNormal NormalFloat
+        hi! link CoverageSummaryCursorLine CursorLine
+        hi! link CoverageSummaryPass CoverageCovered
+        hi! link CoverageSummaryFail CoverageUncovered
+      ]])

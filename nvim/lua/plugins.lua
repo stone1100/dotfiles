@@ -102,7 +102,6 @@ packer.startup(function(use)
 	})
 	use({ "nvimdev/lspsaga.nvim", after = 'nvim-lspconfig', config = get_config("lspsaga") })
 	-- lsp context
-	-- use({ "SmiteshP/nvim-navic", after = "nvim-lspconfig", config = get_config("navic") })
 	-- set golang
 	use({
 		"ray-x/go.nvim",
@@ -110,7 +109,6 @@ packer.startup(function(use)
 		ft = { "go", "gomod" },
 		requires = "ray-x/guihua.lua",
 	})
-	use("buoto/gotests-vim")
 	-- set java setting
 	use({ "mfussenegger/nvim-jdtls" })
 	-- end java setting
@@ -142,6 +140,25 @@ packer.startup(function(use)
 		requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		config = get_config("dap-ui")
 	})
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			-- https://github.com/j-hui/fidget.nvim
+			-- lsp status
+			require("fidget").setup()
+		end
+	})
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"nvim-neotest/neotest-go",
+			"nvim-treesitter/nvim-treesitter"
+		},
+		config = get_config("neotest"),
+	})
+	use({ "andythigpen/nvim-coverage", config = get_config("coverage") })
 	-- lsp install/config end
 
 	-- tools start
@@ -151,10 +168,8 @@ packer.startup(function(use)
 	use({
 		'glepnir/galaxyline.nvim',
 		branch = 'main',
-		-- your statusline
 		config = get_config("galaxy"),
-		-- some optional icons
-		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+		requires = { 'nvim-tree/nvim-web-devicons' },
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -166,6 +181,12 @@ packer.startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 		config = get_config("gitsigns"),
 	})
+	use({
+		"aspeddro/gitui.nvim",
+		config = function()
+			require("gitui").setup()
+		end
+	})
 	use({ "sindrets/diffview.nvim" })
 	use({ "tpope/vim-fugitive", opt = true, cmd = { "Git", "G" } })
 	use({
@@ -173,7 +194,6 @@ packer.startup(function(use)
 		requires = "nvim-lua/plenary.nvim",
 		config = get_config("todo"),
 	})
-	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_config("autopairs") })
 	use({
 		"windwp/nvim-ts-autotag",
 		config = function()
@@ -215,26 +235,10 @@ packer.startup(function(use)
 			require('close_buffers').setup()
 		end
 	})
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		config = function()
-			require('refactoring').setup({})
-		end
-	})
-	use({
-		'stevearc/aerial.nvim',
-		config = function()
-			require('aerial').setup({});
-		end
-	})
 	use({ "ray-x/lsp_signature.nvim", config = get_config("lsp_signature") })
-
-	-- use({ "github/copilot.vim" })
 	-- tools end
 
 	-- ui related config start
-	-- use({ "folke/tokyonight.nvim" })
-	-- use({ "ellisonleao/gruvbox.nvim" })
 	use({
 		"navarasu/onedark.nvim",
 		config = function()
@@ -243,8 +247,7 @@ packer.startup(function(use)
 			}
 		end
 	})
-	-- use({"eddyekofo94/gruvbox-flat.nvim"})
-	use("nvim-tree/nvim-web-devicons")
+	use({ "nvim-tree/nvim-web-devicons" })
 	use({
 		"nvim-tree/nvim-tree.lua",
 		-- cmd = { "VimEnter" },
@@ -252,10 +255,6 @@ packer.startup(function(use)
 		requires = {
 			'nvim-tree/nvim-web-devicons', -- optional
 		},
-	})
-	use({
-		"arkav/lualine-lsp-progress",
-		--after = "nvim-navic",
 	})
 	-- use({ "hoob3rt/lualine.nvim", after = "lualine-lsp-progress", config = get_config("lualine") })
 	use({ "akinsho/bufferline.nvim", config = get_config("bufferline") })
@@ -282,8 +281,33 @@ packer.startup(function(use)
 			})
 		end
 	})
+	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_config("autopairs") })
+	-- use { 'gen740/SmoothCursor.nvim',
+	-- 	config = function()
+	-- 		require('smoothcursor').setup()
+	-- 	end
+	-- }
+	use({
+		'folke/trouble.nvim',
+		branch = "dev",
+		event = "BufEnter",
+		requires = { "nvim-tree/nvim-web-devicons" },
+		config = get_config(
+			"trouble")
+	})
+	use({ "windwp/nvim-spectre" })
 	-- ui related config end
+	--
+	-- use {
+	-- 	"rest-nvim/rest.nvim",
+	-- 	rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
+	-- 	config = function()
+	-- 		require("rest-nvim").setup()
+	-- 	end,
+	-- }
+	--
 
+	--
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then

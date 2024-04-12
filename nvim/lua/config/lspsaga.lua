@@ -1,6 +1,12 @@
 local saga = require("lspsaga")
+local icons = require("icons")
 
 saga.setup({
+	ui = {
+		imp_sign = icons.Down,
+		expand = icons.Expand,
+		collapse = icons.Collapse,
+	},
 	lightbulb = {
 		sign = false,
 	},
@@ -17,5 +23,8 @@ saga.setup({
 	code_action = {
 		show_server_name = true,
 		extend_gitsigns = false,
+	},
+	diagnostic = {
+		show_code_action = true,
 	},
 })

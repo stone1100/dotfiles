@@ -1,5 +1,7 @@
+local icons = require("icons")
+
 require("dapui").setup({
-	icons = { expanded = "▾", collapsed = "▸" },
+	icons = { expanded = icons.Expand, collapsed = icons.Collapse },
 	mappings = {
 		-- Use a table to apply multiple mappings
 		expand = { "<CR>", "<2-LeftMouse>" },
@@ -18,22 +20,14 @@ require("dapui").setup({
 		-- Display controls in this element
 		element = "repl",
 		icons = {
-			pause = "",
-			play = "",
-			step_into = "",
-			step_over = "",
-			step_out = "",
-			step_back = "",
-			run_last = "",
-			terminate = ""
-			-- pause = "",
-			-- play = "",
-			-- step_into = "",
-			-- step_over = "",
-			-- step_out = "",
-			-- step_back = "",
-			-- run_last = "↻",
-			-- terminate = "□",
+			pause = icons.Pause,
+			play = icons.Play,
+			step_into = icons.StepInto,
+			step_over = icons.StepOver,
+			step_out = icons.StepOut,
+			step_back = icons.StepBack,
+			run_last = icons.RunLast,
+			terminate = icons.Terminate,
 		},
 	},
 	-- Layouts define sections of the screen to place windows.

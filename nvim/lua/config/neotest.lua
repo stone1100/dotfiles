@@ -1,0 +1,23 @@
+local icons = require("icons")
+-- https://github.com/nvim-neotest/neotest
+require("neotest").setup({
+	adapters = {
+		require("neotest-go")({
+			experimental = {
+				test_table = true,
+			},
+			args = { "-count=1", "-timeout=120s", "-race", "-coverprofile=coverage.out" }
+		}),
+	},
+
+	icons = {
+		unknown = icons.Folder,
+		collapsed = icons.Collapse,
+		expanded = icons.Expand,
+		passed = icons.Todo,
+		running = icons.RunLast,
+		failed = icons.Close,
+		-- https://www.compart.com/en/unicode/block/U+2500
+		final_child_prefix = "└",
+	},
+})

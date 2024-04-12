@@ -3,7 +3,7 @@
 
 -- change language
 -- https://vi.stackexchange.com/questions/36426/how-do-i-change-my-language-in-my-init-lua-neovim
-vim.api.nvim_exec ('language en_US', true)
+vim.api.nvim_exec('language en_US', true)
 
 -- key mappings, more => lua/config/which-key.lua
 require("mappings")
@@ -15,3 +15,5 @@ require("plugins")
 require("autocmd")
 -- theme/highlight
 require("highlight")
+-- signs
+require("signs")

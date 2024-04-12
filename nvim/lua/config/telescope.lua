@@ -2,6 +2,7 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 local fb_actions = require("telescope").extensions.file_browser.actions
+local icons = require("icons")
 
 telescope.setup({
 	extensions = {
@@ -45,7 +46,7 @@ telescope.setup({
 	defaults = {
 		path_display = {
 			shorten = {
-				len = 3, exclude = { 1, -1 }
+				len = 1, exclude = { 1, -1 }
 			},
 			truncate = true
 		},
@@ -72,13 +73,14 @@ telescope.setup({
 				-- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua
 				["<esc>"] = actions.close,
 				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
 				["<PageUp>"] = actions.results_scrolling_up,
 				["<PageDown>"] = actions.results_scrolling_down,
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
-				["<C-k>"] = actions.move_selection_previous,
 				["<C-q>"] = actions.send_selected_to_qflist,
 				["<C-l>"] = actions.send_to_qflist + actions.open_qflist,
+				-- ["<C-l>"] =require("trouble.sources.telescope").open,
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				["<cr>"] = actions.select_default,
@@ -91,8 +93,8 @@ telescope.setup({
 				["<c-x>"] = actions.delete_buffer,
 			},
 		},
-		prompt_prefix = "  ",
-		selection_caret = " ",
+		prompt_prefix = " " .. icons.Term .. " ",
+		selection_caret = icons.Point .. " ",
 		entry_prefix = "  ",
 		multi_icon = "",
 		initial_mode = "insert",
@@ -101,10 +103,11 @@ telescope.setup({
 		results_title = false,
 		--sorting_strategy = "descending",
 		sorting_strategy = "ascending",
-		layout_strategy = "horizontal",
+		-- layout_strategy = "horizontal",
+		layout_strategy = "vertical",
 		layout_config = {
-			width = 0.80,
-			height = 0.80,
+			width = 0.95,
+			height = 0.90,
 			-- preview_cutoff = 120,
 			prompt_position = "top",
 			horizontal = {
@@ -134,3 +137,52 @@ telescope.load_extension("file_browser")
 telescope.load_extension("packer")
 telescope.load_extension("ui-select")
 telescope.load_extension("frecency")
+
+-- show all commands include builtin and extensions
+local function list_all_telescope_commands()
+	local commands = {}
+	-- builtin commands
+	for name, _ in pairs(require 'telescope.builtin') do
+		table.insert(commands, 'Telescope ' .. name)
+	end
+	-- extensions, such as 'telescope-packer.nvim'
+	local extensions = require 'telescope'.extensions
+	for _, ext_table in pairs(extensions) do
+		for func_name, _ in pairs(ext_table) do
+			table.insert(commands, 'Telescope ' .. func_name)
+		end
+	end
+	return commands
+end
+local function show_telescope_commands()
+	local pickers = require 'telescope.pickers'
+	local finders = require 'telescope.finders'
+	local conf = require 'telescope.config'.values
+	local action_state = require 'telescope.actions.state'
+	--	local actions = require 'telescope.actions'
+
+	pickers.new({}, {
+		prompt_title = 'Telescope Commands',
+		finder = finders.new_table {
+			results = list_all_telescope_commands(),
+			entry_maker = function(entry)
+				return {
+					value = entry,
+					display = entry,
+					ordinal = entry,
+				}
+			end,
+		},
+		sorter = conf.generic_sorter({}),
+		attach_mappings = function(prompt_bufnr, _)
+			actions.select_default:replace(function()
+				local selection = action_state.get_selected_entry()
+				actions.close(prompt_bufnr)
+				vim.cmd(selection.value)
+			end)
+			return true
+		end,
+	}):find()
+end
+
+vim.api.nvim_create_user_command('TelescopeCommands', show_telescope_commands, {})

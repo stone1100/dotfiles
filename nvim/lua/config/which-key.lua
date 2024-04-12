@@ -83,6 +83,7 @@ wk.setup({
 
 -- dap: https://pepa.holla.cz/2022/02/02/debugging-go-in-neovim/
 wk.register({
+	t = { "<cmd>TelescopeCommands<cr>", "Telescope" },
 	['<F8>'] = { "<cmd>lua require('dap').step_over()<cr>", "DAP Step Over" },
 	['<F7>'] = { "<cmd>lua require('dap').step_into()<cr>", "DAP Step Into" },
 	['<F9>'] = { "<cmd>lua require('dap').step_out()<cr>", "DAP Step Out" },
@@ -91,15 +92,14 @@ wk.register({
 	K = { "<cmd>Lspsaga hover_doc<cr>", "Show Doc" },
 	e = {
 		name = "Diagnostic",
-		a = { "<cmd>Lspsaga show_workspace_diagnostics ++normal<cr>", "Show All Diagnostics" },
+		a = { "<cmd>Trouble diagnostics<cr>", "Show All Diagnostics" },
 		h = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Jump Previous Diagnostic" },
 		l = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump Next Diagnostic" },
 	},
 	g = {
 		name = "Goto",
-		lf = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },
-		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Goto Definition" },
-		i = { "<cmd>Telescope lsp_implementations<cr>", "Goto Definition" },
+		d = { "<cmd>Trouble lsp_definitions<cr>", "Lsp Definitions" },
+		i = { "<cmd>Trouble lsp_implementations<cr>", "Lsp Implements" },
 	},
 	['<C-k>'] = { "<cmd>WhichKey<cr>", "Show All Mapping Keys" },
 }, { mode_n, silent_opt })
@@ -109,7 +109,7 @@ wk.register({
 	b = {
 		name = "Buffers",
 		l = { "<cmd>BufferLineCycleNext<cr>", "Next Buffer(Cycle)" },
-		h = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer(Cycle)" },
+		j = { "<cmd>BufferLineCyclePrev<cr>", "Previous Buffer(Cycle)" },
 		p = { "<cmd>BufferLinePick<cr>", "Pick Buffer" },
 		f = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
 		--https://stackoverflow.com/questions/4465095/how-to-delete-a-buffer-in-vim-without-losing-the-split-window
@@ -118,11 +118,12 @@ wk.register({
 	},
 	c = {
 		name = "Coding",
-		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+		-- a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
 		f = { "<cmd>lua vim.lsp.buf.format({timeout_ms=1000})<cr>", "Format" },
-		h = { "<cmd>Lspsaga finder ref<cr>", "Show References" },
-		i = { "<cmd>Lspsaga finder imp<cr>", "Show Implements" },
+		h = { "<cmd>Trouble lsp_references<cr>", "Show References" },
+		i = { "<cmd>Trouble lsp_implementations<cr>", "Show Implements" },
 		c = { "<cmd>Lspsaga incoming_calls<cr>", "Show Incoming Calls" },
 		g = { "<cmd>Lspsaga outgoing_calls<cr>", "Show Outgoing Calls" },
 		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
@@ -185,24 +186,31 @@ wk.register({
 	},
 	o = {
 		name = "Open",
-		t = { "<cmd>Lspsaga term_toggle<cr>", "Terminal" },
+		t = { "<cmd>Lspsaga term_toggle<cr>", "Open Terminal" },
+	},
+	r = {
+		name = "Run",
+		d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug Test" },
+		["tf"] = { "<cmd>Neotest run<cr>", "Run Test Func" },
+		["o"] = { "<cmd>Neotest output<cr>", "Show Test Output" },
+		["f"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr><cmd>Neotest summary<cr>", "Run Tests" },
+		["p"] = { "<cmd>Neotest output-panel toggle<cr>", "Toggle Test Output" },
+		["s"] = { "<cmd>Neotest summary toggle<cr>", "Toggle Test Summary" },
+		["cs"] = { "<cmd>CoverageSummary<cr>", "Open Coverage Summary" },
+		["ct"] = { "<cmd>CoverageToggle<cr>", "Toggle Coverage" },
+	},
+	v = {
+		name = "View",
+		["od"] = { "<cmd>DiffviewOpen<cr>", "Open Diff View" },
+		["cd"] = { "<cmd>DiffviewClose<cr>", "Close Diff View" },
+		["dh"] = { "<cmd>DiffviewFileHistory<cr>", "View Diff File History" },
 	},
 	t = {
 		name = "TODO/Telescope",
-		l = { "<cmd>TodoQuickFix<cr>", "List TODO" },
+		l = { "<cmd>Trouble todo<cr>", "List TODO" },
 		t = { "<cmd>TodoTelescope<cr>", "List TODO(Telescope)" },
 		h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help" },
 		c = { "<cmd>lua require('telescope.builtin').commands()<cr>", "Commands" },
 		k = { "<cmd>lua require('telescope.builtin').keymaps()<cr>", "Keymaps" },
 	},
 }, { prefix = "<leader>", mode_n, silent_opt })
-
--- register key for v mode
--- require("which-key").register({
--- 	f = {
--- 		name = "Refactoring",
--- 		f = { "<esc><cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function/Method" },
--- 		v = { "<esc><cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable" },
--- 		r = { "<esc><cmd>lua require('refactoring').select_refactor()<CR>", "Prompt Refactor Select" },
--- 	},
--- }, { prefix = "<leader>", mode_v, silent_opt, { expr = false }, { noremap = true } })

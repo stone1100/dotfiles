@@ -3,6 +3,8 @@ vim.cmd([[packadd lspsaga.nvim]])
 
 require("lsp-format").setup({})
 
+require('lspconfig.ui.windows').default_options.border = 'single'
+
 local nvim_lsp = require("lspconfig")
 local mason_lsp = require("mason-lspconfig")
 local utils = require("utils")
@@ -41,16 +43,18 @@ mason_lsp.setup({
 })
 
 for _, name in ipairs(mason_lsp.get_installed_servers()) do
-	if name == "gopls" then
-		-- go via go.nvim
-		goto continue
-	end
+	-- if name == "gopls" then
+	-- 	-- go via go.nvim
+	-- 	goto continue
+	-- end
+	-- do cust lsp config
 	local ok, _ = pcall(require, string.format("server.%s", name))
 	if not ok then
+		-- setup default config, if not exist
 		nvim_lsp[name].setup({
 			on_attach = utils.on_attach,
 			capabilities = utils.capabilities
 		})
 	end
-	::continue::
+	-- ::continue::
 end

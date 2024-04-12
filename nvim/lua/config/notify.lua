@@ -18,11 +18,11 @@ require("notify").setup({
 	minimum_width = 50,
 	-- Icons for the different levels
 	icons = {
-		ERROR = icons.error,
-		WARN = icons.warn,
-		INFO = icons.info,
-		DEBUG = icons.debug,
-		TRACE = "✎",
+		ERROR = icons.Error,
+		WARN = icons.Warn,
+		INFO = icons.Info,
+		DEBUG = icons.Debug,
+		TRACE = icons.Hint,
 	}
 })
 

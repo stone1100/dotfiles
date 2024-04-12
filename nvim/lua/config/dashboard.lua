@@ -1,4 +1,5 @@
 local alpha = require("alpha")
+local icons = require("icons")
 local dashboard = require("alpha.themes.dashboard")
 local thingy = io.popen('echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"')
 if thingy == nil then
@@ -7,11 +8,11 @@ end
 local date = thingy:read("*a")
 thingy:close()
 
-local datetime = os.date(" %H:%M")
+local datetime = os.date(icons.Time .. " %H:%M")
 
 local hi_top_section = {
 	type = "text",
-	val = "┌─────────────   Today is "
+	val = "┌───────────── " .. icons.Calendar .. "  Today is "
 		.. date
 		.. " ─────────────┐",
 	opts = {
@@ -94,25 +95,25 @@ end
 local leader = "comma"
 dashboard.section.buttons.val = {
 	--		button("comma s c", " Scheme change", leader, "<cmd>Telescope colorscheme<cr>"),
-	button("comma f r", "  File frecency", leader, "<cmd>Telescope frecency<cr>"),
-	button("comma f e", "󰄉  Recently used", leader, "<cmd>Telescope oldfiles<cr>"),
-	button("comma f p", "  Project find", leader, "<cmd>Telescope project<cr>"),
-	button("comma f f", "󰈞  File find", leader, "<cmd>Telescope find_files<cr>"),
-	button("comma f n", "󰊄  File new", leader, "<cmd>enew<cr>"),
-	button("comma f w", "󰄉  Find text", leader, "<cmd>Telescope live_grep<cr>"),
+	button("comma f r", icons.Rocket .. " File frecency", leader, "<cmd>Telescope frecency<cr>"),
+	button("comma f e", icons.HistoryFile .. " Recently used", leader, "<cmd>Telescope oldfiles<cr>"),
+	button("comma f p", icons.Project .. " Project find", leader, "<cmd>Telescope project<cr>"),
+	button("comma f f", icons.FindFile .. " File find", leader, "<cmd>Telescope find_files<cr>"),
+	button("comma f n", icons.NewFile .. " File new", leader, "<cmd>enew<cr>"),
+	button("comma f w", icons.FindText .. " Find text", leader, "<cmd>Telescope live_grep<cr>"),
 }
 dashboard.section.buttons.opts.hl = "String"
 
 local function footer()
 	local total_plugins = #vim.tbl_keys(packer_plugins)
-	return "   Have Fun with neovim"
-		.. "   v"
+	return " " .. icons.Heart .. " Have Fun with neovim"
+		.. " " .. icons.Version .. " "
 		.. vim.version().major
 		.. "."
 		.. vim.version().minor
 		.. "."
 		.. vim.version().patch
-		.. " 󰄛 "
+		.. " " .. icons.Plugin .. " "
 		.. total_plugins
 		.. " plugins "
 end

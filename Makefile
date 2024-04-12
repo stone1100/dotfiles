@@ -19,6 +19,7 @@ install: ## install requirement package
 	brew install fd 
 	brew install tree
 	brew install kubectl
+	brew install gnu-sed
 	## vim
 	brew install neovim
 	brew install wget

@@ -1,7 +1,7 @@
 local nvim_lsp = require("lspconfig")
 local utils = require("utils")
 
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
 	capabilities = utils.capabilities,
 	on_attach = utils.to_attach,
 	settings = {
