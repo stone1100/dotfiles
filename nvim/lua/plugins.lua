@@ -142,11 +142,7 @@ packer.startup(function(use)
 	})
 	use({
 		"j-hui/fidget.nvim",
-		config = function()
-			-- https://github.com/j-hui/fidget.nvim
-			-- lsp status
-			require("fidget").setup()
-		end
+		config = get_config("fidget"),
 	})
 	use({
 		"nvim-neotest/neotest",
@@ -237,7 +233,10 @@ packer.startup(function(use)
 	})
 	use({ "ray-x/lsp_signature.nvim", config = get_config("lsp_signature") })
 	-- tools end
-
+	use({
+		'stevearc/dressing.nvim',
+		config = get_config("dressing"),
+	})
 	-- ui related config start
 	use({
 		"navarasu/onedark.nvim",
@@ -259,7 +258,7 @@ packer.startup(function(use)
 	-- use({ "hoob3rt/lualine.nvim", after = "lualine-lsp-progress", config = get_config("lualine") })
 	use({ "akinsho/bufferline.nvim", config = get_config("bufferline") })
 	use({ "yamatsum/nvim-cursorline", config = get_config("cursorline") })
-	use({ "rcarriga/nvim-notify", config = get_config("notify") })
+	-- use({ "rcarriga/nvim-notify", config = get_config("notify") })
 	use({
 		"goolord/alpha-nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },

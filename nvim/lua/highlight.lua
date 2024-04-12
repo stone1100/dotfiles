@@ -1,5 +1,8 @@
 vim.cmd([[colorscheme onedark]])
-vim.cmd [[hi NormalFloat guibg=none]]
+vim.cmd [[
+hi NormalFloat guibg=none
+hi FloatTitle guifg=#F79000
+]]
 
 -- https://github.com/folke/tokyonight.nvim/pull/137#issuecomment-1016239546
 -- improved telescope background

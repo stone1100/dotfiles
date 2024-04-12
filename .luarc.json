@@ -10,5 +10,8 @@
         "vim_init",
         "a",
         "cfg"
+    ],
+    "diagnostics.disable": [
+        "deprecated"
     ]
 }

@@ -9,9 +9,9 @@ require("neotest").setup({
 			args = { "-count=1", "-timeout=120s", "-race", "-coverprofile=coverage.out" }
 		}),
 	},
-
+--	strategies = { "dap" },
 	icons = {
-		unknown = icons.Folder,
+		unknown = icons.HeadQuestion,
 		collapsed = icons.Collapse,
 		expanded = icons.Expand,
 		passed = icons.Todo,
@@ -20,4 +20,6 @@ require("neotest").setup({
 		-- https://www.compart.com/en/unicode/block/U+2500
 		final_child_prefix = "└",
 	},
+
+	log_level = vim.log.levels.DEBUG,
 })

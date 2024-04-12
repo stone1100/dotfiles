@@ -126,7 +126,7 @@ wk.register({
 		i = { "<cmd>Trouble lsp_implementations<cr>", "Show Implements" },
 		c = { "<cmd>Lspsaga incoming_calls<cr>", "Show Incoming Calls" },
 		g = { "<cmd>Lspsaga outgoing_calls<cr>", "Show Outgoing Calls" },
-		r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		d = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
 		k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
 		o = { "<cmd>Lspsaga outline<cr>", "File Outline" },

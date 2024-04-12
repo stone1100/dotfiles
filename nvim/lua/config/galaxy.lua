@@ -17,13 +17,19 @@ local get_lsp_client = function(msg)
 	end
 
 	local lsps = {}
+	local found = false
 	for _, client in ipairs(clients) do
 		local filetypes = client.config.filetypes
 		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
 			table.insert(lsps, client.name)
+			found = true
 		end
 	end
-	return "[" .. table.concat(lsps, ",") .. "]"
+	if found then
+		return "[" .. table.concat(lsps, ",") .. "]"
+	else
+		return "No Active Lsp"
+	end
 end
 
 gls.left[1] = {

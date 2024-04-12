@@ -87,6 +87,7 @@ local M = {
 	Term = "",
 	Mason = "◍",
 	Pending = "➜",
+	HeadQuestion = "󱍋"
 }
 
 --🐼

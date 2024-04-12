@@ -51,3 +51,16 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" },
 	})
 
 api.nvim_create_autocmd({ "VimEnter" }, { command = "lua vim_init()" })
+
+ShowFileSaveMessage = function()
+	local filename = vim.fn.expand("%:t")
+	vim.notify("Saved " .. filename, vim.log.levels.INFO)
+end
+
+vim.api.nvim_create_autocmd(
+	{ "BufWritePost" },
+	{
+		pattern = { "*" },
+		command = "lua ShowFileSaveMessage()"
+	}
+)
