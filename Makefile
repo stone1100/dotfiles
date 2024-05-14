@@ -11,6 +11,7 @@ install: ## install requirement package
 	brew install --cask wezterm
 	brew install fish
 	brew install onefetch
+	brew install fortune cowsay lolcat
 	brew install alacritty
 	brew install tmux
 	if [ ! -d ~/.tmux/plugins/tpm ]; then \
