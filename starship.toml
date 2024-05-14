@@ -1,0 +1,47 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[character]
+success_symbol = '[󰀵](bold green)'
+error_symbol = '[󰀵](bold red)'
+vimcmd_symbol = '[󰀵](bold purple)'
+
+[package]
+format = '[\[$symbol$version\]]($style) '
+symbol = '󰏖 '
+
+[golang]
+format = '[\[$symbol$version($mod_version)\]](bold cyan) '
+symbol = ' '
+
+[java]
+format = '[\[${symbol}(${version})\]]($style)'
+symbol = '󰬷 '
+
+[nodejs]
+format = '[\[$symbol$version\]]($style) '
+
+[git_branch]
+format = '[\[$symbol$branch(:$remote_branch)\]]($style) '
+symbol = ' '
+
+# [git_status]
+# conflicted = '🏳'
+# ahead = '🏎💨'
+# behind = '😰'
+# diverged = '😵'
+# up_to_date = '✓'
+# untracked = '🤷'
+# stashed = '📦'
+# modified = '📝'
+# staged = '[++\($count\)](green)'
+# renamed = '👅'
+# deleted = '🗑'
+
+[docker_context]
+format = '[\[$symbol$context\]]($style) '
+symbol = '󰡨 '
+
+[kubernetes]
+format = '[\[$symbol($user on )($cluster in )$context\($namespace\)\]]($style) '
+disabled = true 
+

@@ -8,6 +8,9 @@ help:  ## Display this help
 install: ## install requirement package
 	sh install.sh
 	## terminal 
+	brew install --cask wezterm
+	brew install fish
+	brew install onefetch
 	brew install alacritty
 	brew install tmux
 	if [ ! -d ~/.tmux/plugins/tpm ]; then \
@@ -20,6 +23,7 @@ install: ## install requirement package
 	brew install tree
 	brew install kubectl
 	brew install gnu-sed
+	brew install btop
 	## vim
 	brew install neovim
 	brew install wget
@@ -29,10 +33,15 @@ install: ## install requirement package
 	brew install go
 	brew install maven
 	brew install openjdk@17
+	brew install gitui
 	brew install node
 	brew install homebrew/cask-fonts/font-go-mono-nerd-font
+	brew install font-jetbrains-mono
 	brew install protobuf
 	pip3 install antlr4-tools
+
+	# fish for bash
+	omf install bass
 
 install_plugins: ## install plugins
 	~/.tmux/plugins/tpm/scripts/install_plugins.sh

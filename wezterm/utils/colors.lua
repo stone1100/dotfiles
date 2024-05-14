@@ -1,0 +1,45 @@
+local colors = {
+  background = "#2b323d",
+  foreground = "#c0caf5",
+  bg_dark = "#1e2030", --
+  bg = "#222436", --
+  dark3 = "#545c7e",
+  dark5 = "#3e4453",
+  purple = "#9c75d5",
+  comment = "#565f89",
+  green = "#52ad70",
+  green3 = "#93bb64",
+  blue = "#82aaff",
+  magenta2 = "#ff007c",
+  magenta = "#c099ff", --
+  orange = "#ff966c", --
+  yellow = "#ffc777", --
+  green1 = "#4fd6be", --
+  green2 = "#41a6b5",
+  red = "#ff757f", --
+  red1 = "#c53b53", --
+  rosewater = "#f5e0dc",
+  flamingo = "#f2cdcd",
+  pink = "#f5c2e7",
+  mauve = "#cba6f7",
+  maroon = "#eba0ac",
+  peach = "#fab387",
+  teal = "#94e2d5",
+  sky = "#89dceb",
+  sapphire = "#74c7ec",
+  lavender = "#b4befe",
+  text = "#cdd6f4",
+  subtext1 = "#bac2de",
+  subtext0 = "#a6adc8",
+  overlay2 = "#9399b2",
+  overlay1 = "#7f849c",
+  overlay0 = "#6c7086",
+  surface2 = "#585b70",
+  surface1 = "#45475a",
+  surface0 = "#313244",
+  base = "#1e1e2e",
+  mantle = "#181825",
+  crust = "#11111b",
+}
+
+return colors
