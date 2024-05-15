@@ -19,6 +19,9 @@ function telescope.dropdown()
         -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+        ["<CR>"] = actions.select_default, -- open current
+        ["<C-v>"] = actions.select_horizontal, -- open split horizontal
+        ["<C-h>"] = actions.select_vertical, -- open split vertical
       },
     },
     layout_config = {

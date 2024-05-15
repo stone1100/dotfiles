@@ -12,19 +12,23 @@ install: ## install requirement package
 	brew install fish
 	brew install onefetch
 	brew install fortune cowsay lolcat
-	brew install alacritty
-	brew install tmux
-	if [ ! -d ~/.tmux/plugins/tpm ]; then \
-		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
-	fi
+	# fish for bash
+	omf install bass
+	# brew install alacritty
+	# brew install tmux
+	# if [ ! -d ~/.tmux/plugins/tpm ]; then \
+	# 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
+	# fi
 	brew install htop
+	brew install btop
 	brew install fzf
 	/usr/local/opt/fzf/install
-	brew install fd 
+	brew install fd # faster, colorized alternative to find
+	brew install bat # smarter cat with syntax highlighting
 	brew install tree
 	brew install kubectl
 	brew install gnu-sed
-	brew install btop
+	brew install lnav
 	## vim
 	brew install neovim
 	brew install wget
@@ -41,10 +45,7 @@ install: ## install requirement package
 	brew install protobuf
 	pip3 install antlr4-tools
 
-	# fish for bash
-	omf install bass
-
-install_plugins: ## install plugins
+install_plugins: ## install tmux plugins
 	~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 CONFIG_PATH = ~/.config
@@ -52,12 +53,18 @@ config: ## sync config file
 	if [ ! -d $(CONFIG_PATH) ]; then \
 		mkdir $(CONFIG_PATH); \
 	fi
-	cp -rf ./alacritty $(CONFIG_PATH)
+	# terminal & shell
+	cp -rf ./wezterm ~/
+	cp -rf ./omf ~/
+	cp -rf ./btop ~/
+	cp -rf ./fish ~/
+	cp -rf ./starship.toml ~/
+	# cp -rf ./alacritty $(CONFIG_PATH)
 	cp -rf ./nvim $(CONFIG_PATH)
-	cp -rf ./zsh $(CONFIG_PATH)
-	cp -rf ./tmux/.tmux.conf ~/
-	cp -rf ./zsh/.zshrc ~/
-	tmux source ~/.tmux.conf
+	# cp -rf ./zsh $(CONFIG_PATH)
+	# cp -rf ./tmux/.tmux.conf ~/
+	# cp -rf ./zsh/.zshrc ~/
+	# tmux source ~/.tmux.conf
 	## install kubectl cheatsheet
 	source <(kubectl completion zsh)  # set up autocomplete in zsh into the current shell
 	echo '[[ $commands[kubectl] ]] && source <(kubectl completion zsh)' >> ~/.zshrc # add autocomplete permanently to your zsh shell

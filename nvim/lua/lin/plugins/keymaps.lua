@@ -100,7 +100,7 @@ return {
         },
         g = {
           name = "Goto",
-          d = { "<cmd>Telescope lsp_definitions<cr>", "Godo Definition" },
+          d = { "<cmd>Telescope lsp_definitions<cr>", "Goto Definition" },
           i = { "<cmd>Trouble lsp_implementations<cr>", "Lsp Implements" },
         },
         ["<C-k>"] = { "<cmd>WhichKey<cr>", "Show All Mapping Keys" },
@@ -131,7 +131,6 @@ return {
         },
         f = {
           name = "Files",
-          e = { "<cmd>Telescope diagnostics<cr>", "Diagnostics File Browser" },
           s = { "<cmd>w<cr>", "Save Buffer" },
         },
         w = {
@@ -139,8 +138,8 @@ return {
           n = { "<cmd>new<cr>", "New Window" },
           c = { "<cmd>quit<cr>", "Close Window" },
           o = { "<C-W>o", "Close Other Windows" },
-          v = { "<cmd>split<cr>", "Split Window(Vertical)" },
-          s = { "<cmd>vsplit<cr>", "Split Window(Horizontal)" },
+          v = { "<cmd>split<cr>", "Split Window(Horizontal)" },
+          s = { "<cmd>vsplit<cr>", "Split Window(Vertical)" },
           h = { "<C-W>h", "Goto Left Window" },
           l = { "<C-W>l", "Goto Right Window" },
           k = { "<C-W>k", "Goto Top Window" },

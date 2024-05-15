@@ -13,6 +13,7 @@ return {
       { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Find recent files" },
       { "<leader>fd", "<cmd>TodoTelescope<cr>", desc = "Find todo lists" },
       { "<leader>fw", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Find workspace symbols" },
+      { "<leader>fe", "<cmd>Telescope diagnostics<cr>", desc = "Find diagnostics" },
     },
     opts = function()
       local open_with_trouble = require("trouble.sources.telescope").open

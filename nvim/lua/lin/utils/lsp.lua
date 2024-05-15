@@ -27,10 +27,10 @@ function lsp.on_attach(client, bufnr)
       c = {
         name = "Coding",
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
+        -- t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
         f = { "<cmd>lua require('conform').format({timeout_ms=500,lsp_fallback=true})<cr>", "Format" },
-        h = { "<cmd>Trouble lsp_references<cr>", "Show References" },
-        i = { "<cmd>Trouble lsp_implementations<cr>", "Show Implements" },
+        h = { "<cmd>Telescope lsp_references<cr>", "Show References" },
+        i = { "<cmd>Telescope lsp_implementations<cr>", "Show Implements" },
         c = { "<cmd>Lspsaga incoming_calls<cr>", "Show Incoming Calls" },
         g = { "<cmd>Lspsaga outgoing_calls<cr>", "Show Outgoing Calls" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },

@@ -11,3 +11,8 @@ nvim/pack
 _asserts
 github-copilot
 fish/fish_variables
+lnav/*
+!lnav/configs*
+lnav/configs/default
+!lnav/configs/installed/*
+!lnav/configs/installed/tokyonight.json

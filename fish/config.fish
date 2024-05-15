@@ -18,3 +18,6 @@ set -gx GPG_TTY (tty)
 
 # git editor
 set -gx GIT_EDITOR nvim
+
+# fish fzf
+fzf_configure_bindings --directory=\cF --processes=\cP
