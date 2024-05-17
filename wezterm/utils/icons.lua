@@ -1,4 +1,5 @@
 local colors = require("utils.colors")
+
 -- https://github.com/nvim-tree/nvim-web-devicons/blob/master/lua/nvim-web-devicons/icons-default.lua
 local icons = {
   process = {
@@ -44,7 +45,7 @@ local icons = {
     },
     ["btop"] = {
       { Foreground = { Color = colors.rosewater } },
-      { Text = "" },
+      { Text = " " },
     },
     ["cargo"] = {
       { Foreground = { Color = colors.peach } },
@@ -96,7 +97,7 @@ local icons = {
     },
     ["fish"] = {
       { Foreground = { Color = colors.green } },
-      { Text = "󰈺" },
+      { Text = "󰈺 " },
     },
   },
   nubmer = {

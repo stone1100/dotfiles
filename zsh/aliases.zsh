@@ -7,8 +7,9 @@ alias lag='logo-ls -AD'
 alias llg='logo-ls -alD'
 alias vim='nvim'
 alias vi='nvim'
+alias imgcat='wezterm imgcat'
 # Re-run source command on .zshrc to reload current terminal session with new settings
-alias reload="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+# alias reload="source ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
 # Set Git language to English
 #alias git='LANG=en_US git'

@@ -33,6 +33,7 @@ return {
                 end
                 return mode[mode_code]
               end,
+              -- color = { fg = tcolors.comment },
               -- color = utils.get_vi_mode_color,
               separator = { right = "" },
             },

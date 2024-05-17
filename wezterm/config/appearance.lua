@@ -4,7 +4,7 @@ local color_scheme = "Tokyo Night Storm"
 return {
   -- color scheme
   color_scheme = color_scheme,
-  -- window_background_opacity = 0.95,
+  window_background_opacity = 0.95,
   colors = {
     cursor_bg = colors.green,
     tab_bar = {

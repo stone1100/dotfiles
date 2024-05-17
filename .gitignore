@@ -16,3 +16,5 @@ lnav/*
 lnav/configs/default
 !lnav/configs/installed/*
 !lnav/configs/installed/tokyonight.json
+
+**.log

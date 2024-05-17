@@ -44,7 +44,7 @@ end
 
 local get_attributes = function(tab)
   local attributes = {}
-  table.insert(attributes, { Intensity = "Bold" })
+  table.insert(attributes, { Intensity = "Half" })
   if tab.is_active then
     table.insert(attributes, { Italic = true })
   end
@@ -79,16 +79,20 @@ M.setup = function()
       bg = theme_colors.hover.bg
       fg = theme_colors.hover.fg
     else
-      bg = theme_colors.default.bg
+      bg = colors.background
       fg = colors.foreground
     end
 
-    if tab.tab_index ~= 0 then
-      push(bg, colors.comment, {}, "|")
+    if tab.tab_index == 0 then
+      push(colors.background, colors.foreground, {}, " 󰢚  ")
     end
 
+    -- if tab.tab_index ~= 0 then
+    --   push(bg, colors.comment, {}, "|")
+    -- end
+
     local attrs = get_attributes(tab)
-    push(bg, colors.green, attrs, icons.nubmer[tab.tab_index + 1] .. " ")
+    push(bg, colors.green, attrs, icons.nubmer[tab.tab_index + 1])
     process_icon(process_name)
     push(bg, fg, attrs, basename(tab.active_pane.title))
     push(bg, fg, {}, " ")
