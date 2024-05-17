@@ -38,7 +38,7 @@ install: ## install requirement package
 	brew install go
 	brew install maven
 	brew install openjdk@17
-	brew install gitui
+	brew install lazygit
 	brew install node
 	brew install homebrew/cask-fonts/font-go-mono-nerd-font
 	brew install font-jetbrains-mono
