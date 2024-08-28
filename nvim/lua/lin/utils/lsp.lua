@@ -42,43 +42,40 @@ function lsp.on_attach(client, bufnr)
 
   if not lsp._keymapped then
     local wk = require("which-key")
-    wk.register({
-      ["<M-r>"] = { "<cmd>lua vim.lsp.codelens.refresh()<cr>", "Refresh Codelens" },
-      ["<C-t>"] = { "<cmd>Neotest run<cr>", "Run Test" },
-    }, { { mode = "n" }, { silent = true } })
+    wk.add({
+      { "<M-r>", "<cmd>lua vim.lsp.codelens.refresh()<cr>", desc = "Refresh Codelens" },
+      { "<C-t>", "<cmd>Neotest run<cr>", desc = "Run Test" },
+    })
 
-    wk.register({
-      c = {
-        name = "Coding",
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        -- t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
-        f = { "<cmd>lua require('conform').format({timeout_ms=500,lsp_fallback=true})<cr>", "Format" },
-        h = { "<cmd>Telescope lsp_references<cr>", "Show References" },
-        i = { "<cmd>Telescope lsp_implementations<cr>", "Show Implements" },
-        c = { "<cmd>Lspsaga incoming_calls<cr>", "Show Incoming Calls" },
-        g = { "<cmd>Lspsaga outgoing_calls<cr>", "Show Outgoing Calls" },
-        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        d = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
-        k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
-        o = { "<cmd>Lspsaga outline<cr>", "File Outline" },
-        s = { "<cmd>lua OpenGoTestFile()<cr>", "Open Go Test File" },
-        ["la"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "Codelens Run Actions" },
+    wk.add({
+      { "<leader>c", group = "Coding" },
+      { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+      -- t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
+      { "<leader>cf", "<cmd>lua require('conform').format({timeout_ms=500,lsp_fallback=true})<cr>", desc = "Format" },
+      { "<leader>ch", "<cmd>Telescope lsp_references<cr>", desc = "Show References" },
+      { "<leader>ci", "<cmd>Telescope lsp_implementations<cr>", desc = "Show Implements" },
+      { "<leader>cc", "<cmd>Lspsaga incoming_calls<cr>", desc = "Show Incoming Calls" },
+      { "<leader>cg", "<cmd>Lspsaga outgoing_calls<cr>", desc = "Show Outgoing Calls" },
+      { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+      { "<leader>cd", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek Definition" },
+      { "<leader>ck", "<cmd>Lspsaga implement<cr>", desc = "Preview Implement" },
+      { "<leader>co", "<cmd>Lspsaga outline<cr>", desc = "File Outline" },
+      { "<leader>cs", "<cmd>lua OpenGoTestFile()<cr>", desc = "Open Go Test File" },
+      { "<leader>cla", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "Codelens Run Actions" },
+      { "<leader>r", group = "Run/Test" },
+      { "<leader>rd", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug Test" },
+      { "<leader>rt", "<cmd>Neotest run<cr>", desc = "Run Test Func" },
+      { "<leader>ro", "<cmd>Neotest output<cr>", desc = "Show Test Output" },
+      {
+        "<leader>rf",
+        "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr><cmd>Neotest summary<cr>",
+        desc = "Run Tests",
       },
-      r = {
-        name = "Run/Test",
-        d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug Test" },
-        ["t"] = { "<cmd>Neotest run<cr>", "Run Test Func" },
-        ["o"] = { "<cmd>Neotest output<cr>", "Show Test Output" },
-        ["f"] = {
-          "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr><cmd>Neotest summary<cr>",
-          "Run Tests",
-        },
-        ["p"] = { "<cmd>Neotest output-panel toggle<cr>", "Toggle Test Output" },
-        ["s"] = { "<cmd>Neotest summary toggle<cr>", "Toggle Test Summary" },
-        ["cs"] = { "<cmd>CoverageSummary<cr>", "Open Coverage Summary" },
-        ["ct"] = { "<cmd>CoverageToggle<cr>", "Toggle Coverage" },
-      },
-    }, { { mode = "n" }, { silent = true }, prefix = "<leader>" })
+      { "<leader>rp", "<cmd>Neotest output-panel toggle<cr>", desc = "Toggle Test Output" },
+      { "<leader>rs", "<cmd>Neotest summary toggle<cr>", desc = "Toggle Test Summary" },
+      { "<leader>rcs", "<cmd>CoverageSummary<cr>", desc = "Open Coverage Summary" },
+      { "<leader>rct", "<cmd>CoverageToggle<cr>", desc = "Toggle Coverage" },
+    })
 
     lsp._keymapped = true
   end

@@ -63,7 +63,7 @@ return {
           col = 1,
         },
         diff_opts = { internal = true },
-        yadm = { enable = false },
+        -- yadm = { enable = false },
       })
     end,
   },
