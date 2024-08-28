@@ -1,8 +1,31 @@
+-- https://github.com/karb94/neoscroll.nvim
 return {
   {
     "nvim-tree/nvim-web-devicons",
     event = { "VeryLazy" },
     lazy = true,
+    opts = {
+      override = {
+        ["go.sum"] = {
+          icon = "",
+          color = "#519aba",
+          cterm_color = "74",
+          name = "GoSum",
+        },
+        ["go.mod"] = {
+          icon = "",
+          color = "#519aba",
+          cterm_color = "74",
+          name = "GoMod",
+        },
+        ["dockerfile-gh"] = {
+          icon = "󰡨",
+          color = "#458ee6",
+          cterm_color = "68",
+          name = "DockerfileGH",
+        },
+      },
+    },
   },
   {
     "MunifTanjim/nui.nvim",

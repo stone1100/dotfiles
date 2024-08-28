@@ -29,6 +29,7 @@ install: ## install requirement package
 	brew install kubectl
 	brew install gnu-sed
 	brew install lnav
+	brew install raycast
 	## vim
 	brew install neovim
 	brew install wget

@@ -4,8 +4,9 @@ local M = {}
 ---@class LinVimOptions
 M.defaults = {
   mode_icons = "󰢚",
+  cursor_sign = true,
   icons = {
-    right = "",
+    right = "󰳠",
     step_over = "",
     down = "󰳜",
     step_out = "",
@@ -87,8 +88,9 @@ M.defaults = {
     value = "󰎠",
     terminate = "",
     debug = " ",
-    left = "",
-    lsp = " ",
+    left = "󰳞",
+    lsp = "",
+    readonly = "󰍁",
   },
 }
 

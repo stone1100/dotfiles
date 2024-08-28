@@ -13,6 +13,11 @@ return {
           component_separators = "",
           section_separators = "",
           globalstatus = true, -- enable global statusline (have a single statusline
+          disabled_filetypes = {
+            "dashboard",
+            "prompt",
+            "TelescopePrompt",
+          },
         },
         sections = {
           lualine_a = {
@@ -43,10 +48,10 @@ return {
             {
               "filename",
               symbols = {
-                modified = "[+]",
-                readonly = "[-]",
+                modified = icons.modified,
+                readonly = icons.readonly,
                 unnamed = "[No Name]",
-                newfile = "[New]",
+                newfile = icons.new_file,
               },
               separator = { right = "" },
             },
@@ -103,9 +108,17 @@ return {
             { "encoding", separator = { right = "" } },
           },
           lualine_z = {
-            { "searchcount" },
-            "location",
-            "progress",
+            { "searchcount", color = { gui = "" } },
+            -- { "location", color = { gui = "" } },
+            {
+              function()
+                local line = vim.fn.line(".")
+                local col = vim.fn.virtcol(".")
+                return string.format("%d:%d", line, col)
+              end,
+              color = { gui = "" },
+            },
+            { "progress", color = { gui = "" } },
           },
         },
       })

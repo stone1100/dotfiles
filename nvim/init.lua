@@ -1,2 +1,2 @@
--- setup Lin VIM
+-- setup Lin Neovim
 require("lin").setup()

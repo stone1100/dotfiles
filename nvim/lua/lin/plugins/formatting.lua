@@ -8,12 +8,18 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         go = { "goimports-reviser", "gofumpt" },
-        typescriptreact = { "eslint_d" },
+        css = { "stylelint" },
+        -- typescriptreact = { command = "EslintFixAll" },
+        -- typescript = { { "prettierd", "prettier" } },
+        -- typescriptreact = { { "prettierd", "prettier" } },
+        -- javascript = { { "prettierd", "prettier" } },
+        -- javascriptreact = { { "prettierd", "prettier" } },
       },
+      log_level = vim.log.levels.DEBUG,
       format_on_save = {
         -- These options will be passed to conform.format()
-        timeout_ms = 1000,
-        async = true,
+        timeout_ms = 5000,
+        -- async = true,
         lsp_fallback = true,
       },
     },

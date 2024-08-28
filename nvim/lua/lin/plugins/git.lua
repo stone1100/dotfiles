@@ -3,39 +3,43 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
+    keys = {
+      { "<leader>gd", "<cmd>Gitsigns toggle_deleted<cr>", desc = "Toggle git deleted" },
+    },
     config = function()
       require("gitsigns").setup({
         signs = {
           add = {
-            hl = "GitSignsAdd",
+            -- hl = "GitSignsAdd",
             text = "+",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn",
+            -- numhl = "GitSignsAddNr",
+            -- linehl = "GitSignsAddLn",
           },
           change = {
-            hl = "GitSignsChange",
+            -- hl = "GitSignsChange",
             text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
+            -- numhl = "GitSignsChangeNr",
+            -- linehl = "GitSignsChangeLn",
           },
           delete = {
-            hl = "GitSignsDelete",
+            -- hl = "GitSignsDelete",
             text = "_",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
+            -- numhl = "GitSignsDeleteNr",
+            -- linehl = "GitSignsDeleteLn",
           },
           topdelete = {
-            hl = "GitSignsDelete",
+            -- hl = "GitSignsDelete",
             text = "‾",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
+            -- numhl = "GitSignsDeleteNr",
+            -- linehl = "GitSignsDeleteLn",
           },
           changedelete = {
-            hl = "GitSignsChange",
+            -- hl = "GitSignsChange",
             text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
+            -- numhl = "GitSignsChangeNr",
+            -- linehl = "GitSignsChangeLn",
           },
+          untracked = { text = "▎" },
         },
         signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
         numhl = false, -- Toggle with `:Gitsigns toggle_numhl`

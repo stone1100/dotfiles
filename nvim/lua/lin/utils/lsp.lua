@@ -5,9 +5,33 @@ lsp._keymapped = false
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+function OpenGoTestFile()
+  local file_path = vim.fn.expand("%:p")
+  local target_file_path
+  -- get target file path
+  if file_path:match("_test.go$") then
+    target_file_path = file_path:gsub("_test.go$", ".go")
+  else
+    target_file_path = file_path:gsub("%.go$", "_test.go")
+  end
+
+  -- check if targe file alread open, if open switch
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local buf_path = vim.api.nvim_buf_get_name(buf)
+    if buf_path == target_file_path then
+      vim.api.nvim_set_current_win(win)
+      return
+    end
+  end
+
+  -- open target file under new window
+  vim.cmd("vsplit " .. target_file_path)
+end
+
 ---@diagnostic disable-next-line: unused-local
 function lsp.on_attach(client, bufnr)
-  if client.supports_method("textDocument/codeLens") then
+  if client.name == "gopls" and client.supports_method("textDocument/codeLens") then
     -- if support refresh code lens when lsp attached
     local max_filesize = 100 * 1024 -- 100 KB
     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
@@ -37,6 +61,7 @@ function lsp.on_attach(client, bufnr)
         d = { "<cmd>Lspsaga peek_definition<cr>", "Peek Definition" },
         k = { "<cmd>Lspsaga implement<cr>", "Preview Implement" },
         o = { "<cmd>Lspsaga outline<cr>", "File Outline" },
+        s = { "<cmd>lua OpenGoTestFile()<cr>", "Open Go Test File" },
         ["la"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "Codelens Run Actions" },
       },
       r = {

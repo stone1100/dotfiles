@@ -5,15 +5,15 @@ local icons = {
   process = {
     ["make"] = {
       { Foreground = { Color = colors.purple } },
-      { Text = "" },
+      { Text = " " },
     },
     ["docker"] = {
       { Foreground = { Color = colors.blue } },
-      { Text = "󰡨" },
+      { Text = "󰡨 " },
     },
     ["docker-compose"] = {
       { Foreground = { Color = colors.blue } },
-      { Text = "󰡨" },
+      { Text = "󰡨 " },
     },
     ["nvim"] = {
       { Foreground = { Color = colors.blue } },
@@ -25,23 +25,23 @@ local icons = {
     },
     ["vim"] = {
       { Foreground = { Color = colors.blue } },
-      { Text = "" },
+      { Text = " " },
     },
     ["node"] = {
       { Foreground = { Color = colors.green } },
-      { Text = "" },
+      { Text = " " },
     },
     ["zsh"] = {
       { Foreground = { Color = colors.peach } },
-      { Text = "" },
+      { Text = " " },
     },
     ["bash"] = {
       { Foreground = { Color = colors.overlay1 } },
-      { Text = "" },
+      { Text = " " },
     },
     ["htop"] = {
       { Foreground = { Color = colors.yellow } },
-      { Text = "" },
+      { Text = " " },
     },
     ["btop"] = {
       { Foreground = { Color = colors.rosewater } },
@@ -49,43 +49,43 @@ local icons = {
     },
     ["cargo"] = {
       { Foreground = { Color = colors.peach } },
-      { Text = "" },
+      { Text = " " },
     },
     ["go"] = {
       { Foreground = { Color = colors.sapphire } },
-      { Text = "" },
+      { Text = " " },
     },
     ["git"] = {
       { Foreground = { Color = colors.peach } },
-      { Text = "" },
+      { Text = " " },
     },
     ["lazygit"] = {
       { Foreground = { Color = colors.mauve } },
-      { Text = "󰊢" },
+      { Text = "󰊢 " },
     },
     ["lua"] = {
       { Foreground = { Color = colors.blue } },
-      { Text = "" },
+      { Text = " " },
     },
     ["wget"] = {
       { Foreground = { Color = colors.yellow } },
-      { Text = "󰄠" },
+      { Text = "󰄠 " },
     },
     ["curl"] = {
       { Foreground = { Color = colors.yellow } },
-      { Text = "" },
+      { Text = " " },
     },
     ["gh"] = {
       { Foreground = { Color = colors.mauve } },
-      { Text = "" },
+      { Text = " " },
     },
     ["flatpak"] = {
       { Foreground = { Color = colors.blue } },
-      { Text = "󰏖" },
+      { Text = "󰏖 " },
     },
     ["dotnet"] = {
       { Foreground = { Color = colors.mauve } },
-      { Text = "󰪮" },
+      { Text = "󰪮 " },
     },
     ["paru"] = {
       { Foreground = { Color = colors.mauve } },

@@ -2,7 +2,7 @@ return {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
-    config = function()
+    opts = function()
       local logo = {
         [[]],
         [[]],
@@ -116,7 +116,7 @@ return {
           end,
         },
       }
-      require("dashboard").setup(opts)
+      return opts
     end,
   },
 }

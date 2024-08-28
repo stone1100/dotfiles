@@ -2,13 +2,27 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = { "VeryLazy", "VimEnter" },
+    keys = {
+      { "<A-1>", "<cmd>lua require('bufferline').go_to(1, true)<cr>", desc = "Open buffer 1" },
+      { "<A-2>", "<cmd>lua require('bufferline').go_to(2, true)<cr>", desc = "Open buffer 2" },
+      { "<A-3>", "<cmd>lua require('bufferline').go_to(3, true)<cr>", desc = "Open buffer 3" },
+      { "<A-4>", "<cmd>lua require('bufferline').go_to(4, true)<cr>", desc = "Open buffer 4" },
+      { "<A-5>", "<cmd>lua require('bufferline').go_to(5, true)<cr>", desc = "Open buffer 5" },
+      { "<A-6>", "<cmd>lua require('bufferline').go_to(6, true)<cr>", desc = "Open buffer 6" },
+      { "<A-7>", "<cmd>lua require('bufferline').go_to(7, true)<cr>", desc = "Open buffer 7" },
+      { "<A-8>", "<cmd>lua require('bufferline').go_to(8, true)<cr>", desc = "Open buffer 8" },
+      { "<A-9>", "<cmd>lua require('bufferline').go_to(9, true)<cr>", desc = "Open buffer 9" },
+    },
     opts = function()
       local icons = lin.options.icons
       local colors = require("tokyonight.colors").setup({ transform = true })
       return {
         options = {
           mode = "buffers",
-          numbers = "none", -- both
+          -- numbers = "ordinal", -- both
+          numbers = function(opts)
+            return string.format("%s", opts.raise(opts.ordinal))
+          end,
           modified_icon = lin.options.icons.modified,
           indicator = {
             icon = "",
@@ -48,7 +62,19 @@ return {
           end,
         },
         highlights = {
+          trunc_marker = {
+            bg = colors.bg,
+          },
           fill = {
+            bg = colors.bg,
+          },
+          group_separator = {
+            bg = colors.bg,
+          },
+          group_label = {
+            bg = colors.bg,
+          },
+          duplicate = {
             bg = colors.bg,
           },
           background = {
@@ -69,6 +95,27 @@ return {
           },
           close_button = {
             bg = colors.bg,
+          },
+          pick = {
+            bg = colors.bg,
+            fg = colors.purple,
+          },
+          numbers = {
+            bg = colors.bg,
+          },
+          numbers_selected = {
+            bg = colors.bg,
+            fg = colors.purple,
+          },
+          modified = {
+            fg = colors.orange,
+            bg = colors.bg,
+          },
+          modified_visible = {
+            fg = colors.orange,
+          },
+          modified_selected = {
+            fg = colors.orange,
           },
         },
       }

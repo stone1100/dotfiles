@@ -3,11 +3,10 @@
 ---@field options LinVimOptions
 ---@field utils lin.utils
 _G.lin = {}
-
 ---@class LinVimConfig: LinVimOptions
+---fdsf
 local M = {}
 lin.version = "0.0.1" -- x-release-please-version
-
 local function setupPlugins()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -57,6 +56,7 @@ function M.setup(opts)
   require("lin.config.highlights")
   -- load nvim signs
   require("lin.config.signs")
+  require("lin.config.diagnostic")
   -- load nvim autocmds
   require("lin.config.autocmds")
   -- keymaps

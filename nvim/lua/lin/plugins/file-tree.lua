@@ -17,6 +17,7 @@ return {
       --	enable_normal_mode_for_inputs = false,
       enable_cursor_hijack = false, -- If enabled neotree will keep the cursor on the first letter of the filename when mov…
       use_popups_for_input = true, -- If false, inputs will use vim.ui.input() instead of custom floats.
+      enable_diagnostics = true,
       popup_border_style = "single",
       filesystem = {
         group_empty_dirs = true, -- when true, empty folders will be grouped together

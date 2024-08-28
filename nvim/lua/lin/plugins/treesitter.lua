@@ -73,6 +73,9 @@ return {
           max_file_lines = 2000, -- Do not enable for files with more than specified lines
         },
       })
+
+      local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+      ft_to_parser.mdx = "markdown"
     end,
   },
   {

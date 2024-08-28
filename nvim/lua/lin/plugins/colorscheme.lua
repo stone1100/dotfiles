@@ -19,6 +19,7 @@ return {
           comments = { italic = true },
           keywords = { italic = true },
           functions = { italic = true },
+          -- variables = { italic = true },
           -- Background styles. Can be "dark", "transparent" or "normal"
           sidebars = "transparent", -- style for sidebars, see below
           floats = "transparent", -- style for floating windows
@@ -27,6 +28,7 @@ return {
           colors.border = tcolors.comment
           -- colors.green = "#9ece6a"
           colors.green = "#52ad70"
+          colors.purple = "#9d7cd8"
         end,
         on_highlights = function(hl, c)
           lin.utils.highlights.override(hl, c)

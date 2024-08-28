@@ -133,9 +133,9 @@ return {
           "gopls",
           -- "golangci_lint_ls",
           "tailwindcss",
-          -- "cssls",
+          "cssls",
           "eslint",
-          -- "stylelint_lsp",
+          "stylelint_lsp",
           "lemminx",
         },
         automatic_installation = true,
@@ -149,6 +149,7 @@ return {
         -- do cust lsp config
         local ok, _ = pcall(require, string.format("lin.lang.%s", name))
         if not ok then
+          -- print(name)
           -- setup default config, if not exist
           nvim_lsp[name].setup({
             on_attach = lsp_util.on_attach,

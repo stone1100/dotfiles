@@ -1,5 +1,6 @@
 local icons = lin.options.icons
 local common = lin.utils.common
+
 return {
   {
     "uga-rosa/cmp-dictionary",
@@ -38,8 +39,10 @@ return {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
-      "rafamadriz/friendly-snippets",
+      "onsails/lspkind.nvim",
       "uga-rosa/cmp-dictionary",
+      "saadparwaiz1/cmp_luasnip", --NOTE: luasnip completion source
+      "L3MON4D3/LuaSnip",
     },
     opts = function()
       local t = function(str)
@@ -71,21 +74,37 @@ return {
         },
         completion = {
           completeopt = "menu,menuone,noinsert",
+          autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
         },
         formatting = {
           format = function(entry, vim_item)
+            local doc = entry.completion_item.documentation
+
+            if vim_item.kind == "Color" and doc then
+              local ok, utils = pcall(require, "tailwind-tools.utils")
+              if ok then
+                local content = type(doc) == "string" and doc or doc.value
+                local base, _, _, _r, _g, _b = 10, content:find("rgba?%((%d+), (%d+), (%d+)")
+                if not _r then
+                  base, _, _, _r, _g, _b = 16, content:find("#(%x%x)(%x%x)(%x%x)")
+                end
+                if _r then
+                  local r, g, b = tonumber(_r, base), tonumber(_g, base), tonumber(_b, base)
+                  vim_item.kind_hl_group = utils.set_hl_from(r, g, b, "foreground")
+                end
+              end
+            end
+
             -- load lspkind icons
             vim_item.kind = string.format("%s %s", icons[common.camel_to_snake_case(vim_item.kind)], vim_item.kind)
             vim_item.menu = ({
-              nvim_lsp = "[" .. icons.lsp .. " LSP]",
-              buffer = "[" .. icons.buffet .. " BuF]",
-              nvim_lua = "[" .. icons.lua .. " LUA]",
-              path = "[" .. icons.path .. "PATH]",
-              tmux = "[" .. icons.t_mux .. " TMUX]",
-              luasnip = "[" .. icons.snip .. " LSnip]",
+              nvim_lsp = "[" .. icons.lsp .. " LSP ]",
+              buffer = "[" .. icons.buffet .. " BuF ]",
+              nvim_lua = "[" .. icons.lua .. " Nvim]",
+              path = "[" .. icons.path .. " PATH]",
+              luasnip = "[" .. icons.snip .. " Snip]",
               dictionary = "[" .. icons.dictionary .. " Dict]",
             })[entry.source.name]
-
             return vim_item
           end,
         },
@@ -139,10 +158,10 @@ return {
           end,
         },
         sources = cmp.config.sources({
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip", priority = 1000 },
-          { name = "path" },
-          { name = "buffer" },
+          { name = "nvim_lsp", priority = 100 },
+          { name = "luasnip", priority = 95 },
+          { name = "path", priority = 80 },
+          { name = "buffer", priority = 90, keyword_length = 3 },
           {
             name = "dictionary",
             keyword_length = 3,
@@ -150,11 +169,11 @@ return {
           },
           { name = "nvim_lua" },
         }),
-        experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText",
-          },
-        },
+        -- experimental = {
+        --   ghost_text = {
+        --     hl_group = "CmpGhostText",
+        --   },
+        -- },
         sorting = defaults.sorting,
       }
     end,
@@ -202,16 +221,19 @@ return {
     "L3MON4D3/LuaSnip",
     event = "VeryLazy",
     build = "make install_jsregexp",
-    config = function()
-      vim.o.runtimepath = vim.o.runtimepath .. "," .. os.getenv("HOME") .. "/.config/nvim/my-snippets/,"
-      require("luasnip").config.set_config({
-        history = true,
-        updateevents = "TextChanged,TextChangedI",
-      })
-      require("luasnip.loaders.from_lua").lazy_load()
-      -- require("luasnip.loaders.from_vscode").load({ include = { "go" } })
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_snipmate").lazy_load()
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      "benfowler/telescope-luasnip.nvim",
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+    config = function(_, opts)
+      require("luasnip").config.setup(opts)
+      vim.tbl_map(function(type)
+        require("luasnip.loaders.from_" .. type).lazy_load()
+      end, { "vscode", "snipmate", "lua" })
     end,
   },
 }

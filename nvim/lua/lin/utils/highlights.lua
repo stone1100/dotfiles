@@ -84,7 +84,7 @@ function highlights.override(hl, c)
   }
   hl.CursorLineNr = {
     fg = c.purple,
-    style = { italic = true },
+    -- style = { italic = true },
   }
   hl.CursorLine = {
     bg = "#2f334d",
@@ -97,39 +97,16 @@ function highlights.override(hl, c)
   }
   hl.NeoTreeGitUntracked = {
     fg = c.purple,
-    style = { italic = true },
+    italic = true,
   }
   hl.NeoTreeGitConflict = {
     fg = c.red,
-    style = { italic = true },
+    italic = true,
   }
-  -- hl.BufferLineBufferSelected = {
-  -- 	fg = c.purple,
-  -- 	style = { italic = true },
-  -- }
-  -- hl.BufferLineSeparator = {
-  -- 	fg = border_fg,
-  -- }
-  hl.BufferLineTruncMarker = {
-    bg = c.bg,
-    fg = c.fg,
+  hl.NeoTreeGitModified = {
+    fg = c.orange,
+    italic = true,
   }
-  hl.BufferLinePick = {
-    bg = c.bg,
-    fg = c.purple,
-  }
-  -- hl.BufferLineBackground = {
-  -- 	bg = c.bg,
-  -- }
-  -- hl.BufferLineButton = {
-  -- 	bg = c.bg,
-  -- }
-  -- hl.BufferLineCloseButton = {
-  -- 	bg = c.bg,
-  -- }
-  -- hl.BufferLineFill = {
-  -- 	bg = c.bg,
-  -- }
   hl.WhichKeySeparator = {
     fg = c.green,
   }

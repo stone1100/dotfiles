@@ -13,10 +13,25 @@ return {
       --HACK:
       --NOTE:
       --OPT:
-      --WARN:
+      --WARN: warn
+      --TEST: test
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
+      keywords = {
+        FIX = {
+          icon = " ", -- icon used for the sign, and in search results
+          color = "error", -- can be a hex color, or a named color (see below)
+          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+          -- signs = false, -- configure signs for some keywords individually
+        },
+        HACK = { icon = " ", color = "warning" },
+        PERF = { icon = "󰄉 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "OPT" } },
+        TODO = { icon = "󰱒 ", color = "info" },
+        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+        TEST = { icon = "󰰤 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+      },
       signs = true, -- show icons in the signs column
     },
   },
@@ -52,7 +67,6 @@ return {
   },
   {
     "folke/trouble.nvim",
-    branch = "dev",
     event = { "VeryLazy" },
     -- cmd = { "TroubleToggle", "Trouble" },
     opts = {
@@ -96,7 +110,7 @@ return {
           local Path = require("plenary.path")
 
           local getCoverageFile = function()
-            return vim.fn.expand("%:p:h") .. "/coverage.out"
+            return vim.fn.expand("%:p:h") .. "/coverage"
           end
 
           -- https://github.com/andythigpen/nvim-coverage
@@ -104,7 +118,9 @@ return {
             auto_reload = true,
             lang = {
               go = {
-                coverage_file = getCoverageFile,
+                coverage_file = function()
+                  return getCoverageFile() .. ".out"
+                end,
               },
             },
             summary = {
@@ -124,9 +140,11 @@ return {
           vim.api.nvim_create_autocmd({ "BufEnter" }, {
             pattern = { "*.go" }, -- any file extension you're interested in
             callback = function()
-              local p = Path:new(getCoverageFile())
+              local p = Path:new(getCoverageFile() .. ".tmp")
               -- load if coverage file exit
               if p:exists() then
+                local cmd = "cat " .. p .. " |grep -v '_mock.go' > " .. getCoverageFile() .. ".out"
+                os.execute(cmd)
                 -- place (show) the signs immediately after loading
                 coverage.load(true)
               end
@@ -143,11 +161,21 @@ return {
             experimental = {
               test_table = true,
             },
-            args = { "-count=1", "-timeout=120s", "-race", "-coverprofile=coverage.out" },
+            args = { "-count=1", "-timeout=120s", "-race", "-coverprofile=coverage.tmp" },
           }),
         },
         --	strategies = { "dap" },
         icons = {
+          running_animated = {
+            "⣾",
+            "⣽",
+            "⣻",
+            "⢿",
+            "⡿",
+            "⣟",
+            "⣯",
+            "⣷",
+          },
           unknown = icons.head_question,
           collapsed = icons.collapse,
           expanded = icons.expand,
@@ -155,7 +183,7 @@ return {
           running = icons.run_last,
           failed = icons.close,
           -- https://www.compart.com/en/unicode/block/U+2500
-          final_child_prefix = "└",
+          final_child_prnjix = "└",
         },
         summary = {
           open = "botright vsplit | vertical resize 35",
@@ -166,5 +194,18 @@ return {
         --log_level = vim.log.levels.DEBUG,
       })
     end,
+  },
+  {
+    "danymat/neogen",
+    event = { "VeryLazy", "BufReadPre" },
+    keys = {
+      { "<leader>nc", "<cmd>Neogen<cr>", desc = "Gen doc" },
+    },
+    config = true,
+  },
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    ft = { "typescript", "typescriptreact", "css", "scss" },
+    opts = {},
   },
 }
