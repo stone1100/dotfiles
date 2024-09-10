@@ -128,6 +128,7 @@ return {
           "bashls",
           --		"sumneko_lua",
           "tsserver",
+          -- "ts_ls",
           "jdtls",
           -- "stylua",
           "gopls",

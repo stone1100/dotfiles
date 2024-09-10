@@ -8,4 +8,11 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
+  {
+    "davidmh/mdx.nvim",
+    ft = { "markdown" },
+    event = { "VeryLazy" },
+    config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 }

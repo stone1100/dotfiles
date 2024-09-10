@@ -6,6 +6,7 @@ local M = {
   common = require("lin.utils.common"),
   highlights = require("lin.utils.highlights"),
   telescope = require("lin.utils.telescope"),
+  lualine = require("lin.utils.lualine"),
 }
 
 return M

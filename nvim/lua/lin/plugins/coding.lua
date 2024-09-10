@@ -3,7 +3,9 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>tl", "<cmd>Trouble todo<cr>", desc = "Show TODO List" },
+      { "<leader>ta", "<cmd>Trouble todo<cr>", desc = "Show TODO List" },
+      { "th", "<cmd>lua require('todo-comments').jump_prev()<cr>", desc = "Previous todo comment" },
+      { "tl", "<cmd>lua require('todo-comments').jump_next()<cr>", desc = "Next todo comment" },
     },
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "VeryLazy", "BufReadPre" }, -- lazy load
@@ -32,7 +34,18 @@ return {
         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
         TEST = { icon = "󰰤 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
       },
+      -- highlight = {
+      --   before = "",
+      --   keywords = "gb",
+      --   pattern = [[(KEYWORDS)]],
+      -- },
       signs = true, -- show icons in the signs column
+      search = {
+        -- regex that will be used to match keywords.
+        -- don't replace the (KEYWORDS) placeholder
+        -- pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+        -- pattern = [[\b(KEYWORDS):|\n(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+      },
     },
   },
   -- {

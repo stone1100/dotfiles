@@ -28,6 +28,7 @@ return {
             g = true, -- bindings for prefixed with g
           },
         },
+        delay = 300,
         -- add operators that will trigger motion and text object completion
         -- to enable all native operators, set the preset / operators plugin above
         -- operators = { gc = "Comments" },
@@ -45,9 +46,9 @@ return {
         },
         win = {
           border = "single", -- none, single, double, shadow
-          position = "bottom", -- bottom, top
-          margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-          padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+          -- position = "bottom", -- bottom, top
+          -- margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+          -- padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
         },
         layout = {
           height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -69,6 +70,7 @@ return {
         --   "^ ",
         -- }, -- hide mapping boilerplate
         show_help = false, -- show help message on the command line when the popup is visible
+        show_keys = false, -- show the currently pressed key and its label as a message in the command line
         -- triggers = "auto", -- automatically setup triggers
         -- triggers = {"<leader>"} -- or specify a list manually
         -- triggers = {
@@ -154,8 +156,6 @@ return {
         { "<leader>vod", "<cmd>DiffviewOpen<cr>", desc = "Open Diff View" },
         { "<leader>vcd", "<cmd>DiffviewClose<cr>", desc = "Close Diff View" },
         { "<leader>vdh", "<cmd>DiffviewFileHistory<cr>", desc = "View Diff File History" },
-        { "<leader>t", group = "TODO" },
-        { "<leader>tl", "<cmd>Trouble todo<cr>", desc = "List TODO" },
       })
     end,
   },

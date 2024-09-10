@@ -1,6 +1,5 @@
 local icons = lin.options.icons
 local common = lin.utils.common
-
 return {
   {
     "uga-rosa/cmp-dictionary",
@@ -43,6 +42,7 @@ return {
       "uga-rosa/cmp-dictionary",
       "saadparwaiz1/cmp_luasnip", --NOTE: luasnip completion source
       "L3MON4D3/LuaSnip",
+      "Exafunction/codeium.nvim",
     },
     opts = function()
       local t = function(str)
@@ -104,6 +104,7 @@ return {
               path = "[" .. icons.path .. " PATH]",
               luasnip = "[" .. icons.snip .. " Snip]",
               dictionary = "[" .. icons.dictionary .. " Dict]",
+              codeium = "[ AI ]",
             })[entry.source.name]
             return vim_item
           end,
@@ -160,8 +161,9 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 100 },
           { name = "luasnip", priority = 95 },
+          { name = "codeium", priority = 110 },
           { name = "path", priority = 80 },
-          { name = "buffer", priority = 90, keyword_length = 3 },
+          { name = "buffer", priority = 90 },
           {
             name = "dictionary",
             keyword_length = 3,

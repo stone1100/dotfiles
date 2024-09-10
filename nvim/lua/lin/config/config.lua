@@ -79,6 +79,7 @@ M.defaults = {
     operator = "󰆕",
     head_question = "󱍋",
     dictionary = "󰗊",
+    codeium = "󰘦",
     field = "󰇽",
     struct = "",
     modified = "✥",

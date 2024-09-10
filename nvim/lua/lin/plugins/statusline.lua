@@ -88,6 +88,7 @@ return {
             -- },
           },
           lualine_x = {
+            lin.utils.lualine.cmp_source("codeium"),
             {
               common.get_lsp_clients,
               icon = icons.lsp,

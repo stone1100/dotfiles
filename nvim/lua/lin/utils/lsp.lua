@@ -52,7 +52,12 @@ function lsp.on_attach(client, bufnr)
       { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
       -- t = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "List Symbols" },
       { "<leader>cf", "<cmd>lua require('conform').format({timeout_ms=500,lsp_fallback=true})<cr>", desc = "Format" },
-      { "<leader>ch", "<cmd>Telescope lsp_references<cr>", desc = "Show References" },
+      -- { "<leader>ch", "<cmd>Telescope lsp_references<cr>", desc = "Show References" },
+      {
+        "<leader>ch",
+        "<cmd>lua require('telescope.builtin').lsp_references({file_ignore_patterns = { '%_test.go' } })<cr>",
+        desc = "Show References",
+      },
       { "<leader>ci", "<cmd>Telescope lsp_implementations<cr>", desc = "Show Implements" },
       { "<leader>cc", "<cmd>Lspsaga incoming_calls<cr>", desc = "Show Incoming Calls" },
       { "<leader>cg", "<cmd>Lspsaga outgoing_calls<cr>", desc = "Show Outgoing Calls" },
