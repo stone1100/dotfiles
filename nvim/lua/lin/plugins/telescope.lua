@@ -14,6 +14,11 @@ return {
       { "<leader>fd", "<cmd>TodoTelescope<cr>", desc = "Find todo lists" },
       { "<leader>fw", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Find workspace symbols" },
       { "<leader>fe", "<cmd>Telescope diagnostics<cr>", desc = "Find diagnostics" },
+      {
+        "<leader>gf",
+        "<cmd>lua require('telescope.builtin').find_files({file_ignore_patterns = { '%_test.go','%_mock.go' },extensions = { 'go' } })<cr>",
+        desc = "Find go files",
+      },
     },
     opts = function()
       local open_with_trouble = require("trouble.sources.telescope").open

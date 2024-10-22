@@ -1,4 +1,5 @@
 local icons = lin.options.icons
+-- ref: https://github.com/nikitarevenco/instant-lsp.nvim
 return {
   {
     "williamboman/mason.nvim",
@@ -127,8 +128,8 @@ return {
         ensure_installed = {
           "bashls",
           --		"sumneko_lua",
-          "tsserver",
-          -- "ts_ls",
+          -- "tsserver",
+          "ts_ls",
           "jdtls",
           -- "stylua",
           "gopls",

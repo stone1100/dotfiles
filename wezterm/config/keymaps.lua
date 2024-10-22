@@ -8,6 +8,7 @@ local act = wezterm.action
 local mod = {
   SUPER = "SUPER",
   LEADER = "LEADER",
+  CMD = "CMD",
   NONE = "NONE",
 }
 
@@ -58,7 +59,18 @@ local keys = {
   -- copy/paste --
   { key = "c", mods = mod.SUPER, action = act.CopyTo("Clipboard") },
   { key = "v", mods = mod.SUPER, action = act.PasteFrom("Clipboard") },
+  -- active window
+  { key = "l", mods = "ALT", action = act.ActivateWindowRelative(1) },
+  { key = "h", mods = "ALT", action = act.ActivateWindowRelative(-1) },
 }
+for i = 1, 8 do
+  -- CMD+ALT + number to activate that window
+  table.insert(keys, {
+    key = tostring(i),
+    mods = mod.LEADER,
+    action = act.ActivateWindow(i - 1),
+  })
+end
 
 local key_tables = {
   -- Defines the keys that are active in our activate-pane mode.

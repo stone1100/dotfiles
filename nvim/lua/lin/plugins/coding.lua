@@ -34,6 +34,9 @@ return {
         NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
         TEST = { icon = "󰰤 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
       },
+      colors = {
+        info = { "#82aaff" },
+      },
       -- highlight = {
       --   before = "",
       --   keywords = "gb",
@@ -219,6 +222,10 @@ return {
   {
     "luckasRanarison/tailwind-tools.nvim",
     ft = { "typescript", "typescriptreact", "css", "scss" },
-    opts = {},
+    opts = {
+      server = {
+        override = false,
+      },
+    },
   },
 }

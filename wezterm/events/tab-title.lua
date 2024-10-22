@@ -30,7 +30,7 @@ end
 
 local theme_colors = {
   default = { bg = colors.dark5, fg = colors.foreground },
-  is_active = { bg = colors.dark5, fg = colors.purple },
+  is_active = { bg = colors.bg_dark, fg = colors.purple },
   hover = { bg = colors.dark5, fg = colors.purple },
 }
 

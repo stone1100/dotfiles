@@ -2,16 +2,19 @@
 local common = {}
 
 function common.get_lsp_clients()
-  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
   local clients = vim.lsp.get_active_clients()
   if next(clients) == nil then
     return "No Active Lsp"
   end
+  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+  local buf_dir = vim.fn.expand("%:p:h")
 
   local lsps = {}
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
-    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+    local lsp_root_dir = client.config.root_dir
+    -- check file type and root dir if match
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and buf_dir:sub(1, #lsp_root_dir) == lsp_root_dir then
       table.insert(lsps, client.name)
     end
   end

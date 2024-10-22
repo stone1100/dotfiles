@@ -58,9 +58,9 @@ return {
       return {
         auto_brackets = {}, -- configure any filetype to auto add brackets
         -- view = {
-        -- 	-- entries = "custom" -- can be "custom", "wildmenu" or "native"
-        -- 	-- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#custom-menu-direction
-        -- 	entries = { name = "custom", selection_order = "near_cursor" },
+        --   -- entries = "custom" -- can be "custom", "wildmenu" or "native"
+        --   -- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#custom-menu-direction
+        --   entries = { name = "custom", selection_order = "top_down", follow_cursor = true },
         -- },
         window = {
           completion = {

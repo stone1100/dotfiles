@@ -6,6 +6,7 @@ local colors = {
   dark3 = "#545c7e",
   dark5 = "#3e4453",
   purple = "#9c75d5",
+  purple2 = "#7e56c2",
   comment = "#565f89",
   green = "#52ad70",
   green3 = "#93bb64",
