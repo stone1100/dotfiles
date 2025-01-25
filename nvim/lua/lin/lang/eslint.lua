@@ -6,15 +6,16 @@ nvim_lsp.eslint.setup({
   capabilities = lsp_util.capabilities,
   on_attach = lsp_util.on_attach,
   root_dir = util.root_pattern(
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-    "eslint.config.cjs",
-    "eslint.config.mjs",
-    "eslint.config.js"
+    --NOTE: just for git repo, because monorepo only start one eslint server for diff root
+    ".git"
+    -- ".eslintrc.js",
+    -- ".eslintrc.cjs",
+    -- ".eslintrc.yaml",
+    -- ".eslintrc.yml",
+    -- ".eslintrc.json",
+    -- "eslint.config.cjs",
+    -- "eslint.config.mjs",
+    -- "eslint.config.js"
     -- Disabled to prevent "No ESLint configuration found" exceptions
     -- 'package.json',
   ),

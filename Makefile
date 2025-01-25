@@ -35,6 +35,7 @@ install: ## install requirement package
 	brew install wget
 	brew install ctags
 	brew install ripgrep
+	brew install deno ## json format
 	## language
 	brew install go
 	brew install maven

@@ -224,7 +224,7 @@ return {
     ft = { "typescript", "typescriptreact", "css", "scss" },
     opts = {
       server = {
-        override = false,
+        -- override = false,
       },
     },
   },

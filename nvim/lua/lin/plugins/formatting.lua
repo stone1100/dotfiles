@@ -8,8 +8,9 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         go = { "goimports-reviser", "gofumpt" },
-        css = { "stylelint" },
-        -- typescriptreact = { command = "EslintFixAll" },
+        -- css = { "stylelint_lsp" },
+        json = { "deno_fmt" },
+        -- typescriptreact = { "eslint" },
         -- typescript = { { "prettierd", "prettier" } },
         -- typescriptreact = { { "prettierd", "prettier" } },
         -- javascript = { { "prettierd", "prettier" } },

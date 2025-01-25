@@ -10,5 +10,16 @@ nvim_lsp.stylelint_lsp.setup({
     "less",
     "scss",
   },
-  root_dir = util.root_pattern("stylelint.config.mjs", ".stylelintrc.json"),
+  root_dir = util.root_pattern(
+    -- "stylelint.config.mjs",
+    -- ".stylelintrc.json"
+    ".git"
+  ),
+  settings = {
+    stylelintplus = {
+      -- see available options in stylelint-lsp documentation
+      autoFixOnSave = true,
+      autoFixOnFormat = true,
+    },
+  },
 })

@@ -3,6 +3,7 @@ fish_add_path /opt/homebrew/bin
 fish_add_path ~/go/bin
 fish_add_path /usr/local/go/bin
 fish_add_path /usr/local/bin
+fish_add_path /usr/local/apache-maven-3.8.6/bin
 
 set -gx PNPM_PATH "$HOME/Library/pnpm/"
 

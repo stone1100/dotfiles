@@ -8,13 +8,23 @@ function common.get_lsp_clients()
   end
   local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
   local buf_dir = vim.fn.expand("%:p:h")
+  local current_buf = vim.api.nvim_get_current_buf()
+  local current_file = vim.api.nvim_buf_get_name(current_buf)
 
   local lsps = {}
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
     local lsp_root_dir = client.config.root_dir
+    -- if client.name == "eslint" then
+    --   print(lsp_root_dir, current_file)
+    -- end
     -- check file type and root dir if match
-    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 and buf_dir:sub(1, #lsp_root_dir) == lsp_root_dir then
+    if
+      filetypes
+      and vim.fn.index(filetypes, buf_ft) ~= -1
+      and lsp_root_dir
+      and current_file:find(lsp_root_dir, 1, true)
+    then
       table.insert(lsps, client.name)
     end
   end

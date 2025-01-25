@@ -83,6 +83,7 @@ return {
         },
         lightbulb = {
           sign = false,
+          virtual_text = false,
         },
         outline = {
           enable = false,
@@ -150,6 +151,7 @@ return {
         -- end
         -- do cust lsp config
         local ok, _ = pcall(require, string.format("lin.lang.%s", name))
+        -- print(name, ok)
         if not ok then
           -- print(name)
           -- setup default config, if not exist
