@@ -15,7 +15,14 @@ return {
     },
     opts = function()
       local icons = lin.options.icons
-      local colors = require("tokyonight.colors").setup({ transform = true })
+      local colors = lin.utils.common.get_colors()
+      local cust_colors = {
+        bg = "#f0f0f0",
+      }
+      if lin.utils.common.is_dark() then
+        cust_colors.bg = "#2c323c"
+      end
+
       return {
         options = {
           mode = "buffers",
@@ -38,7 +45,7 @@ return {
           show_buffer_icons = true,
           show_tab_indicators = true,
           always_show_bufferline = false,
-          separator_style = "thick", -- "slant" | "slope" | "thick" | "thin"
+          separator_style = "thin", -- "slant" | "slope" | "thick" | "thin"
           color_icons = true,
           offsets = {
             {
@@ -63,53 +70,53 @@ return {
         },
         highlights = {
           trunc_marker = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           fill = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           group_separator = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           group_label = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           duplicate = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           background = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           warning_diagnostic = {
             fg = colors.purple,
           },
           tab = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           buffer_selected = {
             fg = colors.purple,
           },
           separator = {
             fg = colors.comment,
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           close_button = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           pick = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
             fg = colors.purple,
           },
           numbers = {
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           numbers_selected = {
-            bg = colors.bg,
+            -- bg = cust_colors.bg,
             fg = colors.purple,
           },
           modified = {
             fg = colors.orange,
-            bg = colors.bg,
+            bg = cust_colors.bg,
           },
           modified_visible = {
             fg = colors.orange,

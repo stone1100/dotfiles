@@ -37,13 +37,14 @@ local __cells__ = {}
 ---@param fg string
 local push = function(text, icon, fg)
   table.insert(__cells__, { Foreground = { Color = fg } })
+  table.insert(__cells__, { Attribute = { Italic = true } })
   table.insert(__cells__, { Attribute = { Intensity = "Half" } })
   table.insert(__cells__, { Text = icon .. text })
 end
 
 local set_date = function()
   local date = wezterm.strftime(" %a %H:%M:%S")
-  push(date, "", colors.foreground)
+  push(date, " 󱑒", colors.magenta)
 end
 
 -- ref: https://wezfurlong.org/wezterm/config/lua/wezterm/battery_info.html

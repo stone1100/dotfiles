@@ -7,7 +7,6 @@ function common.get_lsp_clients()
     return "No Active Lsp"
   end
   local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-  local buf_dir = vim.fn.expand("%:p:h")
   local current_buf = vim.api.nvim_get_current_buf()
   local current_file = vim.api.nvim_buf_get_name(current_buf)
 
@@ -92,6 +91,14 @@ function common.camel_to_snake_case(str)
       return "_" .. letter:lower()
     end)
     :gsub("^_", ""))
+end
+
+function common.is_dark()
+  return lin.options.theme == "dark"
+end
+
+function common.get_colors()
+  return require("tokyonight.colors").setup({ transform = true })
 end
 
 return common

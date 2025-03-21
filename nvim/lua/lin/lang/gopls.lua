@@ -58,7 +58,7 @@ nvim_lsp.gopls.setup({
       staticcheck = true,
       gofumpt = true,
       analyses = {
-        fieldalignment = true,
+        -- fieldalignment = true, //removed by gopls v0.17.0
         nilness = true,
         shadow = true,
         unusedparams = true,

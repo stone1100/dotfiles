@@ -5,11 +5,16 @@ return {
     "nvim-lualine/lualine.nvim",
     event = { "VeryLazy", "VimEnter" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      local tcolors = require("tokyonight.colors").setup({ transform = true })
-      require("lualine").setup({
+    opts = function()
+      local colors = lin.utils.common.get_colors()
+      local theme = "onelight"
+      if lin.utils.common.is_dark() then
+        theme = "onedark"
+      end
+
+      return {
         options = {
-          theme = "onedark",
+          theme = theme,
           component_separators = "",
           section_separators = "",
           globalstatus = true, -- enable global statusline (have a single statusline
@@ -92,7 +97,7 @@ return {
             {
               common.get_lsp_clients,
               icon = icons.lsp,
-              color = { fg = tcolors.purple },
+              color = { fg = colors.purple },
             },
             {
               "diagnostics",
@@ -122,7 +127,7 @@ return {
             { "progress", color = { gui = "" } },
           },
         },
-      })
+      }
     end,
   },
 }

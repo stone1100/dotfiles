@@ -2,7 +2,14 @@
 local highlights = {}
 
 -- override colorschema highlights
+-- ref: https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_night.lua
 function highlights.override(hl, c)
+  local colors = {
+    cursor_bg = c.bg_popup,
+  }
+  if lin.utils.common.is_dark() then
+    colors.cursor_bg = "#2f334d"
+  end
   local border_fg = c.comment
   hl.TelescopePromptTitle = {
     fg = c.fg,
@@ -20,7 +27,7 @@ function highlights.override(hl, c)
     fg = border_fg,
   }
   hl.TelescopeSelection = {
-    bg = "#2f334d",
+    bg = colors.cursor_bg,
   }
   hl.TelescopeSelectionCaret = {
     fg = c.green,
@@ -82,18 +89,14 @@ function highlights.override(hl, c)
   hl.DashboardDesc = {
     fg = c.purple,
   }
-  hl.CursorLineNr = {
-    fg = c.purple,
-    -- style = { italic = true },
-  }
   hl.CursorLine = {
-    bg = "#2f334d",
+    bg = colors.cursor_bg,
   }
   hl.CursorColumn = {
-    bg = "#2f334d",
+    bg = colors.cursor_bg,
   }
   hl.ColorColumn = {
-    bg = "#2f334d",
+    bg = colors.cursor_bg,
   }
   hl.NeoTreeGitUntracked = {
     fg = c.purple,
@@ -103,12 +106,35 @@ function highlights.override(hl, c)
     fg = c.red,
     italic = true,
   }
+  hl.NeoTreeModified = {
+    fg = c.orange,
+  }
   hl.NeoTreeGitModified = {
     fg = c.orange,
     italic = true,
   }
   hl.WhichKeySeparator = {
     fg = c.green,
+  }
+  hl.WinSeparator = {
+    bold = true,
+    fg = c.green,
+  }
+  hl.LineNrAbove = {
+    italic = true,
+    fg = c.comment,
+  }
+  hl.LineNrBelow = {
+    italic = true,
+    fg = c.comment,
+  }
+  hl.CursorLineNr = {
+    bold = true,
+    fg = c.green,
+    italic = true,
+  }
+  hl.Cursor = {
+    bg = c.green,
   }
 end
 return highlights

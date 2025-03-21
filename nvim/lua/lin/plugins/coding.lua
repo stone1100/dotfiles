@@ -10,6 +10,8 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "VeryLazy", "BufReadPre" }, -- lazy load
     opts = {
+      --fix:
+      --fixme:
       --TODO:
       --FIX:
       --HACK:
@@ -17,37 +19,54 @@ return {
       --OPT:
       --WARN: warn
       --TEST: test
+      --bug:
+      --
+      --FIX
+      --TODO
+      --todo
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       keywords = {
-        FIX = {
+        fix = {
           icon = " ", -- icon used for the sign, and in search results
           color = "error", -- can be a hex color, or a named color (see below)
-          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+          alt = { "fixme", "bug", "fixit", "issue" }, -- a set of other keywords that all map to this FIX keywords
           -- signs = false, -- configure signs for some keywords individually
         },
-        HACK = { icon = " ", color = "warning" },
-        PERF = { icon = "󰄉 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "OPT" } },
-        TODO = { icon = "󰱒 ", color = "info" },
-        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-        TEST = { icon = "󰰤 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        hack = { icon = " ", color = "warning" },
+        perf = { icon = "󰄉 ", alt = { "optim", "performance", "optimize", "opt", "OPT" } },
+        todo = { icon = "󰱒 ", color = "info" },
+        warn = { icon = " ", color = "warning", alt = { "warning", "xxx" } },
+        note = { icon = " ", color = "hint", alt = { "info" } },
+        test = { icon = "󰰤 ", color = "test", alt = { "testing", "passed", "failed" } },
       },
       colors = {
         info = { "#82aaff" },
       },
-      -- highlight = {
-      --   before = "",
-      --   keywords = "gb",
-      --   pattern = [[(KEYWORDS)]],
-      -- },
+      highlight = {
+        -- keyword = "",
+        before = "",
+        keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+        -- pattern = [[\b(KEYWORDS)]],
+      },
       signs = true, -- show icons in the signs column
       search = {
+        -- command = "rg",
+        args = {
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
+        -- pattern = [[\b(KEYWORDS)\b]],
+        -- pattern = [[\b(KEYWORDS):?\b]],
+        -- pattern = [[\b(KEYWORDS)(:?)\b]],
         -- regex that will be used to match keywords.
         -- don't replace the (KEYWORDS) placeholder
         -- pattern = [[\b(KEYWORDS):]], -- ripgrep regex
-        -- pattern = [[\b(KEYWORDS):|\n(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
       },
     },
   },

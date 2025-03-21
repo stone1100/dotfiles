@@ -52,3 +52,12 @@ end
 -- 		vim.cmd("silent !tmux set status on")
 -- 	end,
 -- })
+--
+vim.api.nvim_create_user_command("PrintGoplsConfig", function()
+  local clients = vim.lsp.get_active_clients()
+  for _, client in ipairs(clients) do
+    if client.name == "gopls" then
+      print(vim.inspect(client.config))
+    end
+  end
+end, {})

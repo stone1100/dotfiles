@@ -4,6 +4,7 @@ local M = {}
 ---@class LinVimOptions
 M.defaults = {
   mode_icons = "󰢚",
+  theme = "light", -- light/dark
   cursor_sign = true,
   icons = {
     right = "󰳠",

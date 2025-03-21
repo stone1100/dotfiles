@@ -67,32 +67,32 @@ return {
       })
     end,
   },
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    event = { "VeryLazy", "BufReadPre" },
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
-    config = function()
-      vim.env.EDITOR = "nvim"
-      vim.g.lazygit_floating_window_winblend = 15
-      vim.g.lazygit_floating_window_border_chars = { "┌", "─", "┐", "│", "┘", "─", "└", "│" } -- customize lazygit popup window border characters
-      vim.g.lazygit_use_neovim_remote = 0 -- fallback to 0 if neovim-remote is not installed
-      require("telescope").load_extension("lazygit")
-    end,
-  },
+  -- {
+  --   "kdheepak/lazygit.nvim",
+  --   cmd = {
+  --     "LazyGit",
+  --     "LazyGitConfig",
+  --     "LazyGitCurrentFile",
+  --     "LazyGitFilter",
+  --     "LazyGitFilterCurrentFile",
+  --   },
+  --   event = { "VeryLazy", "BufReadPre" },
+  --   -- optional for floating window border decoration
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  --   -- setting the keybinding for LazyGit with 'keys' is recommended in
+  --   -- order to load the plugin when the command is run for the first time
+  --   keys = {
+  --     { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+  --   },
+  --   config = function()
+  --     vim.env.EDITOR = "nvim"
+  --     vim.g.lazygit_floating_window_winblend = 15
+  --     vim.g.lazygit_floating_window_border_chars = { "┌", "─", "┐", "│", "┘", "─", "└", "│" } -- customize lazygit popup window border characters
+  --     vim.g.lazygit_use_neovim_remote = 0 -- fallback to 0 if neovim-remote is not installed
+  --     require("telescope").load_extension("lazygit")
+  --   end,
+  -- },
 }
