@@ -119,21 +119,14 @@ return {
     },
     config = function()
       require("lspconfig.ui.windows").default_options.border = "single"
-
       --local utils = require("utils")
       local mason_lsp = require("mason-lspconfig")
-      local lsp_util = require("lin.utils.lsp")
-
       mason_lsp.setup({
         ensure_installed = {
           "bashls",
-          -- "sumneko_lua",
-          -- "tsserver",
           "ts_ls",
           "jdtls",
-          -- "stylua",
           "gopls",
-          -- "golangci_lint_ls",
           "tailwindcss",
           "cssls",
           "eslint",
@@ -142,19 +135,8 @@ return {
         },
         automatic_installation = true,
       })
-      --local utils = require("utils")
-      for _, name in ipairs(mason_lsp.get_installed_servers()) do
-        -- do cust lsp config
-        local ok, _ = pcall(require, string.format("lin.lang.%s", name))
-        if not ok then
-          -- setup default config, if not exist
-          vim.lsp.config(name, {
-            on_attach = lsp_util.on_attach,
-            capabilities = lsp_util.capabilities,
-          })
-        end
-        -- ::continue::
-      end
+      -- auto enable lsp(installed)
+      vim.lsp.enable(mason_lsp.get_installed_servers())
     end,
   },
 }

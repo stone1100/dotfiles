@@ -21,6 +21,7 @@ local function setupPlugins()
   end
 
   vim.opt.rtp:prepend(lazypath)
+
   require("lazy").setup({
     spec = {
       { import = "lin.plugins" },
@@ -32,6 +33,11 @@ local function setupPlugins()
     install = {
       -- try to load one of these colorschemes when starting an installation during startup
       colorscheme = { "tokyonight-storm" },
+    },
+    performance = {
+      rtp = {
+        reset = false,
+      },
     },
   })
 end

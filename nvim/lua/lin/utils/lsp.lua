@@ -5,6 +5,26 @@ lsp._keymapped = false
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+local util = require("lspconfig/util")
+
+function lsp.root_pattern(...)
+  return util.root_pattern(...)
+end
+
+function lsp.get_root_dir(...)
+  local patterns = util.tbl_flatten({ ... })
+  return function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local git_root = util.find_git_ancestor(fname)
+    if git_root then
+      --NOTE: fix monorepo
+      on_dir(git_root)
+    else
+      on_dir(util.root_pattern(patterns))
+    end
+  end
+end
+
 function OpenGoTestFile()
   local file_path = vim.fn.expand("%:p")
   local target_file_path

@@ -3,7 +3,7 @@ local lsp_util = require("lin.utils.lsp")
 -- INFO: Don't forget to install typescript language server itself
 -- npm i -g typescript-language-server
 -- override language server settings
-vim.lsp.config("ts_ls", {
+return {
   on_attach = function(client, bufnr)
     lsp_util.on_attach(client, bufnr)
     -- disbale formatting, use eslint
@@ -13,4 +13,4 @@ vim.lsp.config("ts_ls", {
   flags = { debounce_text_changes = 150 },
   capabilities = lsp_util.capabilities,
   filetypes = { "typescriptreact", "typescript" },
-})
+}

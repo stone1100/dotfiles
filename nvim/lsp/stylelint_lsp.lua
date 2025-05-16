@@ -1,19 +1,12 @@
 local lsp_util = require("lin.utils.lsp")
-local util = require("lspconfig/util")
 
-vim.lsp.config("stylelint_lsp", {
-  capabilities = lsp_util.capabilities,
-  on_attach = lsp_util.on_attach,
+return {
   filetypes = {
     "css",
     "less",
     "scss",
   },
-  root_dir = util.root_pattern(
-    -- "stylelint.config.mjs",
-    -- ".stylelintrc.json"
-    ".git"
-  ),
+  root_dir = lsp_util.get_root_dir("package.json"),
   settings = {
     stylelintplus = {
       -- see available options in stylelint-lsp documentation
@@ -21,4 +14,4 @@ vim.lsp.config("stylelint_lsp", {
       autoFixOnFormat = true,
     },
   },
-})
+}

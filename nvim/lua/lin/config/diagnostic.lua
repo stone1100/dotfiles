@@ -8,8 +8,10 @@ vim.diagnostic.config({
   signs = {
     text = signs,
   },
-  virtual_lines = true,
-  virtual_text = false,
+  virtual_lines = {
+    current_line = true,
+  },
+  -- virtual_text = false,
   -- virtual_text = {
   --   prefix = "",
   --   format = function(diagnostic)

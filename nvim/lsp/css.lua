@@ -1,7 +1,5 @@
 local lsp_util = require("lin.utils.lsp")
-local util = require("lspconfig/util")
-
-vim.lsp.config("cssls", {
+return {
   capabilities = lsp_util.capabilities,
   on_attach = function(client, bufnr)
     lsp_util.on_attach(client, bufnr)
@@ -14,9 +12,5 @@ vim.lsp.config("cssls", {
     scss = { validate = true },
     less = { validate = true },
   },
-  root_dir = util.root_pattern(
-    -- "stylelint.config.mjs",
-    -- ".stylelintrc.json"
-    ".git"
-  ),
-})
+  root_dir = lsp_util.root_pattern(".git"),
+}
