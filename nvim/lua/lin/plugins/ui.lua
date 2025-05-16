@@ -24,6 +24,11 @@ return {
           cterm_color = "68",
           name = "DockerfileGH",
         },
+        css = {
+          icon = "",
+          color = "#934cda",
+          name = "Css",
+        },
       },
     },
   },

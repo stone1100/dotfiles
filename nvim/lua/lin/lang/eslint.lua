@@ -1,8 +1,7 @@
 local lsp_util = require("lin.utils.lsp")
-local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 
-nvim_lsp.eslint.setup({
+vim.lsp.config("eslint", {
   capabilities = lsp_util.capabilities,
   on_attach = lsp_util.on_attach,
   root_dir = util.root_pattern(

@@ -1,22 +1,25 @@
 local lsp_util = require("lin.utils.lsp")
-local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 
-nvim_lsp.tailwindcss.setup({
+vim.lsp.config("tailwindcss", {
   -- filetypes = { "typescriptreact", "typescript" },
   capabilities = lsp_util.capabilities,
-  on_attach = function(client, bufnr)
-    lsp_util.on_attach(client, bufnr)
-    -- -- disbale formatting, use eslint
-    -- client.server_capabilities.documentFormattingProvider = false
-    -- client.server_capabilities.documentRangeFormattingProvider = false
+  on_attach = lsp_util.on_attach,
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local git_root = util.find_git_ancestor(fname)
+    if git_root then
+      --NOTE: fix monorepo
+      on_dir(git_root)
+    else
+      on_dir(util.root_pattern("package.json"))
+    end
   end,
   settings = {
-    tailwindCSS = {},
+    tailwindCSS = {
+      includeLanguages = {
+        templ = "html",
+      },
+    },
   },
-  root_dir = util.root_pattern(
-    -- "stylelint.config.mjs",
-    -- ".stylelintrc.json"
-    ".git"
-  ),
 })

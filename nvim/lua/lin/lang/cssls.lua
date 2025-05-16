@@ -1,8 +1,7 @@
 local lsp_util = require("lin.utils.lsp")
-local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 
-nvim_lsp.cssls.setup({
+vim.lsp.config("cssls", {
   capabilities = lsp_util.capabilities,
   on_attach = function(client, bufnr)
     lsp_util.on_attach(client, bufnr)

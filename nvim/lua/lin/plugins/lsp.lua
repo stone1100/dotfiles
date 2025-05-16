@@ -121,14 +121,13 @@ return {
       require("lspconfig.ui.windows").default_options.border = "single"
 
       --local utils = require("utils")
-      local nvim_lsp = require("lspconfig")
       local mason_lsp = require("mason-lspconfig")
       local lsp_util = require("lin.utils.lsp")
 
       mason_lsp.setup({
         ensure_installed = {
           "bashls",
-          --		"sumneko_lua",
+          -- "sumneko_lua",
           -- "tsserver",
           "ts_ls",
           "jdtls",
@@ -139,23 +138,17 @@ return {
           "cssls",
           "eslint",
           "stylelint_lsp",
-          "lemminx",
+          "lemminx", --xml
         },
         automatic_installation = true,
       })
       --local utils = require("utils")
       for _, name in ipairs(mason_lsp.get_installed_servers()) do
-        -- if name == "gopls" then
-        -- 	-- go via go.nvim
-        -- 	goto continue
-        -- end
         -- do cust lsp config
         local ok, _ = pcall(require, string.format("lin.lang.%s", name))
-        -- print(name, ok)
         if not ok then
-          -- print(name)
           -- setup default config, if not exist
-          nvim_lsp[name].setup({
+          vim.lsp.config(name, {
             on_attach = lsp_util.on_attach,
             capabilities = lsp_util.capabilities,
           })

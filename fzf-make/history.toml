@@ -1,0 +1,6 @@
+[[histories]]
+path = "/Users/jacklhuang/Documents/tencent/monitoring/prometheus-app"
+
+[[histories.commands]]
+runner-type = "pnpm"
+args = "build-web"

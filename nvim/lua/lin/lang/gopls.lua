@@ -1,9 +1,8 @@
 local lsp_util = require("lin.utils.lsp")
-local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 
 -- override language server settings
-nvim_lsp.gopls.setup({
+vim.lsp.config("gopls", {
   on_attach = lsp_util.on_attach,
   -- on_attach = function(client, bufnr)
   --   vim.lsp.codelens.refresh()

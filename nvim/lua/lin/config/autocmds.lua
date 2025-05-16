@@ -61,3 +61,10 @@ vim.api.nvim_create_user_command("PrintGoplsConfig", function()
     end
   end
 end, {})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.css", "*.tsx", "*.ts", "*.scss" },
+  callback = function()
+    require("tailwind-tools.lsp").sort_classes()
+  end,
+})

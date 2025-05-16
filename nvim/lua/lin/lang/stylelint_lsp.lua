@@ -1,8 +1,7 @@
 local lsp_util = require("lin.utils.lsp")
-local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 
-nvim_lsp.stylelint_lsp.setup({
+vim.lsp.config("stylelint_lsp", {
   capabilities = lsp_util.capabilities,
   on_attach = lsp_util.on_attach,
   filetypes = {

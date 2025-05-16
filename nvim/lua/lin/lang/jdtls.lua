@@ -21,7 +21,6 @@ local bundles = {
 vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar", 1), "\n"))
 
 local lsp_util = require("lin.utils.lsp")
-local nvim_lsp = require("lspconfig")
 local util = require("lspconfig/util")
 --https://github.com/abhigyanmadhukalya/dotfiles/blob/main/.config/nvim/ftplugin/java.lua
 --https://github.com/mfussenegger/nvim-jdtls/wiki/Sample-Configurations
@@ -33,7 +32,7 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 -- override language server settings
-nvim_lsp.jdtls.setup({
+vim.lsp.config("jdtls", {
   -- on_attach = utils.on_attach,
   on_attach = function(client, bufnr)
     vim.lsp.codelens.refresh()

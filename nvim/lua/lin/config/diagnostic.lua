@@ -8,13 +8,15 @@ vim.diagnostic.config({
   signs = {
     text = signs,
   },
-  virtual_text = {
-    prefix = "",
-    format = function(diagnostic)
-      local icon = signs[diagnostic.severity]
-      return string.format("%s %s", icon, diagnostic.message)
-    end,
-  },
+  virtual_lines = true,
+  virtual_text = false,
+  -- virtual_text = {
+  --   prefix = "",
+  --   format = function(diagnostic)
+  --     local icon = signs[diagnostic.severity]
+  --     return string.format("%s %s", icon, diagnostic.message)
+  --   end,
+  -- },
   severity_sort = true,
 })
 

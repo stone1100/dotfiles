@@ -1,2 +1,2 @@
 -- setup Lin Neovim
-require("lin").setup()
+require("lin").setup({ theme = "dark" })

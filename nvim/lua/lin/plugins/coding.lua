@@ -241,10 +241,29 @@ return {
   {
     "luckasRanarison/tailwind-tools.nvim",
     ft = { "typescript", "typescriptreact", "css", "scss" },
-    opts = {
-      server = {
-        -- override = false,
-      },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "neovim/nvim-lspconfig", -- optional
     },
+    opts = {},
+    config = function()
+      require("tailwind-tools").setup({
+        server = {
+          override = false,
+          -- on_attach = function(client, bufnr)
+          --   -- callback executed when the language server gets attached to a buffer
+          --   lsp_util.on_attach(client, bufnr)
+          -- end,
+          -- root_dir = function(fname)
+          --   local git_root = util.find_git_ancestor(fname)
+          --   if git_root then
+          --     -- fix monorepo
+          --     return git_root
+          --   end
+          --   return util.root_pattern("package.json")
+          -- end,
+        },
+      })
+    end,
   },
 }
