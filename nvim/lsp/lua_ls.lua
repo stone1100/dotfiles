@@ -1,7 +1,7 @@
 local lsp_util = require("lin.utils.lsp")
 
+---@type vim.lsp.Config
 return {
-  capabilities = lsp_util.capabilities,
   on_attach = lsp_util.on_attach,
   settings = {
     Lua = {

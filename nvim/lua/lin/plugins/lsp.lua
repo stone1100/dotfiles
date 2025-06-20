@@ -128,13 +128,22 @@ return {
           "jdtls",
           "gopls",
           "tailwindcss",
-          "cssls",
+          -- "cssls",
           "eslint",
           "stylelint_lsp",
           "lemminx", --xml
         },
         automatic_installation = true,
       })
+
+      local lsp_util = require("lin.utils.lsp")
+      vim.lsp.config(
+        "*",
+        ---@type vim.lsp.Config
+        {
+          capabilities = lsp_util.capabilities,
+        }
+      )
       -- auto enable lsp(installed)
       vim.lsp.enable(mason_lsp.get_installed_servers())
     end,

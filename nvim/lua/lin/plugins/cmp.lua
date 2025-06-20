@@ -74,7 +74,7 @@ return {
         },
         completion = {
           completeopt = "menu,menuone,noinsert",
-          autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
+          -- autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
         },
         formatting = {
           format = function(entry, vim_item)

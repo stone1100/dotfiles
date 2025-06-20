@@ -255,6 +255,7 @@ return {
           --   lsp_util.on_attach(client, bufnr)
           -- end,
           -- root_dir = function(fname)
+          --   local util = require("lspconfig/util")
           --   local git_root = util.find_git_ancestor(fname)
           --   if git_root then
           --     -- fix monorepo

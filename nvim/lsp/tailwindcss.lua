@@ -1,4 +1,6 @@
 local lsp_util = require("lin.utils.lsp")
+
+---@type vim.lsp.Config
 return {
   -- filetypes = { "typescriptreact", "typescript" },
   -- capabilities = lsp_util.capabilities,

@@ -1,9 +1,9 @@
 local lsp_util = require("lin.utils.lsp")
 -- override language server settings
+---@type vim.lsp.Config
 return {
   on_attach = lsp_util.on_attach,
-  flags = { debounce_text_changes = 150 },
-  capabilities = lsp_util.capabilities,
+  flags = { debounce_text_changes = 150, exit_timeout = 1000 },
   settings = {
     -- ref: https://github.com/golang/tools/blob/master/gopls/doc/vim.md
     gopls = {

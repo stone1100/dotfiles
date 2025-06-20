@@ -1,5 +1,6 @@
 local lsp_util = require("lin.utils.lsp")
 
+---@type vim.lsp.Config
 return {
   filetypes = {
     "css",
