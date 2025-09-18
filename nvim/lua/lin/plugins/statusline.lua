@@ -71,14 +71,21 @@ return {
 								removed = icons.expand .. " ",
 							},
 							source = function()
-								local gitsigns = vim.b.gitsigns_status_dict
-								if gitsigns then
-									return {
-										added = gitsigns.added,
-										modified = gitsigns.changed,
-										removed = gitsigns.removed,
-									}
-								end
+								-- local gitsigns = vim.b.gitsigns_status_dict
+								-- if gitsigns then
+								-- 	return {
+								-- 		added = gitsigns.added,
+								-- 		modified = gitsigns.changed,
+								-- 		removed = gitsigns.removed,
+								-- 	}
+								-- end
+								local summary = vim.b.minidiff_summary
+								return summary
+										and {
+											added = summary.add,
+											modified = summary.change,
+											removed = summary.delete,
+										}
 							end,
 						},
 						-- {
@@ -93,7 +100,8 @@ return {
 						-- },
 					},
 					lualine_x = {
-						lin.utils.lualine.cmp_source("codeium"),
+						-- Snacks.profiler.status(),
+						lin.utils.lualine.codeium_status(),
 						{
 							common.get_lsp_clients,
 							icon = icons.lsp,

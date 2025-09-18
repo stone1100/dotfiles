@@ -1,8 +1,8 @@
 -- load the colorscheme here
 if lin.utils.common.is_dark() then
-  vim.cmd([[colorscheme tokyonight-storm]])
+	vim.cmd([[colorscheme tokyonight-storm]])
 else
-  vim.cmd([[colorscheme tokyonight-day]])
+	vim.cmd([[colorscheme tokyonight-day]])
 end
 -- selection
 -- vim.cmd([[hi Visual guibg=#2e3c64 guifg=#c0caf5 gui=reverse]])
@@ -10,6 +10,8 @@ end
 local colors = require("tokyonight.colors").setup({ transform = true })
 -- vim.cmd("hi LineNr guifg=" .. colors.green)
 -- vim.cmd("hi Cursor guibg=" .. colors.green)
+vim.cmd("hi BlinkCmpKindVariable guifg=" .. colors.purple)
+vim.cmd("hi BlinkCmpKindSnippet guifg=" .. colors.green)
 vim.cmd("hi CmpItemKindVariable guifg=" .. colors.purple)
 vim.cmd("hi CmpItemKindSnippet guifg=" .. colors.green)
 vim.cmd("hi CmpItemMenu guifg=" .. colors.blue)

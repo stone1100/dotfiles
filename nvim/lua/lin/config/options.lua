@@ -17,15 +17,15 @@ local opt = vim.o
 opt.cursorline = true -- Enable highlighting of the current line
 opt.cursorcolumn = true
 opt.guicursor = "c-n:blinkon500,ci-i:hor50-blinkon500"
-opt.number = true -- Print line number
+opt.number = true         -- Print line number
 opt.relativenumber = true -- Relative line numbers
-opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+opt.signcolumn = "yes"    -- Always show the signcolumn, otherwise it would shift the text each time
 -- opt.softtabstop = 0
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.shiftwidth = 2 -- Size of an indent
+opt.tabstop = 2           -- Number of spaces tabs count for
+opt.shiftwidth = 2        -- Size of an indent
 opt.spelllang = "en"
-opt.termguicolors = true -- True color support
-opt.wrap = false -- Disable line wrap
+opt.termguicolors = true  -- True color support
+opt.wrap = false          -- Disable line wrap
 opt.foldmethod = "manual"
 opt.undofile = true
 opt.autoindent = false
@@ -39,3 +39,6 @@ opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 -- vim.cmd("syntax off")
 vim.cmd([[set colorcolumn=120]])
+
+-- snacks_animate
+vim.g.snacks_animate = false
